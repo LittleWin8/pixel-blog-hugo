@@ -1,0 +1,32 @@
+/* 404 页面 */
+
+/* ── 404 ───────────────────────────────────────────────────── */
+.error-page {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.error-page__code {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-pixel);
+  font-size: clamp(4rem, 16vw, 8rem);
+  line-height: 1;
+}
+
+.error-page__title {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 1.5rem;
+}
+
+.error-page__desc {
+  margin: 0 0 2rem;
+  color: var(--fg-muted);
+}
+
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}

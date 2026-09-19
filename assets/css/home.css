@@ -305,3 +305,58 @@ a.featured__item:hover .featured__arrow {
 .tag-cloud > li {
   list-style: none;
 }
+
+/* ── Hero ─────────────────────────────────────────────────── */
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 2.5rem 0 1rem;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.7rem;
+  border: var(--border-width) solid var(--border-soft);
+  background: var(--bg-card);
+  box-shadow: 3px 3px 0 var(--shadow-color);
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+}
+
+.hero__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.hero__tagline {
+  margin: 0 0 1.5rem;
+  color: var(--fg-muted);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+}
+
+.hero__intro {
+  max-width: 46rem;
+  padding: 1.15rem 1.35rem;
+  color: var(--fg-muted);
+}
+
+.hero__intro :first-child {
+  margin-top: 0;
+}
+
+.hero__intro :last-child {
+  margin-bottom: 0;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
