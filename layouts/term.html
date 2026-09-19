@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <header class="section-head">
+    <div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="section-head__more">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  {{ $paginator := .Paginate .Pages }}
+  <ul class="post-list">
+    {{ range $paginator.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ else }}
+      <li class="post-meta">{{ i18n "noPosts" | default "暂无文章。" }}</li>
+    {{ end }}
+  </ul>
+
+  {{ partial "pagination.html" . }}
+{{ end }}

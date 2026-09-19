@@ -39,7 +39,7 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 
 ### 1. Install Hugo → create a site → add the theme
 
-> Requires **Hugo ≥ 0.146** (extended not required). Check with `hugo version`.
+> Requires **Hugo ≥ 0.158** (extended not required). Check with `hugo version`.
 
 ```bash
 # 1) Install Hugo (extended recommended, not required; pick one command for your OS)
@@ -67,7 +67,7 @@ Only the basics are needed (personalization comes next):
 
 ```toml
 baseURL = "https://example.com/"
-languageCode = "en-us"
+locale = "en-us"
 defaultContentLanguage = "en"
 title = "My Blog"
 theme = "pixel-blog-hugo"
@@ -344,13 +344,13 @@ defaultContentLanguageInSubdir = false   # English at /, Chinese at /zh/
 
 [languages]
   [languages.en]
-    languageCode = "en-us"
-    languageName = "English"
+    locale = "en-us"
+    label = "English"
     title = "LittleWin's Blog"
     weight = 1
   [languages.zh]
-    languageCode = "zh-cn"
-    languageName = "中文"
+    locale = "zh-cn"
+    label = "中文"
     title = "小稳的博客"
     weight = 2
     [languages.zh.params]      # override theme params for this language

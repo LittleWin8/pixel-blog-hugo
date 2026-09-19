@@ -1,0 +1,32 @@
+{{- if gt (len hugo.Sites) 1 -}}
+{{- $translations := dict -}}
+{{- range .Translations -}}{{- $translations = merge $translations (dict .Language.Name .RelPermalink) -}}{{- end -}}
+{{- $translations = merge $translations (dict .Language.Name .RelPermalink) -}}
+{{- $homes := dict -}}
+{{- range hugo.Sites -}}
+  {{- with .Home -}}{{- $homes = merge $homes (dict .Language.Name .RelPermalink) -}}{{- end -}}
+{{- end -}}
+<details class="lang-switch">
+  <summary class="icon-btn" aria-label="{{ i18n "switchLanguage" | default "切换语言" }}">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+      <path d="M2 12h20"></path>
+    </svg>
+    <span class="lang-current">{{ site.Language.Label | default (site.Language.Name | upper) }}</span>
+  </summary>
+  <ul class="lang-menu">
+    {{ range hugo.Sites }}
+    {{- $lang := .Language -}}
+    {{- $target := index $translations $lang.Name -}}
+    {{- if not $target }}{{ $target = index $homes $lang.Name }}{{ end -}}
+    {{- if not $target }}{{ $target = "/" }}{{ end -}}
+    <li>
+      <a href="{{ $target }}"{{ if eq $lang.Name site.Language.Name }} aria-current="true"{{ end }}>
+        {{ $lang.Label | default ($lang.Name | upper) }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</details>
+{{- end -}}

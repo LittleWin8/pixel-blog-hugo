@@ -14,7 +14,7 @@ hugo server --themesDir ../..
 
 打开 http://localhost:1313 即可预览。
 
-> 本主题样式/脚本走 Hugo Pipes，**无需 Node.js / npm**。仅需 Hugo ≥ 0.146（extended 非必需）。
+> 本主题样式/脚本走 Hugo Pipes，**无需 Node.js / npm**。仅需 Hugo ≥ 0.158（extended 非必需）；采用 0.146+ 新布局目录规范。
 
 ## 目录结构
 
@@ -26,12 +26,16 @@ themes/pixel-blog-hugo/
 │   ├── js/                        # main.js（明暗/菜单/回顶/代码复制）、search.js
 │   └── images/logo.png            # 主题 logo（可替换）
 ├── i18n/                          # zh-cn.yaml / en.yaml
-├── layouts/
-│   ├── _default/                  # baseof / single / list / terms / links / archives / search + _markup 渲染钩子
+├── layouts/                       # 采用 Hugo 0.146+ 新布局规范
+│   ├── baseof.html                # 基础模板
+│   ├── home.html / home.json      # 首页 / 站内搜索索引
+│   ├── single.html / list.html    # 页面 / 列表（section / 标签 term 等）
+│   ├── taxonomy.html / term.html  # 标签云 / 单个标签页
+│   ├── rss.xml                    # RSS（仅输出带日期的文章）
+│   ├── archives.html / links.html / search.html   # 自定义 layout 页
 │   ├── projects/                  # 项目列表 + 详情
-│   ├── partials/                  # head/、header、footer、hero、works、tech-stack、卡片、分页、toc 等
-│   ├── index.html                 # 首页
-│   ├── index.json                 # 站内搜索索引
+│   ├── _markup/                   # 渲染钩子：render-heading / render-image / render-link
+│   ├── _partials/                 # head/、header、footer、hero、works、tech-stack、卡片、分页、toc 等
 │   ├── 404.html
 │   └── robots.txt
 ├── exampleSite/                   # 示例站点（预览 + 配置模板）

@@ -39,7 +39,7 @@
 
 ### 1. 安装 Hugo → 建站 → 装主题
 
-> 需要 **Hugo ≥ 0.146**（extended 非必需）。用 `hugo version` 确认版本。
+> 需要 **Hugo ≥ 0.158**（extended 非必需）。用 `hugo version` 确认版本。
 
 ```bash
 # 1) 安装 Hugo（extended 更佳，本主题非必需；按系统选一条执行）
@@ -67,7 +67,7 @@ git submodule add https://github.com/LittleWin8/pixel-blog-hugo themes/pixel-blo
 
 ```toml
 baseURL = "https://example.com/"
-languageCode = "zh-cn"
+locale = "zh-cn"
 defaultContentLanguage = "zh"
 title = "我的博客"
 theme = "pixel-blog-hugo"
@@ -348,13 +348,13 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 
 [languages]
   [languages.zh]
-    languageCode = "zh-cn"
-    languageName = "中文"
+    locale = "zh-cn"
+    label = "中文"
     title = "小稳的博客"
     weight = 1
   [languages.en]
-    languageCode = "en-us"
-    languageName = "English"
+    locale = "en-us"
+    label = "English"
     title = "LittleWin's Blog"
     weight = 2
     [languages.en.params]      # 覆盖主题里的同名 params（英文文案）

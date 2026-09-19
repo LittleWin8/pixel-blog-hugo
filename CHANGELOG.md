@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更
+
+- 布局目录迁移到 Hugo 0.146+ 新规范（`layouts/_partials/`、`layouts/_markup/`、`baseof/home/single/list/taxonomy/term.html` 等）
+- 适配 Hugo 0.156–0.158 弃用：语言方法改用 `site.Language.Locale/Label/Name`、多语言改用 `hugo.Sites`；最低版本提升至 **0.158**
+
 ### 新增
 
 - 内置社交图标：`params.social` 支持 `github` / `email` / `x` / `telegram` / `wechat` / `weibo` / `bilibili` / `zhihu` / `juejin` / `youtube` / `linkedin` / `mastodon` / `discord` / `instagram` / `steam`，显示在首页 Hero 与页脚

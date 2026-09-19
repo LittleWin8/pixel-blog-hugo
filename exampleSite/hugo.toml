@@ -1,7 +1,7 @@
 baseURL = "https://example.org/"
 title = "pixel-blog-hugo demo"
 theme = "pixel-blog-hugo"
-languageCode = "zh-cn"
+locale = "zh-cn"
 defaultContentLanguage = "zh"
 enableRobotsTXT = true
 hasCJKLanguage = true    # 中文按「字」统计，阅读时长/摘要才准确
