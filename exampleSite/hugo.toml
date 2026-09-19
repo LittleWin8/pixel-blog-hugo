@@ -28,7 +28,7 @@ summaryLength = 80
 # ── 示例站个性化（覆盖主题默认值；你重建自己的博客时写进自己的 hugo.toml）──
 [params]
   author = "小稳"
-  description = "小稳的博客 · 示例站"
+  description = "xiaowen 主题 · 示例站点"
 
   [params.identity]
     name = "小稳"
@@ -36,15 +36,15 @@ summaryLength = 80
     favicon = "images/logo.png"
 
   [params.hero]
-    eyebrow = "持续学习，也持续创造"
+    eyebrow = "示例站点 · 文案可随意修改"
     title = "小稳"
-    tagline = "全栈开发者，专注于把想法做成好用的产品。"
+    tagline = "把折腾过的东西记录在这里。"
     intro = """
-你好呀，欢迎来到我的小窝。
+你好，这是 **xiaowen** 主题的示例站点。
 
-我是**小稳**，用 `Java` 与 `Vue.js` 修炼全栈，把想法变成真实好用的产品。
+页面上的名字、标语、这段介绍，全都写在站点配置里，换成你自己的即可。
 
-这里是我的数字花园，种着技术笔记、项目故事，和一路走来的思考。
+写文章、加项目，剩下的交给 Hugo。
 """
 
   [params.works]
@@ -55,27 +55,27 @@ summaryLength = 80
   [params.techstack]
     enable = true
     title = "技术栈"
-    subtitle = "我使用的技术和工具"
+    subtitle = "示例分组，按需改成你自己的"
     [[params.techstack.groups]]
-      title = "AI 编程工具"
-      icon = "ai"
-      description = "日常以 AI Agent 结对开发：需求拆解、代码生成、Review 与调试全流程提效。"
-      items = ["ZCode", "Codex", "Claude Code", "OpenAI", "DeepSeek", "Kimi", "Zhipu"]
+      title = "编程语言"
+      icon = "language"
+      description = "平时主要使用的语言。"
+      items = ["Java", "TypeScript", "Go"]
     [[params.techstack.groups]]
       title = "后端与数据库"
       icon = "backend"
-      description = "以 Java 生态为主线，构建稳定可靠的服务端应用。"
-      items = ["Java", "Spring Boot", "MyBatis", "MySQL", "Redis"]
+      description = "服务端与数据存储。"
+      items = ["Spring Boot", "MySQL", "Redis"]
     [[params.techstack.groups]]
-      title = "前端与工程化"
+      title = "前端与工具"
       icon = "frontend"
-      description = "用现代前端工具链打造可维护的交互界面。"
-      items = ["Vue.js", "TypeScript", "Vite", "Pinia"]
+      description = "界面开发与构建工具。"
+      items = ["Vue.js", "Vite", "Hugo"]
     [[params.techstack.groups]]
       title = "运维与效率"
       icon = "devops"
-      description = "自建服务与自动化流程，让开发和部署更省心。"
-      items = ["Linux", "Nginx", "Docker", "Hugo", "GitHub Actions"]
+      description = "部署与日常提效。"
+      items = ["Linux", "Nginx", "Docker"]
 
   [params.social]
     github = "https://github.com/LittleWin8"
@@ -84,8 +84,8 @@ summaryLength = 80
     title = "友情链接"
     description = "一些有趣的朋友和他们的站点，欢迎交换。"
     items = [
-      { name = "千夜の詩", url = "https://1000ye.top/", description = "全栈开发者的像素风小窝", avatar = "https://1000ye.top/1000ye.png" },
-      { name = "GitHub", url = "https://github.com/LittleWin8", description = "我的开源主页" },
+      { name = "Hugo", url = "https://gohugo.io/", description = "静态站点生成器" },
+      { name = "GitHub", url = "https://github.com/", description = "代码托管平台" },
     ]
 
 # 示例站导航（覆盖主题默认，增补 项目 / 友链 / 关于）
@@ -101,6 +101,10 @@ summaryLength = 80
   name = "标签"
   url = "/tags/"
   icon = "tags"
+[[params.nav]]
+  name = "归档"
+  url = "/archives/"
+  icon = "archives"
 [[params.nav]]
   name = "项目"
   url = "/projects/"

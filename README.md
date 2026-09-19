@@ -20,7 +20,7 @@
 - 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
 - **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
-- 标签云与标签页、**404 页面**、robots.txt
+- 标签云与标签页、**归档页**（按年份分组）、**404 页面**、robots.txt
 - SEO：JSON-LD（BlogPosting / 面包屑）、OG / Twitter、RSS、sitemap
 - 无障碍：跳过导航（skip link）、统一焦点样式
 - CSS 自定义属性驱动，改一个色值全站生效
@@ -125,6 +125,7 @@ themes/xiaowen/
 │   │   ├── list.html              # 列表页
 │   │   ├── terms.html             # 标签云
 │   │   ├── links.html             # 友链页 /links/
+│   │   ├── archives.html          # 归档页 /archives/
 │   │   ├── search.html            # 搜索页 /search/
 │   │   └── _markup/               # 渲染钩子：图片 / 链接 / 标题
 │   ├── projects/                  # list.html / single.html（项目列表 + 详情）
@@ -233,6 +234,27 @@ themes/xiaowen/
 ```
 
 `params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
+
+## 归档页 / 搜索页
+
+两者都是「一个内容页 + 主题布局」，在**站点**里各建一个文件即可（`exampleSite` 已有）：
+
+```markdown
+<!-- content/archives.md -->
+---
+title: "归档"
+layout: "archives"
+---
+
+<!-- content/search.md -->
+---
+title: "搜索"
+layout: "search"
+---
+```
+
+- 归档页按年份自动分组，无需维护；在站点 `params.nav` 加一项 `{ name = "归档", url = "/archives/", icon = "archives" }` 即可进导航。
+- 搜索页由顶栏的搜索图标进入，需要站点开启 `home` 的 `JSON` 输出（见快速开始）。
 
 ## 项目（`content/projects/`）
 

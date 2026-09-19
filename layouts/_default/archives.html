@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <header class="section-head">
+    <div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="section-head__more">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  <div class="archive">
+    {{ range (where site.RegularPages "Section" "posts").GroupByDate "2006" }}
+    <section class="archive__year">
+      <h2 class="archive__year-label">
+        {{ .Key }}<span class="archive__count">{{ len .Pages }}</span>
+      </h2>
+      <ul class="archive__list">
+        {{ range .Pages }}
+        <li class="archive__item">
+          <time class="archive__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>
+          <a class="archive__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ else }}
+    <p class="post-meta">{{ i18n "noPosts" | default "暂无文章。" }}</p>
+    {{ end }}
+  </div>
+{{ end }}
