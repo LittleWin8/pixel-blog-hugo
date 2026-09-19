@@ -11,7 +11,25 @@
     (resources.Get "css/home.css")
     (resources.Get "css/projects.css")
     (resources.Get "css/links.css")
+    (resources.Get "css/print.css")
   | resources.Concat "css/main.css"
   | minify
   | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<noscript>
+  <style>
+    @media (max-width: 720px) {
+      .site-nav {
+        position: static !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        border-bottom: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      .menu-toggle {
+        display: none !important;
+      }
+    }
+  </style>
+</noscript>

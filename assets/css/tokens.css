@@ -30,6 +30,7 @@ html.theme-light {
   --accent-fg: #1a1c2c;
   --brand-purple: #8b5cf6;
   --brand-cyan: #0ea5e9;
+  --link: #6d28d9;
   --shadow-color: rgba(26, 28, 44, 0.55);
   --code-bg: #e9eaf2;
   --selection: #ffcd75;
@@ -47,6 +48,7 @@ html.theme-dark {
   --accent-fg: #1a1c2c;
   --brand-purple: #8b5cf6;
   --brand-cyan: #38bdf8;
+  --link: #a78bfa;
   --shadow-color: rgba(148, 176, 194, 0.35);
   --code-bg: #2e3149;
   --selection: #ffcd75;

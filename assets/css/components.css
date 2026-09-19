@@ -297,7 +297,7 @@ html.theme-dark .icon-moon {
 
 .toc a:hover,
 .toc a:focus-visible {
-  color: var(--brand-purple);
+  color: var(--link);
 }
 
 /* ── Related posts ─────────────────────────────────────────── */

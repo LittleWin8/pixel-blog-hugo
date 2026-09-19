@@ -163,7 +163,7 @@ a.featured__item:hover .featured__arrow {
 }
 
 .featured__more:hover {
-  color: var(--brand-purple);
+  color: var(--link);
 }
 
 /* ── Tech stack ────────────────────────────────────────────── */

@@ -16,7 +16,7 @@
 - 首页：双栏 Hero、个人信息面板、个人作品入口、技术栈（可开关）、最新文章
 - **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；上线项目可点击、带绿点与悬浮效果，未上线不可点击
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
-- **首页文案 / 顶部栏名称与 logo / 技术栈，在主题的 `hugo.yaml` 中配置**
+- **首页文案 / 顶部栏名称与 logo / 技术栈 / 友链，写在你站点的配置里（覆盖主题默认）**
 - 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
 - **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
@@ -27,6 +27,28 @@
 - 样式与脚本经 Hugo Pipes 拼接、压缩、加指纹，无需 npm / 构建工具
 - i18n 中英文案
 - SEO：description / canonical / Open Graph / Twitter Card / RSS
+
+## 我该改哪个文件？（主题 vs 站点）
+
+Hugo 里只有两类东西：
+
+- **主题**：模板 + 样式 + 通用默认值（一套，所有人共享）
+- **站点**：你自己的配置 + 内容（每个博客一份）
+
+同名配置，**站点会覆盖主题**。所以主题里放「通用默认」，站点里放「我的东西」。
+
+| 文件 | 层级 | 什么时候改 | 放什么 |
+|---|---|---|---|
+| `themes/xiaowen/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
+| `themes/xiaowen/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
+| `themes/xiaowen/exampleSite/hugo.toml` | 站点 | 预览 / 演示 | 示例个人信息 |
+| `themes/xiaowen/exampleSite/content/` | 站点 | 预览 / 演示 | 示例文章、项目、页面 |
+| 你的博客/hugo.toml | 站点 | 你写博客时 | 你的个人配置 |
+| 你的博客/content/ | 站点 | 你写博客时 | 你的文章、项目 |
+
+> **一句话**：改「我的名字 / 文案 / 文章 / 项目」→ 改**站点**（`hugo.toml` + `content/`）；改「主题长什么样 / 功能」→ 改**主题**（`layouts` / `assets` / 主题默认值）。
+
+`exampleSite` 是**主题自带的示例站点**：既用来预览主题，也是你建站时的配置模板——新建博客后，把自己的 `hugo.toml` 照着它改即可。
 
 ## 快速开始
 
@@ -86,132 +108,127 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 ```
 themes/xiaowen/
-├── archetypes/default.md          # hugo new 的默认 front matter
+├── archetypes/                    # default.md / projects.md（hugo new 骨架）
 ├── assets/
-│   ├── css/                       # 按层拆分的纯 CSS + CSS 变量
-│   │   ├── tokens.css             # 设计令牌：配色、字体、尺寸
-│   │   ├── base.css               # reset 与排版
-│   │   ├── layout.css             # 页头/页脚/容器/导航
-│   │   ├── components.css         # 卡片、按钮、标签、分页、目录
-│   │   ├── markdown.css           # 文章正文与代码高亮
-│   │   ├── home.css               # 首页区块 + 响应式断点
-│   │   ├── projects.css           # 项目列表 + 详情
-│   │   └── links.css              # 友链页
-│   ├── js/main.js                 # 明暗切换 / 移动菜单 / 回到顶部
-│   └── images/logo.png            # logo（替换为你的图即可）
+│   ├── css/                       # tokens / base / layout / components / markdown / home / projects / links
+│   ├── js/                        # main.js（明暗/菜单/回顶/代码复制）、search.js
+│   └── images/logo.png            # 主题 logo（可替换）
 ├── i18n/                          # zh-cn.yaml / en.yaml
 ├── layouts/
 │   ├── _default/
 │   │   ├── baseof.html            # 基础外框
-│   │   ├── list.html              # 列表页（博客/标签详情）
-│   │   ├── single.html            # 文章/独立页面
+│   │   ├── single.html            # 文章/独立页面（含右侧粘性大纲）
+│   │   ├── list.html              # 列表页
+│   │   ├── terms.html             # 标签云
 │   │   ├── links.html             # 友链页 /links/
-│   │   └── terms.html             # 标签云
-│   ├── projects/
-│   │   ├── list.html              # /projects/ 项目大卡片列表
-│   │   └── single.html            # 项目详情页
+│   │   ├── search.html            # 搜索页 /search/
+│   │   └── _markup/               # 渲染钩子：图片 / 链接 / 标题
+│   ├── projects/                  # list.html / single.html（项目列表 + 详情）
 │   ├── partials/
-│   │   ├── head/                  # head、meta、favicon、styles、theme-init
-│   │   ├── header.html / footer.html
-│   │   ├── hero.html              # 首页双栏主视觉
-│   │   ├── works.html             # 首页「个人作品」入口面板
-│   │   ├── tech-stack.html        # 首页「技术栈」区块（可开关）
-│   │   ├── project-card.html / project-card-body.html
-│   │   ├── project-icon.html / project-default-icon.html
-│   │   ├── post-card.html / post-meta.html
+│   │   ├── head/                  # head / meta / schema / favicon / styles / theme-init
+│   │   ├── header.html / footer.html / scripts.html
+│   │   ├── hero.html / works.html / tech-stack.html
+│   │   ├── project-card*.html / project-*.html / category-icon.html
+│   │   ├── post-card.html / post-meta.html / related.html
 │   │   ├── pagination.html / toc.html
-│   │   ├── logo.html / menu-icon.html / category-icon.html
-│   │   ├── theme-toggle.html / back-to-top.html
-│   │   └── scripts.html
-│   └── index.html                 # 首页
-├── hugo.yaml                      # ★ 主题配置（YAML）：个人信息 / 文案 / 技术栈 / 导航
+│   │   ├── logo.html / menu-icon.html / language-switch.html
+│   │   └── theme-toggle.html / back-to-top.html
+│   ├── index.html                 # 首页
+│   ├── index.json                 # 站内搜索索引
+│   ├── 404.html
+│   └── robots.txt
+├── exampleSite/                   # ★ 示例站点（预览 + 配置模板）
+├── images/                        # README 截图
+├── hugo.yaml                      # ★ 主题默认配置（通用，站点可覆盖）
+├── README.md
 └── theme.toml
 ```
 
-> 项目内容不在主题配置里，而是放在站点的 `content/projects/*.md`（见下）。
+> 文章/项目等**内容不在主题里**，而是放在**站点**的 `content/` 下（见下）。主题配置只提供通用默认值。
 
-## 个性化配置（主题 `themes/xiaowen/hugo.yaml`）
+## 个性化配置（写在**站点**里，如 `exampleSite/hugo.toml` 或你博客的 `hugo.toml`）
 
-个人信息 / 首页文案 / 作品 / 技术栈 / 导航都在**主题自带**的 `hugo.yaml` 里；站点 `hugo.toml` 只保留 Hugo 结构配置（`baseURL` / `languageCode` / `title` / `theme` / `pagination` / `taxonomies` / `markup`）。
+主题的 `hugo.yaml` 只提供**通用默认值**（默认导航、字体源、开关等）；你的**个人信息 / 文案 / 技术栈 / 友链**写在你**自己的站点配置**里，会覆盖主题默认。下面就是站点里的一份完整示例（`exampleSite/hugo.toml`）：
 
-> Hugo 只会合并主题配置里的 `params` 与 `menu`；`pagination`、`taxonomies`、`markup` 这类结构配置不会合并，所以它们必须留在站点 `hugo.toml`。
-> 如需覆盖主题默认值，在站点配置里写同名 `params` 即可（站点优先级更高）。
-
-```yaml
-params:
-  author: 小稳
-  description: 小稳的个人博客 · 记录技术与生活
-  toc: true                # 文章页是否显示目录
-  homePosts: 6             # 首页显示的文章数
+```toml
+[params]
+  author = "小稳"
+  description = "小稳的个人博客 · 记录技术与生活"
+  toc = true                # 文章页是否显示目录
+  homePosts = 6             # 首页显示的文章数
 
   # 品牌 / 顶部栏
-  identity:
-    name: 小稳                     # 顶部栏名称
-    logo: images/logo.png         # 顶部栏 logo（相对主题 assets/）
-    favicon: images/logo.png
+  [params.identity]
+    name = "小稳"                     # 顶部栏名称
+    logo = "images/logo.png"         # 顶部栏 logo（相对主题 assets/）
+    favicon = "images/logo.png"
 
   # 首页主视觉文案（intro 支持 Markdown，可多段）
-  hero:
-    eyebrow: 持续学习，也持续创造
-    title: 小稳
-    tagline: 全栈开发者，专注于把想法做成好用的产品。
-    intro: |
-      支持 **Markdown** 的自我介绍，可多段。
+  [params.hero]
+    eyebrow = "持续学习，也持续创造"
+    title = "小稳"
+    tagline = "全栈开发者，专注于把想法做成好用的产品。"
+    intro = """
+支持 **Markdown** 的自我介绍，可多段。
+"""
 
   # 首页「个人作品」入口（项目内容见下方 content/projects/）
-  works:
-    eyebrow: FEATURED WORK
-    title: 个人作品
-    count: 3                   # 首页展示几个项目
+  [params.works]
+    eyebrow = "FEATURED WORK"
+    title = "个人作品"
+    count = 3                   # 首页展示几个项目
 
-  # 首页「技术栈」（enable: false 即整块隐藏）
-  techstack:
-    enable: true
-    title: 技术栈
-    subtitle: 我使用的技术和工具
-    groups:
-      - title: 后端与数据库
-        icon: backend              # 大类图标名，见下表
-        description: 以 Java 生态为主线。
-        items: [Java, Spring Boot, MySQL, Redis]
+  # 首页「技术栈」（enable = false 即整块隐藏）
+  [params.techstack]
+    enable = true
+    title = "技术栈"
+    subtitle = "我使用的技术和工具"
+    [[params.techstack.groups]]
+      title = "后端与数据库"
+      icon = "backend"              # 大类图标名，见下表
+      description = "以 Java 生态为主线。"
+      items = ["Java", "Spring Boot", "MySQL", "Redis"]
 
-  assets:
-    pixelFont: "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
+  [params.assets]
+    pixelFont = "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
 
-  social:
-    github: "https://github.com/LittleWin8"   # 有值才在 Hero 显示按钮
-
-  # 顶部导航：顺序即显示顺序；某项注释掉即隐藏
-  # icon 可选：home / posts / tags / projects / links / about
-  nav:
-    - name: 首页
-      url: /
-      icon: home
-    - name: 博客
-      url: /posts/
-      icon: posts
-    - name: 项目
-      url: /projects/
-      icon: projects
-    - name: 友链
-      url: /links/
-      icon: links
-    # - name: 关于
-    #   url: /about/
-    #   icon: about
+  [params.social]
+    github = "https://github.com/LittleWin8"   # 有值才在 Hero 显示按钮
 
   # 友链页内容
-  links:
-    title: 友情链接
-    description: 一些有趣的朋友和他们的站点，欢迎交换。
-    items:
-      - name: 千夜の詩
-        url: "https://1000ye.top/"
-        description: 全栈开发者的像素风小窝
-        avatar: "https://1000ye.top/1000ye.png"   # 可选，不填用链接图标
+  [params.links]
+    title = "友情链接"
+    description = "一些有趣的朋友和他们的站点，欢迎交换。"
+    items = [
+      { name = "千夜の詩", url = "https://1000ye.top/", description = "全栈开发者的像素风小窝", avatar = "https://1000ye.top/1000ye.png" },
+      { name = "GitHub", url = "https://github.com/LittleWin8", description = "我的开源主页" },
+    ]
+
+# 顶部导航：顺序即显示顺序；某项注释掉即隐藏
+# icon 可选：home / posts / tags / projects / links / about
+[[params.nav]]
+  name = "首页"
+  url = "/"
+  icon = "home"
+[[params.nav]]
+  name = "博客"
+  url = "/posts/"
+  icon = "posts"
+[[params.nav]]
+  name = "项目"
+  url = "/projects/"
+  icon = "projects"
+[[params.nav]]
+  name = "友链"
+  url = "/links/"
+  icon = "links"
+# [[params.nav]]
+#   name = "关于"
+#   url = "/about/"
+#   icon = "about"
 ```
 
-`params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable: false` 或删除，技术栈整块隐藏。
+`params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
 
 ## 项目（`content/projects/`）
 

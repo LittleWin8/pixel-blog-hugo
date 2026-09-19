@@ -12,6 +12,10 @@
     root.classList.remove("theme-light", "theme-dark");
     root.classList.add("theme-" + theme);
     root.style.colorScheme = theme;
+    var meta = document.querySelector("meta[data-theme-color]");
+    if (meta) {
+      meta.setAttribute("content", theme === "dark" ? "#1a1c2c" : "#f4f4f8");
+    }
     document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
       btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
     });

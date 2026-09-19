@@ -1,0 +1,113 @@
+baseURL = "https://example.org/"
+title = "xiaowen demo"
+theme = "xiaowen"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh"
+enableRobotsTXT = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[pagination]
+  pagerSize = 8
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+  [markup.tableofcontents]
+    startLevel = 2
+    endLevel = 4
+
+# ── 示例站个性化（覆盖主题默认值；你重建自己的博客时写进自己的 hugo.toml）──
+[params]
+  author = "小稳"
+  description = "小稳的博客 · 示例站"
+
+  [params.identity]
+    name = "小稳"
+    logo = "images/logo.png"
+    favicon = "images/logo.png"
+
+  [params.hero]
+    eyebrow = "持续学习，也持续创造"
+    title = "小稳"
+    tagline = "全栈开发者，专注于把想法做成好用的产品。"
+    intro = """
+你好呀，欢迎来到我的小窝。
+
+我是**小稳**，用 `Java` 与 `Vue.js` 修炼全栈，把想法变成真实好用的产品。
+
+这里是我的数字花园，种着技术笔记、项目故事，和一路走来的思考。
+"""
+
+  [params.works]
+    eyebrow = "FEATURED WORK"
+    title = "个人作品"
+    count = 3
+
+  [params.techstack]
+    enable = true
+    title = "技术栈"
+    subtitle = "我使用的技术和工具"
+    [[params.techstack.groups]]
+      title = "AI 编程工具"
+      icon = "ai"
+      description = "日常以 AI Agent 结对开发：需求拆解、代码生成、Review 与调试全流程提效。"
+      items = ["ZCode", "Codex", "Claude Code", "OpenAI", "DeepSeek", "Kimi", "Zhipu"]
+    [[params.techstack.groups]]
+      title = "后端与数据库"
+      icon = "backend"
+      description = "以 Java 生态为主线，构建稳定可靠的服务端应用。"
+      items = ["Java", "Spring Boot", "MyBatis", "MySQL", "Redis"]
+    [[params.techstack.groups]]
+      title = "前端与工程化"
+      icon = "frontend"
+      description = "用现代前端工具链打造可维护的交互界面。"
+      items = ["Vue.js", "TypeScript", "Vite", "Pinia"]
+    [[params.techstack.groups]]
+      title = "运维与效率"
+      icon = "devops"
+      description = "自建服务与自动化流程，让开发和部署更省心。"
+      items = ["Linux", "Nginx", "Docker", "Hugo", "GitHub Actions"]
+
+  [params.social]
+    github = "https://github.com/LittleWin8"
+
+  [params.links]
+    title = "友情链接"
+    description = "一些有趣的朋友和他们的站点，欢迎交换。"
+    items = [
+      { name = "千夜の詩", url = "https://1000ye.top/", description = "全栈开发者的像素风小窝", avatar = "https://1000ye.top/1000ye.png" },
+      { name = "GitHub", url = "https://github.com/LittleWin8", description = "我的开源主页" },
+    ]
+
+# 示例站导航（覆盖主题默认，增补 项目 / 友链 / 关于）
+[[params.nav]]
+  name = "首页"
+  url = "/"
+  icon = "home"
+[[params.nav]]
+  name = "博客"
+  url = "/posts/"
+  icon = "posts"
+[[params.nav]]
+  name = "标签"
+  url = "/tags/"
+  icon = "tags"
+[[params.nav]]
+  name = "项目"
+  url = "/projects/"
+  icon = "projects"
+[[params.nav]]
+  name = "友链"
+  url = "/links/"
+  icon = "links"
+[[params.nav]]
+  name = "关于"
+  url = "/about/"
+  icon = "about"

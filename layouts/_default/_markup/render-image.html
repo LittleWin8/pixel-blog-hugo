@@ -1,12 +1,43 @@
 {{- $dest := .Destination -}}
+{{- $page := .Page -}}
+{{- $img := "" -}}
+{{- with $page.Resources.GetMatch $dest -}}
+  {{- if eq .ResourceType "image" }}{{ $img = . }}{{ end -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with resources.Get $dest -}}
+    {{- if eq .ResourceType "image" }}{{ $img = . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
 {{- $external := or (hasPrefix $dest "http://") (hasPrefix $dest "https://") -}}
 <figure class="md-figure">
-  <img
-    src="{{ $dest | safeURL }}"
-    alt="{{ .Text }}"
-    loading="lazy"
-    decoding="async"
-    {{- if $external }} referrerpolicy="no-referrer"{{ end }}
-  >
+  {{- if $img -}}
+    {{- $srcset := slice -}}
+    {{- range slice 320 480 800 1200 -}}
+      {{- if ge $img.Width . -}}
+        {{- $r := $img.Resize (printf "%dx" .) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+    <img
+      src="{{ $img.RelPermalink }}"
+      srcset="{{ delimit $srcset ", " }}"
+      sizes="(max-width: 720px) 100vw, 720px"
+      width="{{ $img.Width }}"
+      height="{{ $img.Height }}"
+      alt="{{ .Text }}"
+      loading="lazy"
+      decoding="async"
+    >
+  {{- else -}}
+    <img
+      src="{{ $dest | safeURL }}"
+      alt="{{ .Text }}"
+      loading="lazy"
+      decoding="async"
+      {{- if $external }} referrerpolicy="no-referrer"{{ end }}
+    >
+  {{- end -}}
   {{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
