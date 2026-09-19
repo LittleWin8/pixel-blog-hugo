@@ -113,53 +113,7 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 > 搜索页需要站点有 `content/search.md`（`layout: search`）并开启 `home` 的 JSON 输出。
 
-## 目录结构
-
-```
-themes/pixel-blog-hugo/
-├── archetypes/                    # default.md / projects.md（hugo new 骨架）
-├── assets/
-│   ├── css/                       # tokens / base / layout / components / home / content / archive / search / error / projects / links / markdown / print
-│   ├── js/                        # main.js（明暗/菜单/回顶/代码复制）、search.js
-│   └── images/logo.png            # 主题 logo（可替换）
-├── i18n/                          # zh-cn.yaml / en.yaml
-├── layouts/
-│   ├── _default/
-│   │   ├── baseof.html            # 基础外框
-│   │   ├── single.html            # 文章/独立页面（含右侧粘性大纲）
-│   │   ├── list.html              # 列表页
-│   │   ├── terms.html             # 标签云
-│   │   ├── links.html             # 友链页 /links/
-│   │   ├── archives.html          # 归档页 /archives/
-│   │   ├── search.html            # 搜索页 /search/
-│   │   └── _markup/               # 渲染钩子：图片 / 链接 / 标题
-│   ├── projects/                  # list.html / single.html（项目列表 + 详情）
-│   ├── partials/
-│   │   ├── head/                  # head / meta / schema / favicon / styles / theme-init
-│   │   ├── header.html / footer.html / scripts.html
-│   │   ├── hero.html / works.html / tech-stack.html
-│   │   ├── project-card*.html / project-*.html / category-icon.html
-│   │   ├── post-card.html / post-meta.html / related.html
-│   │   ├── pagination.html / toc.html
-│   │   ├── logo.html / menu-icon.html / language-switch.html
-│   │   └── theme-toggle.html / back-to-top.html
-│   ├── index.html                 # 首页
-│   ├── index.json                 # 站内搜索索引
-│   ├── 404.html
-│   └── robots.txt
-├── exampleSite/                   # ★ 示例站点（预览 + 配置模板）
-├── images/                        # README 截图
-├── hugo.yaml                      # ★ 主题默认配置（通用，站点可覆盖）
-├── README.md
-├── LICENSE
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── THIRD-PARTY-NOTICES.md
-├── .editorconfig
-└── theme.toml
-```
-
-> 文章/项目等**内容不在主题里**，而是放在**站点**的 `content/` 下（见下）。主题配置只提供通用默认值。
+> 文章/项目等**内容不在主题里**，而是放在**站点**的 `content/` 下。主题的**目录结构、改配色/字体/断点等开发向说明见 [CONTRIBUTING.md](CONTRIBUTING.md)**。
 
 ## 个性化配置（写在**站点**里，如 `exampleSite/hugo.toml` 或你博客的 `hugo.toml`）
 
@@ -379,18 +333,6 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 文章/页面的英文版用文件名后缀：`hello-world.md` ↔ `hello-world.en.md`；分类的页面标题用 `_index.en.md`。
 
 > 语言级 `params` 会与主题的默认 params 合并，只需写要翻译的字段；数组（如 `works.items`、`techstack.groups`）会整体替换，需写全。
-
-## 二次开发
-
-- **改配色**：编辑 `assets/css/tokens.css`（亮色在 `:root`，暗色在 `html.theme-dark`）。
-- **改断点**：响应式集中在 `home.css` 底部与 `layout.css` 的 `@media`。
-- **换 logo**：替换 `assets/images/logo.png`（`logo.html` 会自动按需缩放，SVG 也可）。
-- **换像素字体**：改 `params.assets.pixelFont`。
-  - 默认走 jsDelivr（fontsource），开箱即用；
-  - 想国内更快/更稳，可**自托管**：从 [fusion-pixel-font](https://github.com/TakWolf/fusion-pixel-font) 下载 `12px-proportional` 的 woff2（简体中文约 660KB），放到站点 `static/fonts/`，写一个 `@font-face` CSS（用字体名 `Fusion Pixel 12px Proportional SC`），再把 `pixelFont` 指向它。字体为 OFL-1.1，记得附带 `OFL.txt`。
-- **更新时间**：文章显示「更新于」需要 `lastmod`。站点开启 `enableGitInfo = true` 可自动取 Git 提交时间，或在 front matter 写 `lastmod`。
-
-> 注意：CSS 文件是纯 CSS，请勿使用 `//` 注释（那是 SCSS 语法，会破坏规则），用 `/* */`。
 
 ## 依赖
 
