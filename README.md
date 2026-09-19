@@ -61,39 +61,29 @@ Hugo 里只有两类东西：
 
 ## 快速开始
 
-### 1. 安装 Hugo
-
-| 系统 | 命令 |
-|---|---|
-| **macOS** | `brew install hugo`（[Homebrew](https://brew.sh)） |
-| **Windows** | `winget install Hugo.Hugo.Extended`<br>或 `scoop install hugo-extended` / `choco install hugo-extended` |
-| **Ubuntu / Debian** | `sudo apt install hugo` |
-| **其它 Linux** | `sudo snap install hugo`，或到 [Releases](https://github.com/gohugoio/hugo/releases) 下载二进制 |
-
-> 建议装 **extended** 版（本主题不强制）。装完执行 `hugo version` 确认。
-
-### 2. 建站（三系统命令相同）
+### 1. 安装 Hugo → 建站 → 装主题
 
 ```bash
+# 1) 安装 Hugo（extended 更佳，本主题非必需；按系统选一条执行）
+brew install hugo                       # macOS（Homebrew）
+winget install Hugo.Hugo.Extended       # Windows（PowerShell）
+sudo apt install hugo                   # Ubuntu / Debian
+sudo snap install hugo                  # 其它 Linux（或到 github.com/gohugoio/hugo/releases 下载）
+hugo version                            # 确认安装成功
+
+# 2) 建站
 hugo new site my-blog
 cd my-blog
 git init
-```
 
-### 3. 安装主题（三系统相同）
-
-```bash
+# 3) 安装主题（submodule）
 git submodule add https://github.com/LittleWin8/pixel-blog-hugo themes/pixel-blog-hugo
+# 或者用 Hugo Modules：
+#   hugo mod init github.com/<你的用户名>/my-blog
+#   hugo mod get github.com/LittleWin8/pixel-blog-hugo
 ```
 
-或用 Hugo Modules：
-
-```bash
-hugo mod init github.com/<你的用户名>/my-blog
-hugo mod get github.com/LittleWin8/pixel-blog-hugo
-```
-
-### 4. 配置 `hugo.toml`
+### 2. 配置 `hugo.toml`
 
 只需基础配置（其余个性化见下节）：
 
@@ -124,7 +114,7 @@ summaryLength = 80
     endLevel = 4
 ```
 
-### 5. 写内容与预览（三系统命令相同）
+### 3. 写内容与预览（三系统命令相同）
 
 ```bash
 hugo new posts/hello.md        # 文章，发布前把 draft 改 false
