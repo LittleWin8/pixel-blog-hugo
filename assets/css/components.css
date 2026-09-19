@@ -53,6 +53,39 @@
   color: var(--fg);
 }
 
+/* ── 社交图标 ─────────────────────────────────────────────── */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: var(--border-width) solid var(--border);
+  background: var(--bg-card);
+  color: var(--fg-muted);
+  box-shadow: 3px 3px 0 var(--shadow-color);
+  transition: transform var(--transition), box-shadow var(--transition),
+    color var(--transition);
+}
+
+.social-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--shadow-color);
+  color: var(--accent);
+}
+
+.social-link .icon {
+  width: 18px;
+  height: 18px;
+}
+
 .icon-btn {
   display: inline-flex;
   align-items: center;

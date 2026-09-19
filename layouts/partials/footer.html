@@ -1,6 +1,6 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p class="site-footer__left">
+    <div class="site-footer__left">
       <span>{{ site.Params.copyright | default (printf "© %d %s" now.Year (site.Params.author | default site.Title)) }}</span>
       {{ with site.Home.OutputFormats.Get "RSS" }}
       <a class="footer-social" href="{{ .RelPermalink }}" aria-label="{{ i18n "rss" | default "RSS 订阅" }}" title="RSS">
@@ -11,10 +11,11 @@
         </svg>
       </a>
       {{ end }}
+      <div class="footer-social-links">{{ partial "social-links.html" . }}</div>
       {{ with site.Params.icp }}
       <a class="footer-icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">{{ . }}</a>
       {{ end }}
-    </p>
+    </div>
     <p>Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> · Theme <a href="https://github.com/LittleWin8/pixel-blog-hugo" target="_blank" rel="noopener">pixel-blog-hugo</a></p>
   </div>
 </footer>

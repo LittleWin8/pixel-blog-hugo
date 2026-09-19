@@ -7,7 +7,7 @@ params:
   toc: true
   homePosts: 6
 
-  # 顶部导航：某项注释掉即隐藏；icon 可选 home / posts / tags / projects / links / about
+  # 顶部导航：某项注释掉即隐藏；icon 可选 home / posts / tags / projects / links / archives / about
   # （默认只放一定存在的页面；项目/友链/关于需要你自己有对应内容页）
   nav:
     - name: 首页
@@ -49,8 +49,13 @@ params:
 #     tagline: 一句介绍
 #     intro: |
 #       支持 Markdown 的自我介绍
+#   # 社交图标；填了值的项才显示（首页 Hero + 页脚）。内置键名：
+#   # github / email / x / telegram / wechat / weibo / bilibili / zhihu /
+#   # juejin / youtube / linkedin / mastodon / discord / instagram / steam
 #   social:
 #     github: https://github.com/you
+#     email: you@example.com
+#     steam: https://steamcommunity.com/id/yourid
 #   links:
 #     title: 友情链接
 #     items:

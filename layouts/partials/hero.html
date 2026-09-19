@@ -30,10 +30,9 @@
           <span aria-hidden="true">→</span>
         </a>
         <a class="btn btn--ghost" href="{{ "about/" | relURL }}">{{ i18n "aboutMe" | default "关于我" }}</a>
-        {{ with site.Params.social.github }}
-        <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">GitHub</a>
-        {{ end }}
       </div>
+
+      {{ partial "social-links.html" . }}
     </div>
 
     {{ partial "works.html" . }}

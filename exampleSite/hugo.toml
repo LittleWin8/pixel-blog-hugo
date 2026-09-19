@@ -17,6 +17,8 @@ summaryLength = 80
   tag = "tags"
 
 [markup]
+  [markup.goldmark.parser]
+    wrapStandAloneImageWithinParagraph = false   # 图片渲染钩子输出 <figure>，避免被包进 <p>
   [markup.goldmark.renderer]
     unsafe = true
   [markup.highlight]
@@ -81,8 +83,27 @@ summaryLength = 80
   [params.assets]
     ogImage = "/images/og-default.png"   # 站点默认分享图（文章可用 cover 覆盖）
 
+  # 社交图标：填了值的项才显示（首页 Hero 与页脚各一行），全部留空则不显示。
+  # 内置图标（键名即下方字段名）：
+  #   github  email  x  telegram  wechat  weibo  bilibili  zhihu
+  #   juejin  youtube  linkedin  mastodon  discord  instagram  steam
   [params.social]
-    github = "https://github.com/LittleWin8"
+    # 只填你想展示的，多余的删掉或注释掉即可
+    github = "https://github.com/LittleWin8"        # GitHub
+    email = "hello@example.com"                     # 邮箱（自动加 mailto:）
+    x = "https://x.com/LittleWin8"                  # X
+    bilibili = "https://space.bilibili.com/1000000" # 哔哩哔哩
+    steam = "https://steamcommunity.com/id/LittleWin8"  # Steam
+    # telegram = "https://t.me/你的用户名"            # Telegram
+    # wechat = "https://你的微信二维码图链接"          # 微信（通常放二维码图片链接）
+    # weibo = "https://weibo.com/你的用户名"          # 微博
+    # zhihu = "https://www.zhihu.com/people/你的ID"   # 知乎
+    # juejin = "https://juejin.cn/user/你的ID"        # 掘金
+    # youtube = "https://youtube.com/@你的频道"       # YouTube
+    # linkedin = "https://linkedin.com/in/你的ID"     # LinkedIn
+    # mastodon = "https://你的实例/@你的用户名"        # Mastodon
+    # discord = "https://discord.gg/你的邀请码"       # Discord
+    # instagram = "https://instagram.com/你的用户名"  # Instagram
 
   [params.links]
     title = "友情链接"

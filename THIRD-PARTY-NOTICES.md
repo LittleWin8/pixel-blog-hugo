@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | 主题代码 | MIT | 见 [LICENSE](LICENSE) |
 | 线性图标 | ISC | 主题内的线性图标路径参考 [Lucide](https://lucide.dev) |
+| 社交品牌图标 | CC0-1.0 | 社交平台图标来自 [Simple Icons](https://simpleicons.org) |
 
 ## 字体
 

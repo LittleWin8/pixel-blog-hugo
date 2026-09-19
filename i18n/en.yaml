@@ -22,8 +22,6 @@
   translation: "Contents"
 - id: noPosts
   translation: "No posts yet."
-- id: inProgress
-  translation: "In progress"
 - id: switchLanguage
   translation: "Switch language"
 - id: online
@@ -70,3 +68,17 @@
   translation: "The page you are looking for does not exist or has been moved."
 - id: backHome
   translation: "Back home"
+- id: socialLinks
+  translation: "Social links"
+- id: noLinks
+  translation: "No links yet."
+- id: copyCode
+  translation: "Copy"
+- id: copyCodeLabel
+  translation: "Copy code"
+- id: copied
+  translation: "Copied"
+- id: prevPage
+  translation: "Previous page"
+- id: nextPage
+  translation: "Next page"

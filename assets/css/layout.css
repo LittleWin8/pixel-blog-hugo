@@ -219,6 +219,29 @@
   height: 16px;
 }
 
+.footer-social-links .social-links {
+  gap: 0.25rem;
+}
+
+.footer-social-links .social-link {
+  width: 28px;
+  height: 28px;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.footer-social-links .social-link:hover {
+  transform: none;
+  box-shadow: none;
+  color: var(--link);
+}
+
+.footer-social-links .social-link .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .footer-icp {
   color: var(--fg-muted);
   font-size: 0.8rem;

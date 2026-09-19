@@ -22,8 +22,6 @@
   translation: "目录"
 - id: noPosts
   translation: "暂无文章。"
-- id: inProgress
-  translation: "进行中"
 - id: switchLanguage
   translation: "切换语言"
 - id: online
@@ -70,3 +68,17 @@
   translation: "你访问的页面不存在，或者已经被移动。"
 - id: backHome
   translation: "返回首页"
+- id: socialLinks
+  translation: "社交链接"
+- id: noLinks
+  translation: "暂无友链。"
+- id: copyCode
+  translation: "复制"
+- id: copyCodeLabel
+  translation: "复制代码"
+- id: copied
+  translation: "已复制"
+- id: prevPage
+  translation: "上一页"
+- id: nextPage
+  translation: "下一页"

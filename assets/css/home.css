@@ -360,3 +360,7 @@ a.featured__item:hover .featured__arrow {
   gap: 0.75rem;
   margin-top: 1.75rem;
 }
+
+.hero .social-links {
+  margin-top: 1.25rem;
+}

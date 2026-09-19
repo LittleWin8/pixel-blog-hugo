@@ -1,0 +1,41 @@
+{{- /* 社交链接：读取 site.Params.social，按固定顺序渲染为图标行。
+     支持 github / email / x / telegram / wechat / weibo / bilibili / zhihu /
+     juejin / youtube / linkedin / mastodon / discord / instagram / steam。
+     只渲染配置了值的项；全部为空时不输出任何内容。 */ -}}
+{{- $social := site.Params.social | default dict -}}
+{{- $labels := dict
+  "github" "GitHub"
+  "email" "邮箱"
+  "x" "X"
+  "telegram" "Telegram"
+  "wechat" "微信"
+  "weibo" "微博"
+  "bilibili" "哔哩哔哩"
+  "zhihu" "知乎"
+  "juejin" "掘金"
+  "youtube" "YouTube"
+  "linkedin" "LinkedIn"
+  "mastodon" "Mastodon"
+  "discord" "Discord"
+  "instagram" "Instagram"
+  "steam" "Steam"
+-}}
+{{- $order := slice "github" "email" "x" "telegram" "wechat" "weibo" "bilibili" "zhihu" "juejin" "youtube" "linkedin" "mastodon" "discord" "instagram" "steam" -}}
+{{- $items := slice -}}
+{{- range $order -}}
+  {{- $key := . -}}
+  {{- with index $social $key -}}
+    {{- $href := . -}}
+    {{- if eq $key "email" -}}{{- $href = printf "mailto:%s" . -}}{{- end -}}
+    {{- $items = $items | append (dict "key" $key "href" $href) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $items }}
+<nav class="social-links" aria-label="{{ i18n "socialLinks" | default "社交链接" }}">
+  {{- range . }}
+  <a class="social-link" href="{{ .href }}" title="{{ index $labels .key | default .key }}"{{ if ne .key "email" }} target="_blank" rel="noopener"{{ end }}>
+    {{- partial "social-icon.html" .key -}}
+  </a>
+  {{- end }}
+</nav>
+{{- end -}}
