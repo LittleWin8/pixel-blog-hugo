@@ -22,8 +22,9 @@ features = [
 ]
 min_version = "0.146.0"
 
+license = "MIT"
+licenselink = "https://github.com/LittleWin8/xiaowen/blob/main/LICENSE"
+
 [author]
   name = "LittleWin"
   homepage = "https://github.com/LittleWin8"
-
-# license / licenselink：待确定后补充（见仓库 LICENSE）

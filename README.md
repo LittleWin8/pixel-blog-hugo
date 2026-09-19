@@ -387,3 +387,14 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 ## 依赖
 
 无需 Node.js / npm。仅需 **Hugo v0.146+**（extended 非必需）。
+
+## 致谢
+
+- 设计灵感来源：[千夜の詩の小窝 · 1000ye.top](https://1000ye.top/)（作者 [@X1aoM1ngTX](https://github.com/X1aoM1ngTX)）。本主题是该像素复古设计的 **Hugo 实现**，代码与素材均为独立编写，**未使用原站任何图片、Logo、文案**。
+- 像素字体：[Fusion Pixel 缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（SIL OFL 1.1）。
+- 线性图标参考 [Lucide](https://lucide.dev/)（ISC）。
+
+## 许可证
+
+[MIT](LICENSE) © 2026 LittleWin
+
