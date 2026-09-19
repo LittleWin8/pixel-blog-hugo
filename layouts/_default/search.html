@@ -21,13 +21,13 @@
 
   {{- $js := resources.Get "js/search.js" | js.Build (dict "minify" true) | fingerprint -}}
   <script>
-    window.__SEARCH_INDEX__ = {{ "index.json" | relURL }};
+    window.__SEARCH_INDEX__ = {{ "index.json" | relURL | jsonify | safeJS }};
     window.__SEARCH_I18N__ = {
-      empty: {{ i18n "searchEmpty" | default "没有找到相关内容。" | jsonify }},
-      results: {{ i18n "searchResults" | default "找到 %d 条结果" | jsonify }},
+      empty: {{ i18n "searchEmpty" | default "没有找到相关内容。" | jsonify | safeJS }},
+      results: {{ i18n "searchResults" | default "找到 %d 条结果" | jsonify | safeJS }},
       sections: {
-        posts: {{ i18n "typePost" | default "文章" | jsonify }},
-        projects: {{ i18n "typeProject" | default "项目" | jsonify }}
+        posts: {{ i18n "typePost" | default "文章" | jsonify | safeJS }},
+        projects: {{ i18n "typeProject" | default "项目" | jsonify | safeJS }}
       }
     };
   </script>

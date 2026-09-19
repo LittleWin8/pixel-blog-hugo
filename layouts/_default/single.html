@@ -14,10 +14,10 @@
         {{ if and (eq .Section "posts") (ne .Lastmod .Date) }}
         <p class="post-updated">{{ i18n "lastUpdated" | default "更新于" }} {{ .Lastmod.Format "2006-01-02" }}</p>
         {{ end }}
-        {{ with .Params.tags }}
+        {{ with .GetTerms "tags" }}
         <div class="tags post-tags">
           {{ range . }}
-          <a class="tag" href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+          <a class="tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
           {{ end }}
         </div>
         {{ end }}

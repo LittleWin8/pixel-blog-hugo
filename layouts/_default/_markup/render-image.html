@@ -26,14 +26,14 @@
       sizes="(max-width: 720px) 100vw, 720px"
       width="{{ $img.Width }}"
       height="{{ $img.Height }}"
-      alt="{{ .Text }}"
+      alt="{{ .PlainText }}"
       loading="lazy"
       decoding="async"
     >
   {{- else -}}
     <img
       src="{{ $dest | safeURL }}"
-      alt="{{ .Text }}"
+      alt="{{ .PlainText }}"
       loading="lazy"
       decoding="async"
       {{- if $external }} referrerpolicy="no-referrer"{{ end }}

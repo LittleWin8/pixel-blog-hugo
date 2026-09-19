@@ -3,11 +3,14 @@
   {{- if or (hasPrefix $img "http") (hasPrefix $img "/") -}}
     <img src="{{ $img }}" alt="" loading="lazy">
   {{- else -}}
-    {{- with resources.Get $img -}}
-      {{- $r := .Fill "176x176 Center" -}}
-      <img src="{{ $r.RelPermalink }}" alt="" loading="lazy">
+    {{- $res := resources.Get $img -}}
+    {{- if and $res (ne $res.MediaType.SubType "svg") -}}
+      {{- $r := $res.Fill "176x176 Center" -}}
+      <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="" loading="lazy">
+    {{- else if $res -}}
+      <img src="{{ $res.RelPermalink }}" alt="" loading="lazy">
     {{- else -}}
-      {{ partial "project-default-icon.html" . }}
+      {{ partial "project-default-icon.html" $ }}
     {{- end -}}
   {{- end -}}
 {{- else -}}

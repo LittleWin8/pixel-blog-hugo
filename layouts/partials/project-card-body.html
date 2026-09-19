@@ -27,8 +27,8 @@
 
   <div class="project-card__actions">
     <a class="btn" href="{{ .RelPermalink }}">{{ i18n "projectDetail" | default "项目详情" }}</a>
-    {{ with .Params.link }}
-    <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
+    {{ if and .Params.online .Params.link }}
+    <a class="btn btn--ghost" href="{{ .Params.link }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
     {{ end }}
     {{ with .Params.source }}
     <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "viewSource" | default "查看源码" }}</a>

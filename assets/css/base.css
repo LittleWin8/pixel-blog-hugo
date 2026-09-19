@@ -42,6 +42,9 @@ body {
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   transition: background var(--transition), color var(--transition);
+  /* 首页 hero 光晕用 -50vw 全出血绘制，会超出视口；
+     用 clip（而非 hidden）裁剪横向溢出，且不建立滚动容器，sticky 仍有效 */
+  overflow-x: clip;
 }
 
 img {
@@ -70,18 +73,23 @@ a:hover {
 
 .skip-link {
   position: absolute;
-  top: 0;
-  left: -9999px;
+  top: 0.5rem;
+  left: 0.5rem;
   z-index: 100;
   padding: 0.5rem 0.9rem;
   border: var(--border-width) solid var(--border);
   background: var(--accent);
   color: var(--accent-fg);
+  /* 视觉隐藏但保留可聚焦；不再用 left: -9999px，避免撑宽文档触发横向滚动 */
+  transform: translateY(-200%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .skip-link:focus {
-  left: 0.5rem;
-  top: 0.5rem;
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* CRT 扫描线（装饰，不影响交互；由 params.scanlines 开启） */

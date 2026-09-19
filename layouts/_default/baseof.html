@@ -13,6 +13,13 @@
   </main>
   {{ partial "footer.html" . }}
   {{ partial "back-to-top.html" . }}
+  <script>
+    window.__COPY_I18N__ = {{ dict
+      "copy" (i18n "copyCode" | default "复制")
+      "copyLabel" (i18n "copyCodeLabel" | default "复制代码")
+      "copied" (i18n "copied" | default "已复制")
+      | jsonify | safeJS }};
+  </script>
   {{ partial "scripts.html" . }}
 </body>
 </html>

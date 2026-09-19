@@ -6,7 +6,7 @@
   {{- if eq .MediaType.SubType "svg" -}}
     <span class="{{ $class }}" aria-hidden="true">{{ .Content | safeHTML }}</span>
   {{- else -}}
-    {{- $img := .Resize (printf "%dx%d" $size $size) -}}
-    <img class="{{ $class }}" src="{{ $img.RelPermalink }}" width="{{ $size }}" height="{{ $size }}" alt="{{ $identity.name | default site.Title }}" decoding="async">
+    {{- $img := .Fit (printf "%dx%d" $size $size) -}}
+    <img class="{{ $class }}" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $identity.name | default site.Title }}" decoding="async">
   {{- end -}}
 {{- end -}}

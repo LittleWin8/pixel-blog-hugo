@@ -3,6 +3,7 @@
 
   var root = document.documentElement;
   var STORAGE_KEY = "theme";
+  var COPY_I18N = window.__COPY_I18N__ || { copy: "复制", copyLabel: "复制代码", copied: "已复制" };
 
   function currentTheme() {
     return root.classList.contains("theme-dark") ? "dark" : "light";
@@ -49,15 +50,15 @@
     var button = document.createElement("button");
     button.type = "button";
     button.className = "code-copy";
-    button.textContent = "复制";
-    button.setAttribute("aria-label", "复制代码");
+    button.textContent = COPY_I18N.copy;
+    button.setAttribute("aria-label", COPY_I18N.copyLabel);
 
     button.addEventListener("click", function () {
       var code = pre.querySelector("code");
       var text = code ? code.innerText : pre.innerText;
       var done = function () {
-        button.textContent = "已复制";
-        setTimeout(function () { button.textContent = "复制"; }, 1500);
+        button.textContent = COPY_I18N.copied;
+        setTimeout(function () { button.textContent = COPY_I18N.copy; }, 1500);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(done, function () {});

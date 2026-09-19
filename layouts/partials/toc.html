@@ -1,8 +1,8 @@
 {{- with .TableOfContents -}}
 {{- if ne . "" -}}
-<aside class="toc pixel-panel">
+<nav class="toc pixel-panel" aria-label="{{ i18n "toc" | default "目录" }}">
   <p class="toc__title">{{ i18n "toc" | default "目录" }}</p>
   {{ . }}
-</aside>
+</nav>
 {{- end -}}
 {{- end -}}

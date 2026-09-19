@@ -7,7 +7,7 @@
   </header>
 
   <div class="archive">
-    {{ range (where site.RegularPages "Section" "posts").GroupByDate "2006" }}
+    {{ range (where (where site.RegularPages "Section" "posts") "Date" "!=" nil).GroupByDate "2006" }}
     <section class="archive__year">
       <h2 class="archive__year-label">
         {{ .Key }}<span class="archive__count">{{ len .Pages }}</span>
