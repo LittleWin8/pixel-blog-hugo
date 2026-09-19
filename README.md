@@ -5,9 +5,13 @@
 ![首页 · 亮色](images/screenshot-home-light.png)
 ![首页 · 暗色](images/screenshot-home-dark.png)
 
-| 项目 | 文章 | 移动端 |
+| 项目 | 文章 | 归档 |
 |---|---|---|
-| ![项目](images/screenshot-projects.png) | ![文章](images/screenshot-post.png) | ![移动端](images/screenshot-mobile.png) |
+| ![项目](images/screenshot-projects.png) | ![文章](images/screenshot-post.png) | ![归档](images/screenshot-archive.png) |
+
+| 搜索 | 移动端 |
+|---|---|
+| ![搜索](images/screenshot-search.png) | ![移动端](images/screenshot-mobile.png) |
 
 ## 特性
 
@@ -21,7 +25,7 @@
 - **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
 - 标签云与标签页、**归档页**（按年份分组）、**404 页面**、robots.txt、页脚 **RSS 订阅**图标
-- SEO：JSON-LD（BlogPosting / 面包屑）、OG / Twitter、RSS、sitemap
+- SEO：JSON-LD（BlogPosting / 面包屑）、**OG / Twitter 分享图（站点默认 + 文章封面）**、RSS、sitemap
 - 无障碍：跳过导航（skip link）、统一焦点样式
 - CSS 自定义属性驱动，改一个色值全站生效
 - 样式与脚本经 Hugo Pipes 拼接、压缩、加指纹，无需 npm / 构建工具
@@ -197,6 +201,7 @@ themes/xiaowen/
 
   [params.assets]
     pixelFont = "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
+    ogImage = "/images/og-default.png"    # 站点默认分享图（1200x630）
 
   [params.social]
     github = "https://github.com/LittleWin8"   # 有值才在 Hero 显示按钮
@@ -235,6 +240,15 @@ themes/xiaowen/
 ```
 
 `params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
+
+## 分享图（OG）
+
+分享到微信 / X / Telegram 等地方时的缩略图，分两层：
+
+- **站点默认**：`params.assets.ogImage`（一张 1200×630 的图，放站点 `static/` 下，填路径如 `/images/og-default.png`）。
+- **文章级**：文章 front matter 写 `cover: "images/xxx.png"`，主题会**自动裁剪成 1200×630** 并输出 `og:image` / `twitter:image` / 宽高。
+  - `cover` 放页面包（和 `.md` 同目录）或 `assets/` 下会被处理；填绝对网址/`/images/...` 则原样使用。
+  - 也兼容 `images: ["..."]`。
 
 ## 归档页 / 搜索页
 
