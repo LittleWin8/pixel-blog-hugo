@@ -29,6 +29,7 @@ summaryLength = 80
 [params]
   author = "小稳"
   description = "pixel-blog-hugo 主题 · 示例站点"
+  scanlines = true          # 示例站开启 CRT 扫描线（与上游设计一致）
 
   [params.identity]
     name = "小稳"

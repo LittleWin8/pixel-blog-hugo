@@ -219,6 +219,15 @@
   height: 16px;
 }
 
+.footer-icp {
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+}
+
+.footer-icp:hover {
+  color: var(--link);
+}
+
 .site-footer a {
   color: var(--fg-muted);
   text-decoration: underline;

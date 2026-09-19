@@ -84,6 +84,32 @@ a:hover {
   top: 0.5rem;
 }
 
+/* CRT 扫描线（装饰，不影响交互；由 params.scanlines 开启） */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+html.theme-dark .scanlines::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.12) 0,
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
 h1,
 h2,
 h3,

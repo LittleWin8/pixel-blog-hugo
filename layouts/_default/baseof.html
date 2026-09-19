@@ -3,7 +3,7 @@
 <head>
   {{ partial "head/head.html" . }}
 </head>
-<body>
+<body{{ if site.Params.scanlines }} class="scanlines"{{ end }}>
   <a class="skip-link" href="#main-content">{{ i18n "skipToContent" | default "跳到正文" }}</a>
   {{ partial "header.html" . }}
   <main id="main-content" class="site-main">

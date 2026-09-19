@@ -20,6 +20,7 @@
 - 首页：双栏 Hero、个人信息面板、个人作品入口、技术栈（可开关）、最新文章
 - **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；上线项目可点击、带绿点与悬浮效果，未上线不可点击
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
+- 可选 **CRT 扫描线**（`params.scanlines`）与页脚 **ICP 备案号**（`params.icp`）
 - **首页文案 / 顶部栏名称与 logo / 技术栈 / 友链，写在你站点的配置里（覆盖主题默认）**
 - 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
 - **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
@@ -118,7 +119,7 @@ hugo                           # 构建到 public/，部署到任意静态托管
 themes/pixel-blog-hugo/
 ├── archetypes/                    # default.md / projects.md（hugo new 骨架）
 ├── assets/
-│   ├── css/                       # tokens / base / layout / components / markdown / home / projects / links
+│   ├── css/                       # tokens / base / layout / components / home / content / archive / search / error / projects / links / markdown / print
 │   ├── js/                        # main.js（明暗/菜单/回顶/代码复制）、search.js
 │   └── images/logo.png            # 主题 logo（可替换）
 ├── i18n/                          # zh-cn.yaml / en.yaml
@@ -150,6 +151,11 @@ themes/pixel-blog-hugo/
 ├── images/                        # README 截图
 ├── hugo.yaml                      # ★ 主题默认配置（通用，站点可覆盖）
 ├── README.md
+├── LICENSE
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── THIRD-PARTY-NOTICES.md
+├── .editorconfig
 └── theme.toml
 ```
 
@@ -164,6 +170,8 @@ themes/pixel-blog-hugo/
   author = "小稳"
   description = "小稳的个人博客 · 记录技术与生活"
   # copyright = "© 2024-2026 小稳"   # 自定义页脚版权文字（不写则自动「© 年份 作者」）
+  # icp = "京ICP备xxxxxxx号"          # 页脚备案号（国内站点）
+  # scanlines = true                 # 开启 CRT 扫描线装饰
   toc = true                # 文章页是否显示目录
   homePosts = 6             # 首页显示的文章数
 
@@ -391,8 +399,11 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 ## 致谢
 
 - 设计灵感来源：[千夜の詩の小窝 · 1000ye.top](https://1000ye.top/)（作者 [@X1aoM1ngTX](https://github.com/X1aoM1ngTX)）。本主题是该像素复古设计的 **Hugo 实现**，代码与素材均为独立编写，**未使用原站任何图片、Logo、文案**。
+- 同一套设计的 **Next.js 版**：[X1aoM1ngTX/pixel-blog](https://github.com/X1aoM1ngTX/pixel-blog)。
 - 像素字体：[Fusion Pixel 缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（SIL OFL 1.1）。
 - 线性图标参考 [Lucide](https://lucide.dev/)（ISC）。
+
+第三方资源清单见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
 
 ## 许可证
 
