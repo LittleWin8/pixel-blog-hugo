@@ -199,6 +199,26 @@
   margin: 0;
 }
 
+.site-footer__left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-social {
+  display: inline-flex;
+  color: var(--fg-muted);
+}
+
+.footer-social:hover {
+  color: var(--link);
+}
+
+.footer-social .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .site-footer a {
   color: var(--fg-muted);
   text-decoration: underline;

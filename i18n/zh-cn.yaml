@@ -62,6 +62,8 @@
   translation: "文章"
 - id: typeProject
   translation: "项目"
+- id: rss
+  translation: "RSS 订阅"
 - id: notFound
   translation: "页面走丢了"
 - id: notFoundDesc

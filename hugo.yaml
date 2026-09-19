@@ -36,6 +36,7 @@ params:
 
 # ── 以下为可覆盖项示例（在站点/exampleSite 里写同名 params 即可）──
 # params:
+#   copyright: "© 2024-2026 你的名字"   # 自定义版权文字（不写则自动「© 年份 作者」）
 #   identity:
 #     name: 你的名字
 #     logo: images/logo.png

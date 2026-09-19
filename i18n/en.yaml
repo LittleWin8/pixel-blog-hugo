@@ -62,6 +62,8 @@
   translation: "Post"
 - id: typeProject
   translation: "Project"
+- id: rss
+  translation: "RSS feed"
 - id: notFound
   translation: "Page not found"
 - id: notFoundDesc

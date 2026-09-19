@@ -49,3 +49,31 @@ summary: "演示文章大纲的多级标题层级效果。"
 下面用主题 logo 占位，验证响应式图片（srcset）：
 
 ![示例图片](images/logo.png "响应式图片演示")
+
+## 代码高亮
+
+Java：
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        // 一段用于演示高亮的示例代码
+        String who = "xiaowen";
+        System.out.println("Hello, " + who + "!");
+    }
+}
+```
+
+TypeScript：
+
+```typescript
+const greet = (name: string): string => `Hello, ${name}!`;
+console.log(greet("xiaowen"));
+```
+
+终端：
+
+```bash
+hugo new posts/my-post.md
+hugo server -D
+```

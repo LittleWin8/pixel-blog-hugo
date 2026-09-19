@@ -1,9 +1,17 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p>© {{ now.Year }} {{ site.Params.author | default site.Title }}</p>
-    <p>
-      Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
-      · Theme <a href="https://github.com/LittleWin8/blog" target="_blank" rel="noopener">xiaowen</a>
+    <p class="site-footer__left">
+      <span>{{ site.Params.copyright | default (printf "© %d %s" now.Year (site.Params.author | default site.Title)) }}</span>
+      {{ with site.Home.OutputFormats.Get "RSS" }}
+      <a class="footer-social" href="{{ .RelPermalink }}" aria-label="{{ i18n "rss" | default "RSS 订阅" }}" title="RSS">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 11a9 9 0 0 1 9 9"></path>
+          <path d="M4 4a16 16 0 0 1 16 16"></path>
+          <circle cx="5" cy="19" r="1"></circle>
+        </svg>
+      </a>
+      {{ end }}
     </p>
+    <p>Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> · Theme <a href="https://github.com/LittleWin8/blog" target="_blank" rel="noopener">xiaowen</a></p>
   </div>
 </footer>
