@@ -33,32 +33,6 @@
 - i18n 中英文案
 - SEO：description / canonical / Open Graph / Twitter Card / RSS
 
-## 我该改哪个文件？（主题 vs 站点）
-
-Hugo 里只有两类东西：
-
-- **主题**：模板 + 样式 + 通用默认值（一套，所有人共享）
-- **站点**：你自己的配置 + 内容（每个博客一份）
-
-同名配置，**站点会覆盖主题**。所以主题里放「通用默认」，站点里放「我的东西」。
-
-| 文件 | 层级 | 什么时候改 | 放什么 |
-|---|---|---|---|
-| `themes/pixel-blog-hugo/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
-| `themes/pixel-blog-hugo/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
-| `themes/pixel-blog-hugo/exampleSite/hugo.toml` | 站点 | 预览 / 演示 | 示例个人信息 |
-| `themes/pixel-blog-hugo/exampleSite/content/` | 站点 | 预览 / 演示 | 示例文章、项目、页面 |
-| 你的博客/hugo.toml | 站点 | 你写博客时 | 你的个人配置 |
-| 你的博客/content/ | 站点 | 你写博客时 | 你的文章、项目 |
-
-> **一句话**：改「我的名字 / 文案 / 文章 / 项目」→ 改**站点**（`hugo.toml` + `content/`）；改「主题长什么样 / 功能」→ 改**主题**（`layouts` / `assets` / 主题默认值）。
-
-> ⚠️ **这些配置只能写在站点**（写进主题配置无效，因为 Hugo 只合并主题的 `params` 与 `menu`）：
-> `baseURL`、`languageCode`、`defaultContentLanguage`、`title`、`theme`、`hasCJKLanguage`、`summaryLength`、`[outputs]`、`[pagination]`、`[taxonomies]`、`[markup]`。
-> 其中中文站点务必开 `hasCJKLanguage = true`，否则阅读时长/摘要不准；站内搜索需要 `home` 输出 `JSON`。
-
-`exampleSite` 是**主题自带的示例站点**：既用来预览主题，也是你建站时的配置模板——新建博客后，把自己的 `hugo.toml` 照着它改即可。
-
 ## 快速开始
 
 ### 1. 安装 Hugo → 建站 → 装主题
@@ -128,14 +102,29 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 > 文章/项目等**内容不在主题里**，而是放在**站点**的 `content/` 下。主题的**目录结构、改配色/字体/断点等开发向说明见 [CONTRIBUTING.md](CONTRIBUTING.md)**。
 
-## 个性化配置（写在**站点**里，如 `exampleSite/hugo.toml` 或你博客的 `hugo.toml`）
+## 个性化配置
 
-主题的 `hugo.yaml` 只提供**通用默认值**（默认导航、字体源、开关等）；你的**个人信息 / 文案 / 技术栈 / 友链**写在你**自己的站点配置**里，会覆盖主题默认。下面就是站点里的一份完整示例（`exampleSite/hugo.toml`）：
+Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，所有人共享）和**站点**（你的配置 + 内容，每个博客一份）。同名配置**站点会覆盖主题**，所以你只需改自己的**站点**。
+
+| 文件 | 层级 | 什么时候改 | 放什么 |
+|---|---|---|---|
+| `themes/pixel-blog-hugo/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
+| `themes/pixel-blog-hugo/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
+| `themes/pixel-blog-hugo/exampleSite/` | 站点 | 预览 / 演示 | 示例配置与内容 |
+| 你的博客/hugo.toml | 站点 | 你写博客时 | 你的个人配置 |
+| 你的博客/content/ | 站点 | 你写博客时 | 你的文章、项目 |
+
+> **一句话**：改「我的名字 / 文案 / 文章 / 项目」→ 改**站点**（`hugo.toml` + `content/`）；改「主题长什么样 / 功能」→ 改**主题**（`layouts` / `assets` / 主题默认值）。
+
+> ⚠️ 下面这些只能写在**站点**（写进主题配置无效，Hugo 只合并主题的 `params` 与 `menu`）：
+> `baseURL`、`languageCode`、`defaultContentLanguage`、`title`、`theme`、`hasCJKLanguage`、`summaryLength`、`[outputs]`、`[pagination]`、`[taxonomies]`、`[markup]`。
+
+`exampleSite/` 是主题自带的示例站点，既用来预览，也是你建站时的配置模板。你的个人信息 / 文案 / 技术栈 / 友链都写在**站点配置**里（覆盖主题默认）。完整示例（`exampleSite/hugo.toml`）：
 
 ```toml
 [params]
   author = "小稳"
-  description = "小稳的个人博客 · 记录技术与生活"
+  description = "pixel-blog-hugo 主题 · 示例站点"
   # copyright = "© 2024-2026 小稳"   # 自定义页脚版权文字（不写则自动「© 年份 作者」）
   # icp = "京ICP备xxxxxxx号"          # 页脚备案号（国内站点）
   # scanlines = true                 # 开启 CRT 扫描线装饰
@@ -150,9 +139,9 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
   # 首页主视觉文案（intro 支持 Markdown，可多段）
   [params.hero]
-    eyebrow = "持续学习，也持续创造"
+    eyebrow = "示例站点 · 文案可随意修改"
     title = "小稳"
-    tagline = "全栈开发者，专注于把想法做成好用的产品。"
+    tagline = "把折腾过的东西记录在这里。"
     intro = """
 支持 **Markdown** 的自我介绍，可多段。
 """
@@ -186,8 +175,8 @@ hugo                           # 构建到 public/，部署到任意静态托管
     title = "友情链接"
     description = "一些有趣的朋友和他们的站点，欢迎交换。"
     items = [
-      { name = "千夜の詩", url = "https://1000ye.top/", description = "全栈开发者的像素风小窝", avatar = "https://1000ye.top/1000ye.png" },
-      { name = "GitHub", url = "https://github.com/LittleWin8", description = "我的开源主页" },
+      { name = "Hugo", url = "https://gohugo.io/", description = "静态站点生成器" },
+      { name = "GitHub", url = "https://github.com/", description = "代码托管平台" },
     ]
 
 # 顶部导航：顺序即显示顺序；某项注释掉即隐藏
@@ -216,14 +205,12 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 `params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
 
-## 分享图（OG）
+### 链接分享缩略图（OG，自动）
 
-分享到微信 / X / Telegram 等地方时的缩略图，分两层：
+分享链接到微信 / X / Telegram 等地方时显示的缩略图——**自动生效，无需额外功能**（主题已输出标准 `og:image` / `twitter:image` 元信息）：
 
 - **站点默认**：`params.assets.ogImage`（一张 1200×630 的图，放站点 `static/` 下，填路径如 `/images/og-default.png`）。
-- **文章级**：文章 front matter 写 `cover: "images/xxx.png"`，主题会**自动裁剪成 1200×630** 并输出 `og:image` / `twitter:image` / 宽高。
-  - `cover` 放页面包（和 `.md` 同目录）或 `assets/` 下会被处理；填绝对网址/`/images/...` 则原样使用。
-  - 也兼容 `images: ["..."]`。
+- **文章级**：front matter 写 `cover: "images/xxx.png"`（放页面包或 `assets/` 下），主题会**自动裁剪成 1200×630**。
 
 ## 归档页 / 搜索页
 
@@ -252,17 +239,17 @@ layout: "search"
 
 ```yaml
 ---
-title: "Draw2Draw"
-subtitle: "智能协同云图库"      # 标题后的补充说明
+title: "Pixel Notes"
+subtitle: "像素风笔记应用"      # 标题后的补充说明
 date: 2026-09-18
 weight: 1                      # 列表排序（小的在前）
 online: true                   # ★ 是否上线
 featured: true                 # 「重点项目」徽章
-link: "https://xxx"            # 「在线体验」按钮（不填则不显示）
-source: "https://github.com/xxx"  # 「查看源码」按钮（不填则不显示）
-icon: "🎨"                     # 卡片图标（emoji / 文字）
+link: "https://example.com"    # 「在线体验」按钮（不填则不显示）
+source: "https://github.com/you/repo"  # 「查看源码」按钮（不填则不显示）
+icon: "📝"                     # 卡片图标（emoji / 文字）
 # image: "images/x.png"        # 也可用图片，本地图放主题 assets/ 自动裁成方形
-tags: ["Spring Boot", "Vue.js"]
+tags: ["Vue.js", "TypeScript"]
 summary: "一句话介绍，卡片和列表都会显示。"
 ---
 
@@ -295,15 +282,6 @@ summary: "一句话介绍，卡片和列表都会显示。"
 | `design` | 设计 | `language` | 编程语言 |
 | `security` | 安全 | `test` | 测试 |
 | `box` | 通用 / 默认 | | |
-
-### 代码高亮
-
-主题在 `markdown.css` 中自定义了 Chroma 配色，需在**站点** `hugo.toml` 关闭内联样式：
-
-```toml
-[markup.highlight]
-  noClasses = false
-```
 
 ## 多语言（中 / 英）
 
@@ -346,10 +324,6 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 文章/页面的英文版用文件名后缀：`hello-world.md` ↔ `hello-world.en.md`；分类的页面标题用 `_index.en.md`。
 
 > 语言级 `params` 会与主题的默认 params 合并，只需写要翻译的字段；数组（如 `works.items`、`techstack.groups`）会整体替换，需写全。
-
-## 依赖
-
-无需 Node.js / npm。仅需 **Hugo v0.146+**（extended 非必需）。
 
 ## 致谢
 
