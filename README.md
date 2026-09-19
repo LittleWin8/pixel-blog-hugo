@@ -1,4 +1,4 @@
-# xiaowen
+# pixel-blog-hugo
 
 小稳的个人博客 Hugo 主题：像素复古（pixel / 8-bit）风格，零圆角、2px 硬边框、实心错位阴影，配色取自 Sweetie 16 像素画调色板，明暗双主题。
 
@@ -43,10 +43,10 @@ Hugo 里只有两类东西：
 
 | 文件 | 层级 | 什么时候改 | 放什么 |
 |---|---|---|---|
-| `themes/xiaowen/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
-| `themes/xiaowen/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
-| `themes/xiaowen/exampleSite/hugo.toml` | 站点 | 预览 / 演示 | 示例个人信息 |
-| `themes/xiaowen/exampleSite/content/` | 站点 | 预览 / 演示 | 示例文章、项目、页面 |
+| `themes/pixel-blog-hugo/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
+| `themes/pixel-blog-hugo/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
+| `themes/pixel-blog-hugo/exampleSite/hugo.toml` | 站点 | 预览 / 演示 | 示例个人信息 |
+| `themes/pixel-blog-hugo/exampleSite/content/` | 站点 | 预览 / 演示 | 示例文章、项目、页面 |
 | 你的博客/hugo.toml | 站点 | 你写博客时 | 你的个人配置 |
 | 你的博客/content/ | 站点 | 你写博客时 | 你的文章、项目 |
 
@@ -69,8 +69,8 @@ hugo new site my-blog && cd my-blog
 git init
 
 # 3. 安装主题
-git submodule add https://github.com/<you>/xiaowen themes/xiaowen
-# 或 Hugo Modules：hugo mod init github.com/<you>/my-blog && hugo mod get github.com/<you>/xiaowen
+git submodule add https://github.com/<you>/pixel-blog-hugo themes/pixel-blog-hugo
+# 或 Hugo Modules：hugo mod init github.com/<you>/my-blog && hugo mod get github.com/<you>/pixel-blog-hugo
 ```
 
 `hugo.toml` 只需基础配置（其余个性化见下节）：
@@ -80,7 +80,7 @@ baseURL = "https://example.com/"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh"
 title = "我的博客"
-theme = "xiaowen"
+theme = "pixel-blog-hugo"
 enableRobotsTXT = true
 
 [outputs]
@@ -115,7 +115,7 @@ hugo                           # 构建到 public/，部署到任意静态托管
 ## 目录结构
 
 ```
-themes/xiaowen/
+themes/pixel-blog-hugo/
 ├── archetypes/                    # default.md / projects.md（hugo new 骨架）
 ├── assets/
 │   ├── css/                       # tokens / base / layout / components / markdown / home / projects / links

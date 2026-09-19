@@ -31,7 +31,7 @@ cover: "images/og-demo.png"
 主题被拆成了清晰的分层，方便后续迭代：
 
 ```
-themes/xiaowen/
+themes/pixel-blog-hugo/
 ├── assets/
 │   ├── css/        # tokens / base / layout / components / markdown / home
 │   ├── js/         # 明暗切换、移动菜单、回到顶部

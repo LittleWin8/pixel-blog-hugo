@@ -58,7 +58,7 @@ Java：
 public class HelloWorld {
     public static void main(String[] args) {
         // 一段用于演示高亮的示例代码
-        String who = "xiaowen";
+        String who = "pixel-blog-hugo";
         System.out.println("Hello, " + who + "!");
     }
 }
@@ -68,7 +68,7 @@ TypeScript：
 
 ```typescript
 const greet = (name: string): string => `Hello, ${name}!`;
-console.log(greet("xiaowen"));
+console.log(greet("pixel-blog-hugo"));
 ```
 
 终端：

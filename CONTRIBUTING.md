@@ -1,14 +1,14 @@
 # 贡献指南（Contributing）
 
-感谢你对 xiaowen 主题感兴趣！欢迎提交 Issue 和 Pull Request。
+感谢你对 pixel-blog-hugo 主题感兴趣！欢迎提交 Issue 和 Pull Request。
 
 ## 本地开发
 
 主题自带一个可运行的示例站 `exampleSite/`，无需准备任何内容：
 
 ```bash
-git clone https://github.com/LittleWin8/xiaowen.git
-cd xiaowen/exampleSite
+git clone https://github.com/LittleWin8/pixel-blog-hugo.git
+cd pixel-blog-hugo/exampleSite
 hugo server --themesDir ../..
 ```
 

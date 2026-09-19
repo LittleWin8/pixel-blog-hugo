@@ -1,6 +1,6 @@
 baseURL = "https://example.org/"
-title = "xiaowen demo"
-theme = "xiaowen"
+title = "pixel-blog-hugo demo"
+theme = "pixel-blog-hugo"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh"
 enableRobotsTXT = true
@@ -28,7 +28,7 @@ summaryLength = 80
 # ── 示例站个性化（覆盖主题默认值；你重建自己的博客时写进自己的 hugo.toml）──
 [params]
   author = "小稳"
-  description = "xiaowen 主题 · 示例站点"
+  description = "pixel-blog-hugo 主题 · 示例站点"
 
   [params.identity]
     name = "小稳"
@@ -40,7 +40,7 @@ summaryLength = 80
     title = "小稳"
     tagline = "把折腾过的东西记录在这里。"
     intro = """
-你好，这是 **xiaowen** 主题的示例站点。
+你好，这是 **pixel-blog-hugo** 主题的示例站点。
 
 页面上的名字、标语、这段介绍，全都写在站点配置里，换成你自己的即可。
 
