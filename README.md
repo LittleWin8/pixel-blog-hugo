@@ -48,6 +48,10 @@ Hugo 里只有两类东西：
 
 > **一句话**：改「我的名字 / 文案 / 文章 / 项目」→ 改**站点**（`hugo.toml` + `content/`）；改「主题长什么样 / 功能」→ 改**主题**（`layouts` / `assets` / 主题默认值）。
 
+> ⚠️ **这些配置只能写在站点**（写进主题配置无效，因为 Hugo 只合并主题的 `params` 与 `menu`）：
+> `baseURL`、`languageCode`、`defaultContentLanguage`、`title`、`theme`、`hasCJKLanguage`、`summaryLength`、`[outputs]`、`[pagination]`、`[taxonomies]`、`[markup]`。
+> 其中中文站点务必开 `hasCJKLanguage = true`，否则阅读时长/摘要不准；站内搜索需要 `home` 输出 `JSON`。
+
 `exampleSite` 是**主题自带的示例站点**：既用来预览主题，也是你建站时的配置模板——新建博客后，把自己的 `hugo.toml` 照着它改即可。
 
 ## 快速开始
