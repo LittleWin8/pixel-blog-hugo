@@ -4,6 +4,31 @@
 
 ## [Unreleased]
 
+### 新增
+
+- 内置社交图标：`params.social` 支持 `github` / `email` / `x` / `telegram` / `wechat` / `weibo` / `bilibili` / `zhihu` / `juejin` / `youtube` / `linkedin` / `mastodon` / `discord` / `instagram` / `steam`，显示在首页 Hero 与页脚
+
+### 修复
+
+- 首页 Hero 光晕导致的横向滚动（`overflow-x: clip`，并改用 transform 隐藏 skip-link）
+- 搜索页 i18n 文案在 `<script>` 中被双重转义（改 `jsonify | safeJS`）
+- 无日期内容产生 `0001` 年份：JSON-LD、`article:published_time` 与归档分组均加空日期保护
+- 新增 RSS 模板，仅输出带日期的文章（此前工具页会以 `0001` 日期进入 feed）
+- 项目 `online: false` 时不再显示「在线体验」按钮（与文档一致）
+- 图片渲染钩子输出 `<figure>` 被包进 `<p>`（配合 `wrapStandAloneImageWithinParagraph = false`）
+- 标签链接改用 `.GetTerms`，不再硬编码 `tags/` 路径
+- `logo`/`favicon` 由 `.Resize` 改为 `.Fit`，避免非方图拉伸
+- 项目图标/OG 图对 SVG 资源做保护（避免 `.Fill` 报错）；修正 `project-default-icon` 的上下文
+- 页脚社交图标、代码复制提示文案走 i18n（`.PlainText` 作为图片 alt）
+- `twitter:card` 在无分享图时降级为 `summary`；分页箭头补充可访问名称；目录由 `<aside>` 改为 `<nav>`
+
+### 文档
+
+- README（中/英）补充友链页使用说明；新增 `noLinks` / `copyCode` / `prevPage` 等 i18n 文案
+- README 修正多语言导航示例（`params.nav` 而非 `menu`）、`works.items` 误写、icon 可选值、assets 路径指引
+- README 补充 OG 回退、页面 description/keywords、`enableGitInfo`、`about` 页与最低版本说明
+- CHANGELOG 与英文 `README.en.md` 同步
+
 ## [0.1.0] - 2026-09-19
 
 首个版本。

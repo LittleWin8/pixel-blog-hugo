@@ -1,41 +1,45 @@
 # pixel-blog-hugo
 
-小稳的个人博客 Hugo 主题：像素复古（pixel / 8-bit）风格，零圆角、2px 硬边框、实心错位阴影，配色取自 Sweetie 16 像素画调色板，明暗双主题。
+个人博客 Hugo 主题：像素复古（pixel / 8-bit）风格，零圆角、2px 硬边框、实心错位阴影，配色取自 Sweetie 16 像素画调色板，明暗双主题。
 
-![首页 · 亮色](images/screenshot-home-light.png)
-![首页 · 暗色](images/screenshot-home-dark.png)
+[English](README.en.md)
 
-| 项目 | 文章 | 归档 |
-|---|---|---|
-| ![项目](images/screenshot-projects.png) | ![文章](images/screenshot-post.png) | ![归档](images/screenshot-archive.png) |
-
-| 搜索 | 移动端 |
+| 首页 · 亮色 | 首页 · 暗色 |
 |---|---|
-| ![搜索](images/screenshot-search.png) | ![移动端](images/screenshot-mobile.png) |
+| ![首页 · 亮色](images/screenshot-home-light.png) | ![首页 · 暗色](images/screenshot-home-dark.png) |
+
+| 项目 | 归档 | 搜索 |
+|---|---|---|
+| ![项目](images/screenshot-projects.png) | ![归档](images/screenshot-archive.png) | ![搜索](images/screenshot-search.png) |
+
+| 文章 | 移动端 |
+|---|---|
+| ![文章](images/screenshot-post.png) | ![移动端](images/screenshot-mobile.png) |
 
 ## 特性
 
 - 明暗主题切换，跟随系统，无闪烁（FOUC）
 - 响应式布局 + 移动端折叠菜单，全站移动端适配
 - 首页：双栏 Hero、个人信息面板、个人作品入口、技术栈（可开关）、最新文章
-- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；上线项目可点击、带绿点与悬浮效果，未上线不可点击
+- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；`online: true` 的项目带绿点与悬浮效果、可显示「在线体验」
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
-- 可选 **CRT 扫描线**（`params.scanlines`）与页脚 **ICP 备案号**（`params.icp`）
+- 可选 **CRT 扫描线**（`params.scanlines`）、页脚 **ICP 备案号**（`params.icp`）、**社交图标**（`params.social`）
 - **首页文案 / 顶部栏名称与 logo / 技术栈 / 友链，写在你站点的配置里（覆盖主题默认）**
 - 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
-- **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
+- **Markdown 渲染钩子**：图片懒加载 + 响应式 `srcset` + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
 - 标签云与标签页、**归档页**（按年份分组）、**404 页面**、robots.txt、页脚 **RSS 订阅**图标
-- SEO：JSON-LD（BlogPosting / 面包屑）、**OG / Twitter 分享图（站点默认 + 文章封面）**、RSS、sitemap
-- 无障碍：跳过导航（skip link）、统一焦点样式
+- SEO：JSON-LD（BlogPosting / 面包屑）、OG / Twitter 分享图（站点默认 + 文章封面）、description / canonical、RSS、sitemap
+- 无障碍：跳过导航（skip link）、统一焦点样式、分页按钮可访问名称
 - CSS 自定义属性驱动，改一个色值全站生效
 - 样式与脚本经 Hugo Pipes 拼接、压缩、加指纹，无需 npm / 构建工具
-- i18n 中英文案
-- SEO：description / canonical / Open Graph / Twitter Card / RSS
+- i18n 中英文案（含代码复制提示、社交链接等）
 
 ## 快速开始
 
 ### 1. 安装 Hugo → 建站 → 装主题
+
+> 需要 **Hugo ≥ 0.146**（extended 非必需）。用 `hugo version` 确认版本。
 
 ```bash
 # 1) 安装 Hugo（extended 更佳，本主题非必需；按系统选一条执行）
@@ -69,7 +73,8 @@ title = "我的博客"
 theme = "pixel-blog-hugo"
 enableRobotsTXT = true
 hasCJKLanguage = true      # 中文站点建议开启（阅读时长/摘要更准）
-summaryLength = 80
+summaryLength = 80         # 以上三行均为示例值，按需调整
+# enableGitInfo = true     # 自动用 Git 提交时间作为「更新于」，见下文
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]   # JSON 供站内搜索使用
@@ -79,6 +84,8 @@ summaryLength = 80
 [taxonomies]
   tag = "tags"
 [markup]
+  [markup.goldmark.parser]
+    wrapStandAloneImageWithinParagraph = false   # 图片渲染钩子输出 <figure>，避免被包进 <p>
   [markup.goldmark.renderer]
     unsafe = true
   [markup.highlight]
@@ -93,10 +100,13 @@ summaryLength = 80
 ```bash
 hugo new posts/hello.md        # 文章，发布前把 draft 改 false
 hugo new projects/my-app.md    # 项目（字段见「项目」一节）
+hugo new about.md              # 关于页：首页 Hero 的「关于我」按钮指向 /about/
 
 hugo server -D                 # 本地预览 http://localhost:1313
 hugo                           # 构建到 public/，部署到任意静态托管
 ```
+
+> 首页 Hero 固定有一个「关于我 →」按钮（指向 `/about/`）。若不想用它，删除 `content/about.md` 并在站点覆盖 `params.hero` 或直接改主题 `layouts/partials/hero.html`（进阶）。
 
 > 搜索页需要站点有 `content/search.md`（`layout: search`）并开启 `home` 的 JSON 输出。
 
@@ -104,22 +114,22 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 ## 个性化配置
 
-Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，所有人共享）和**站点**（你的配置 + 内容，每个博客一份）。同名配置**站点会覆盖主题**，所以你只需改自己的**站点**。
+记住一句话：**改你自己的博客，只动你自己站点里的文件，基本不用碰主题**：
 
-| 文件 | 层级 | 什么时候改 | 放什么 |
-|---|---|---|---|
-| `themes/pixel-blog-hugo/hugo.yaml` | 主题 | 你是主题作者、改默认值时 | 通用默认（默认导航、字体源、开关） |
-| `themes/pixel-blog-hugo/layouts/`、`assets/` | 主题 | 改主题外观 / 功能时 | 模板、样式、脚本 |
-| `themes/pixel-blog-hugo/exampleSite/` | 站点 | 预览 / 演示 | 示例配置与内容 |
-| 你的博客/hugo.toml | 站点 | 你写博客时 | 你的个人配置 |
-| 你的博客/content/ | 站点 | 你写博客时 | 你的文章、项目 |
+| 想改什么 | 去改哪个文件 |
+|---|---|
+| 名字、logo、首页文案、技术栈、友链、导航、开关 | **你站点根目录的 `hugo.toml`** 里的 `[params]`（照下方示例填） |
+| 文章 | 你站点的 `content/posts/` |
+| 项目 | 你站点的 `content/projects/` |
+| 主题默认值 / 外观 / 功能（进阶） | 主题的 `hugo.yaml`、`assets/`、`layouts/`，见 [CONTRIBUTING.md](CONTRIBUTING.md) |
 
-> **一句话**：改「我的名字 / 文案 / 文章 / 项目」→ 改**站点**（`hugo.toml` + `content/`）；改「主题长什么样 / 功能」→ 改**主题**（`layouts` / `assets` / 主题默认值）。
+> 站点配置文件叫 `hugo.toml` 或 `hugo.yaml` 都行，Hugo 都认；但**同一个文件里别混用两种格式**。下面示例统一用 `hugo.toml`。
+> 主题默认值在 `themes/pixel-blog-hugo/hugo.yaml`，你站点里的同名项会自动覆盖它。
 
 > ⚠️ 下面这些只能写在**站点**（写进主题配置无效，Hugo 只合并主题的 `params` 与 `menu`）：
 > `baseURL`、`languageCode`、`defaultContentLanguage`、`title`、`theme`、`hasCJKLanguage`、`summaryLength`、`[outputs]`、`[pagination]`、`[taxonomies]`、`[markup]`。
 
-`exampleSite/` 是主题自带的示例站点，既用来预览，也是你建站时的配置模板。你的个人信息 / 文案 / 技术栈 / 友链都写在**站点配置**里（覆盖主题默认）。完整示例（`exampleSite/hugo.toml`）：
+下面是**示例站** `exampleSite/hugo.toml` 的完整配置。**把它整段复制进你自己站点的 `hugo.toml`**，再按注释换成你的信息即可：
 
 ```toml
 [params]
@@ -134,7 +144,7 @@ Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，�
   # 品牌 / 顶部栏
   [params.identity]
     name = "小稳"                     # 顶部栏名称
-    logo = "images/logo.png"         # 顶部栏 logo（相对主题 assets/）
+    logo = "images/logo.png"         # 顶部栏 logo（放你站点的 assets/ 下）
     favicon = "images/logo.png"
 
   # 首页主视觉文案（intro 支持 Markdown，可多段）
@@ -167,8 +177,13 @@ Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，�
     pixelFont = "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
     ogImage = "/images/og-default.png"    # 站点默认分享图（1200x630）
 
+  # 社交图标：填了值的项才显示（首页 Hero 与页脚各一行），全部留空则不显示
   [params.social]
-    github = "https://github.com/LittleWin8"   # 有值才在 Hero 显示按钮
+    github = "https://github.com/LittleWin8"
+    # email = "you@example.com"                     # 邮箱（自动加 mailto:）
+    # x = "https://x.com/你的用户名"
+    # bilibili = "https://space.bilibili.com/你的UID"
+    # steam = "https://steamcommunity.com/id/你的ID"
 
   # 友链页内容
   [params.links]
@@ -180,7 +195,7 @@ Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，�
     ]
 
 # 顶部导航：顺序即显示顺序；某项注释掉即隐藏
-# icon 可选：home / posts / tags / projects / links / about
+# icon 可选：home / posts / tags / projects / links / archives / about（不填则显示小圆点）
 [[params.nav]]
   name = "首页"
   url = "/"
@@ -205,12 +220,20 @@ Hugo 里只有两类东西：**主题**（模板 + 样式 + 通用默认值，�
 
 `params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
 
+`params.social` 内置图标（填了值才显示）：`github` / `email` / `x` / `telegram` / `wechat` / `weibo` / `bilibili` / `zhihu` / `juejin` / `youtube` / `linkedin` / `mastodon` / `discord` / `instagram` / `steam`。
+
 ### 链接分享缩略图（OG，自动）
 
 分享链接到微信 / X / Telegram 等地方时显示的缩略图——**自动生效，无需额外功能**（主题已输出标准 `og:image` / `twitter:image` 元信息）：
 
 - **站点默认**：`params.assets.ogImage`（一张 1200×630 的图，放站点 `static/` 下，填路径如 `/images/og-default.png`）。
-- **文章级**：front matter 写 `cover: "images/xxx.png"`（放页面包或 `assets/` 下），主题会**自动裁剪成 1200×630**。
+- **文章级**：front matter 写 `cover: "images/xxx.png"`（放页面包或你站点的 `assets/` 下），主题会**自动裁剪成 1200×630**；也可用页面 front matter 的 `images`（数组，取第一张）作为回退。
+
+### 页面描述与关键词
+
+- **页面描述**：优先级为 front matter `description` → 页面摘要 → 站点 `params.description`。会用于 `<meta name="description">` 和 OG/Twitter。
+- **关键词**：站点 `params.keywords`（数组），输出为 `<meta name="keywords">`。
+- **更新时间**：文章页在 `lastmod ≠ date` 时显示「更新于」。开启站点 `enableGitInfo = true` 会自动用 Git 提交时间作为 `lastmod`，或在 front matter 手写 `lastmod`。
 
 ## 归档页 / 搜索页
 
@@ -233,6 +256,37 @@ layout: "search"
 - 归档页按年份自动分组，无需维护；在站点 `params.nav` 加一项 `{ name = "归档", url = "/archives/", icon = "archives" }` 即可进导航。
 - 搜索页由顶栏的搜索图标进入，需要站点开启 `home` 的 `JSON` 输出（见快速开始）。
 
+## 友链页
+
+分两步：**建一个内容页** + **在站点配置里填好友**。
+
+1）站点里新建 `content/links.md`（`exampleSite` 已有）：
+
+```markdown
+---
+title: "友链"
+layout: "links"
+---
+```
+
+2）站点 `hugo.toml` 填 `[params.links]`：
+
+```toml
+[params.links]
+  title = "友情链接"                                    # 页面标题（不写则用内容页的 title）
+  description = "一些有趣的朋友和他们的站点，欢迎交换。"   # 标题下的说明，可省略
+  items = [
+    { name = "Hugo", url = "https://gohugo.io/", description = "静态站点生成器" },
+    { name = "朋友的名字", url = "https://example.com/", description = "一句话介绍", avatar = "https://example.com/avatar.png" },
+  ]
+```
+
+- `name`、`url` 必填；`description`、`avatar` 可选。
+- `avatar` 是头像图片链接（外链或 `/images/x.png`）；**不填则显示通用链接图标**。
+- 导航里加入口：`params.nav` 加 `{ name = "友链", url = "/links/", icon = "links" }`。
+- 想写一段文字介绍（如「交换友链请联系…」），直接写在 `links.md` 正文即可，会显示在列表下方。
+- **不想用友链页**：删掉 `content/links.md`，并从 `params.nav` 移除该项即可。
+
 ## 项目（`content/projects/`）
 
 每个项目一个 Markdown 文件，自动生成 `/projects/` 列表和 `/projects/<文件名>/` 详情页：
@@ -248,7 +302,7 @@ featured: true                 # 「重点项目」徽章
 link: "https://example.com"    # 「在线体验」按钮（不填则不显示）
 source: "https://github.com/you/repo"  # 「查看源码」按钮（不填则不显示）
 icon: "📝"                     # 卡片图标（emoji / 文字）
-# image: "images/x.png"        # 也可用图片，本地图放主题 assets/ 自动裁成方形
+# image: "images/x.png"        # 也可用图片，本地图放你站点的 assets/ 自动裁成方形
 tags: ["Vue.js", "TypeScript"]
 summary: "一句话介绍，卡片和列表都会显示。"
 ---
@@ -256,7 +310,7 @@ summary: "一句话介绍，卡片和列表都会显示。"
 详情页正文（Markdown）。
 ```
 
-卡片按钮：**项目详情**（进详情页）、**在线体验**（有 `link` 才显示）、**查看源码**（有 `source` 才显示）。
+卡片按钮：**项目详情**（进详情页）、**在线体验**（`online: true` 且有 `link` 才显示）、**查看源码**（有 `source` 才显示）。
 
 **`online` 决定卡片行为**：
 
@@ -265,9 +319,8 @@ summary: "一句话介绍，卡片和列表都会显示。"
 | `online: true` | 「已上线」（绿） | ✅ 上浮 | ✅（有 `link` 时） |
 | `online: false`（或不写） | 「开发中」（黄） | ❌ | ❌ |
 
-首页「个人作品」入口仅对 `online: true` 的项目显示绿点与悬浮，未上线的为静态项。
-
-首页「个人作品」入口按 `weight` 取前 `count` 个，`online` 规则同上；「查看全部 →」进入 `/projects/`。
+- 首页「个人作品」入口只列出 `online: true` 的项目并显示绿点与悬浮效果；未上线的项目显示为静态项（该入口的显示数量由 `params.works.count` 决定，按 `weight` 排序）。
+- 项目列表页（`/projects/`）会显示**全部**项目，「在线体验」按钮同样要求 `online: true`。
 
 ### 技术栈大类图标
 
@@ -313,21 +366,24 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
         title = "Selected Work"
       [languages.en.params.techstack]
         title = "Tech Stack"
-    [languages.en.menu]        # 覆盖导航名称
-      [[languages.en.menu.main]]
-        identifier = "posts"
-        name = "Blog"
-        url = "/posts/"
-        weight = 2
+      [languages.en.params.nav]   # 导航：数组整体替换，需写全
+        [[languages.en.params.nav]]
+          name = "Home"
+          url = "/"
+          icon = "home"
+        [[languages.en.params.nav]]
+          name = "Blog"
+          url = "/posts/"
+          icon = "posts"
 ```
 
 文章/页面的英文版用文件名后缀：`hello-world.md` ↔ `hello-world.en.md`；分类的页面标题用 `_index.en.md`。
 
-> 语言级 `params` 会与主题的默认 params 合并，只需写要翻译的字段；数组（如 `works.items`、`techstack.groups`）会整体替换，需写全。
+> 语言级 `params` 会与主题的默认 params 合并，只需写要翻译的字段；数组（如 `nav`、`links.items`、`techstack.groups`）会整体替换，需写全。
 
 ## 致谢
 
-- 设计灵感来源：[千夜の詩の小窝 · 1000ye.top](https://1000ye.top/)（作者 [@X1aoM1ngTX](https://github.com/X1aoM1ngTX)）。本主题是该像素复古设计的 **Hugo 实现**，代码与素材均为独立编写，**未使用原站任何图片、Logo、文案**。
+- 设计灵感来源：[千夜の詩の小窝 · 1000ye.top](https://1000ye.top/)（作者 [@X1aoM1ngTX](https://github.com/X1aoM1ngTX)）。本主题是该像素复古设计的 **Hugo 实现**，代码与素材均为独立编写。
 - 同一套设计的 **Next.js 版**：[X1aoM1ngTX/pixel-blog](https://github.com/X1aoM1ngTX/pixel-blog)。
 - 像素字体：[Fusion Pixel 缝合像素字体](https://github.com/TakWolf/fusion-pixel-font)（SIL OFL 1.1）。
 - 线性图标参考 [Lucide](https://lucide.dev/)（ISC）。
