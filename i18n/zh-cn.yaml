@@ -50,6 +50,14 @@
   translation: "没有找到相关内容。"
 - id: searchResults
   translation: "找到 %d 条结果"
+- id: anchor
+  translation: "锚点链接"
+- id: skipToContent
+  translation: "跳到正文"
+- id: relatedPosts
+  translation: "相关文章"
+- id: lastUpdated
+  translation: "更新于"
 - id: typePost
   translation: "文章"
 - id: typeProject

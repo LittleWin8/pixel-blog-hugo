@@ -17,9 +17,12 @@
 - **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；上线项目可点击、带绿点与悬浮效果，未上线不可点击
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
 - **首页文案 / 顶部栏名称与 logo / 技术栈，在主题的 `hugo.yaml` 中配置**
-- 文章页：目录（TOC）、标签、上一篇/下一篇、**代码块一键复制**
+- 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
+- **Markdown 渲染钩子**：图片懒加载 + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
 - 标签云与标签页、**404 页面**、robots.txt
+- SEO：JSON-LD（BlogPosting / 面包屑）、OG / Twitter、RSS、sitemap
+- 无障碍：跳过导航（skip link）、统一焦点样式
 - CSS 自定义属性驱动，改一个色值全站生效
 - 样式与脚本经 Hugo Pipes 拼接、压缩、加指纹，无需 npm / 构建工具
 - i18n 中英文案
@@ -62,6 +65,9 @@ enableRobotsTXT = true
     unsafe = true
   [markup.highlight]
     noClasses = false
+  [markup.tableofcontents]     # 右侧大纲层级范围
+    startLevel = 2
+    endLevel = 4
 ```
 
 写内容：
@@ -313,7 +319,10 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
 - **改配色**：编辑 `assets/css/tokens.css`（亮色在 `:root`，暗色在 `html.theme-dark`）。
 - **改断点**：响应式集中在 `home.css` 底部与 `layout.css` 的 `@media`。
 - **换 logo**：替换 `assets/images/logo.png`（`logo.html` 会自动按需缩放，SVG 也可）。
-- **换像素字体**：改 `params.assets.pixelFont`；默认走 jsDelivr，国内不稳时可换自托管或国内 CDN。
+- **换像素字体**：改 `params.assets.pixelFont`。
+  - 默认走 jsDelivr（fontsource），开箱即用；
+  - 想国内更快/更稳，可**自托管**：从 [fusion-pixel-font](https://github.com/TakWolf/fusion-pixel-font) 下载 `12px-proportional` 的 woff2（简体中文约 660KB），放到站点 `static/fonts/`，写一个 `@font-face` CSS（用字体名 `Fusion Pixel 12px Proportional SC`），再把 `pixelFont` 指向它。字体为 OFL-1.1，记得附带 `OFL.txt`。
+- **更新时间**：文章显示「更新于」需要 `lastmod`。站点开启 `enableGitInfo = true` 可自动取 Git 提交时间，或在 front matter 写 `lastmod`。
 
 > 注意：CSS 文件是纯 CSS，请勿使用 `//` 注释（那是 SCSS 语法，会破坏规则），用 `/* */`。
 

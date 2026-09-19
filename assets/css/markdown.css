@@ -98,6 +98,38 @@
   box-shadow: 5px 5px 0 var(--shadow-color);
 }
 
+.md-figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.md-figure figcaption {
+  margin-top: 0.6rem;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+
+.md-anchor {
+  margin-left: 0.4rem;
+  color: var(--fg-muted);
+  font-size: 0.8em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+h1:hover > .md-anchor,
+h2:hover > .md-anchor,
+h3:hover > .md-anchor,
+h4:hover > .md-anchor,
+.md-anchor:focus {
+  opacity: 1;
+}
+
+.md-anchor:hover {
+  color: var(--brand-purple);
+}
+
 .post-content table {
   width: 100%;
   border-collapse: collapse;
@@ -115,6 +147,13 @@
   background: var(--bg-soft);
   font-family: var(--font-pixel);
   font-weight: 400;
+}
+
+.post-updated {
+  margin: 0.5rem 0 0;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
 }
 
 .post-footer {

@@ -1,28 +1,40 @@
 {{ define "main" }}
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">{{ .Title }}</h1>
-      {{ partial "post-meta.html" (dict "page" . "showTags" false) }}
-      {{ with .Params.tags }}
-      <div class="tags post-tags">
-        {{ range . }}
-        <a class="tag" href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+  {{- $showToc := and (site.Params.toc | default true) .TableOfContents -}}
+  <div class="post-layout{{ if not $showToc }} post-layout--single{{ end }}">
+    {{ if $showToc }}
+    <aside class="post-aside" aria-label="{{ i18n "toc" | default "目录" }}">
+      {{ partial "toc.html" . }}
+    </aside>
+    {{ end }}
+
+    <article class="post post-main">
+      <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{ partial "post-meta.html" (dict "page" . "showTags" false) }}
+        {{ if and (eq .Section "posts") (ne .Lastmod .Date) }}
+        <p class="post-updated">{{ i18n "lastUpdated" | default "更新于" }} {{ .Lastmod.Format "2006-01-02" }}</p>
         {{ end }}
-      </div>
-      {{ end }}
-    </header>
+        {{ with .Params.tags }}
+        <div class="tags post-tags">
+          {{ range . }}
+          <a class="tag" href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </header>
 
-    {{ if site.Params.toc | default true }}{{ partial "toc.html" . }}{{ end }}
+      <div class="post-content">{{ .Content }}</div>
 
-    <div class="post-content">{{ .Content }}</div>
+      {{ if eq .Section "posts" }}{{ partial "related.html" . }}{{ end }}
 
-    <footer class="post-footer">
-      {{ with .PrevInSection }}
-      <a href="{{ .RelPermalink }}">← {{ .Title }}</a>
-      {{ else }}<span></span>{{ end }}
-      {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
-      {{ end }}
-    </footer>
-  </article>
+      <footer class="post-footer">
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">← {{ .Title }}</a>
+        {{ else }}<span></span>{{ end }}
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
+        {{ end }}
+      </footer>
+    </article>
+  </div>
 {{ end }}

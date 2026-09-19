@@ -1,0 +1,12 @@
+{{- $dest := .Destination -}}
+{{- $external := or (hasPrefix $dest "http://") (hasPrefix $dest "https://") -}}
+<figure class="md-figure">
+  <img
+    src="{{ $dest | safeURL }}"
+    alt="{{ .Text }}"
+    loading="lazy"
+    decoding="async"
+    {{- if $external }} referrerpolicy="no-referrer"{{ end }}
+  >
+  {{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

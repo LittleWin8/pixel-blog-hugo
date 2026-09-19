@@ -4,8 +4,9 @@
   {{ partial "head/head.html" . }}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">{{ i18n "skipToContent" | default "跳到正文" }}</a>
   {{ partial "header.html" . }}
-  <main class="site-main">
+  <main id="main-content" class="site-main">
     <div class="container">
       {{ block "main" . }}{{ end }}
     </div>

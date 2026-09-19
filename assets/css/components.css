@@ -276,16 +276,38 @@ html.theme-dark .icon-moon {
 
 .toc ul {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: 0;
+  list-style: none;
   font-size: 0.88rem;
+}
+
+.toc li {
+  margin: 0.2rem 0;
+}
+
+.toc ul ul {
+  margin-top: 0.2rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--border-soft);
 }
 
 .toc a {
   color: var(--fg-muted);
 }
 
-.toc a:hover {
+.toc a:hover,
+.toc a:focus-visible {
   color: var(--brand-purple);
+}
+
+/* ── Related posts ─────────────────────────────────────────── */
+.related {
+  margin-top: 3.5rem;
+}
+
+.related__title {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
 }
 
 /* ── Search ────────────────────────────────────────────────── */

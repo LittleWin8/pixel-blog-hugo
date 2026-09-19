@@ -1,36 +1,45 @@
 {{ define "main" }}
-  <article class="project">
-    <a class="project-back" href="{{ "projects/" | relURL }}">← {{ i18n "backToProjects" | default "返回项目列表" }}</a>
+  {{- $showToc := and (site.Params.toc | default true) .TableOfContents -}}
+  <div class="post-layout{{ if not $showToc }} post-layout--single{{ end }}">
+    {{ if $showToc }}
+    <aside class="post-aside" aria-label="{{ i18n "toc" | default "目录" }}">
+      {{ partial "toc.html" . }}
+    </aside>
+    {{ end }}
 
-    <div class="project-header__meta">
-      {{ if .Params.online }}<span class="badge badge--online">{{ i18n "online" | default "已上线" }}</span>{{ end }}
-      {{ if .Params.featured }}<span class="badge badge--featured">{{ i18n "featuredProject" | default "重点项目" }}</span>{{ end }}
-      {{ with .Params.tags }}
-      <ul class="project-card__tags">
-        {{ range . }}<li class="chip">{{ . }}</li>{{ end }}
-      </ul>
-      {{ end }}
-    </div>
+    <article class="project post-main">
+      <a class="project-back" href="{{ "projects/" | relURL }}">← {{ i18n "backToProjects" | default "返回项目列表" }}</a>
 
-    <h1 class="project-header__title">
-      {{ .Title }}{{ with .Params.subtitle }}<span class="project-header__subtitle">{{ . }}</span>{{ end }}
-    </h1>
+      <div class="project-header__meta">
+        {{ if .Params.online }}<span class="badge badge--online">{{ i18n "online" | default "已上线" }}</span>{{ end }}
+        {{ if .Params.featured }}<span class="badge badge--featured">{{ i18n "featuredProject" | default "重点项目" }}</span>{{ end }}
+        {{ with .Params.tags }}
+        <ul class="project-card__tags">
+          {{ range . }}<li class="chip">{{ . }}</li>{{ end }}
+        </ul>
+        {{ end }}
+      </div>
 
-    {{ if not .Date.IsZero }}<p class="project-header__date">{{ .Date.Format "2006年01月02日" }}</p>{{ end }}
+      <h1 class="project-header__title">
+        {{ .Title }}{{ with .Params.subtitle }}<span class="project-header__subtitle">{{ . }}</span>{{ end }}
+      </h1>
 
-    <div class="project-header__actions">
-      {{ with .Params.link }}
-      <a class="btn" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
-      {{ end }}
-      {{ with .Params.source }}
-      <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "viewSource" | default "查看源码" }}</a>
-      {{ end }}
-    </div>
+      {{ if not .Date.IsZero }}<p class="project-header__date">{{ .Date.Format "2006年01月02日" }}</p>{{ end }}
 
-    <figure class="project-figure">{{ partial "project-icon.html" . }}</figure>
+      <div class="project-header__actions">
+        {{ with .Params.link }}
+        <a class="btn" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
+        {{ end }}
+        {{ with .Params.source }}
+        <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "viewSource" | default "查看源码" }}</a>
+        {{ end }}
+      </div>
 
-    {{ with .Summary }}<p class="project-header__desc">{{ . }}</p>{{ end }}
+      <figure class="project-figure">{{ partial "project-icon.html" . }}</figure>
 
-    <div class="post-content">{{ .Content }}</div>
-  </article>
+      {{ with .Summary }}<p class="project-header__desc">{{ . }}</p>{{ end }}
+
+      <div class="post-content">{{ .Content }}</div>
+    </article>
+  </div>
 {{ end }}

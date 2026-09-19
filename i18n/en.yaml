@@ -50,6 +50,14 @@
   translation: "No results found."
 - id: searchResults
   translation: "%d results"
+- id: anchor
+  translation: "Anchor link"
+- id: skipToContent
+  translation: "Skip to content"
+- id: relatedPosts
+  translation: "Related posts"
+- id: lastUpdated
+  translation: "Updated"
 - id: typePost
   translation: "Post"
 - id: typeProject

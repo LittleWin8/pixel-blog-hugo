@@ -136,6 +136,49 @@
   padding: 2.75rem 0 4rem;
 }
 
+/* ── 文章/项目布局：右侧粘性大纲 ───────────────────────────── */
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.post-layout--single {
+  display: block;
+}
+
+.post-main {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.post-aside {
+  position: sticky;
+  top: 5rem;
+  grid-column: 2;
+  grid-row: 1;
+  max-height: calc(100vh - 6.5rem);
+  overflow: auto;
+}
+
+.post-aside .toc {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .post-layout {
+    display: block;
+  }
+
+  .post-aside {
+    position: static;
+    max-height: none;
+    margin-bottom: 2rem;
+  }
+}
+
 .site-footer {
   flex-shrink: 0;
   border-top: var(--border-width) solid var(--border);

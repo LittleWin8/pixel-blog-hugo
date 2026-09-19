@@ -1,5 +1,5 @@
 {{- with site.Params.assets.pixelFont -}}
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+{{- if in . "jsdelivr" }}<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>{{ end }}
 <link rel="stylesheet" href="{{ . }}">
 {{- end -}}
 {{- $css := slice

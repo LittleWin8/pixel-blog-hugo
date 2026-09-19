@@ -1,0 +1,21 @@
+{{- $tags := .Params.tags -}}
+{{- $related := slice -}}
+{{- with $tags -}}
+  {{- $current := $.RelPermalink -}}
+  {{- range where site.RegularPages "Section" "posts" -}}
+    {{- $item := . -}}
+    {{- if ne $item.RelPermalink $current -}}
+      {{- with $item.Params.tags -}}
+        {{- if intersect . $tags -}}{{- $related = $related | append $item -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with first 3 $related }}
+<section class="related">
+  <h2 class="related__title">{{ i18n "relatedPosts" | default "相关文章" }}</h2>
+  <ul class="post-list">
+    {{ range . }}{{ partial "post-card.html" . }}{{ end }}
+  </ul>
+</section>
+{{ end }}

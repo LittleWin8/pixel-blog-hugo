@@ -1,0 +1,42 @@
+{{- $author := site.Params.author | default site.Title -}}
+{{- if .IsHome -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" site.Title
+    "url" site.BaseURL
+    "potentialAction" (dict
+      "@type" "SearchAction"
+      "target" (printf "%ssearch/?q={search_term_string}" site.BaseURL)
+      "query-input" "required name=search_term_string")
+  -}}
+  <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- else if .IsPage -}}
+  {{- $type := cond (eq .Section "projects") "CreativeWork" "BlogPosting" -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" $type
+    "headline" .Title
+    "name" .Title
+    "description" (.Summary | plainify)
+    "url" .Permalink
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "author" (dict "@type" "Person" "name" $author)
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  -}}
+  {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" (delimit . ", ")) }}{{ end -}}
+  <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "首页" "item" site.Home.Permalink) -}}
+  {{- $pos := 2 -}}
+  {{- with .CurrentSection -}}
+    {{- if not .IsHome -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+      {{- $pos = add $pos 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+  {{- $breadcrumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items -}}
+  <script type="application/ld+json">{{ $breadcrumb | jsonify | safeJS }}</script>
+{{- end -}}

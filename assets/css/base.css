@@ -6,7 +6,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 720px) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
 }
 
 body {
@@ -45,6 +52,22 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--brand-purple);
   outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border: var(--border-width) solid var(--border);
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
 }
 
 h1,
