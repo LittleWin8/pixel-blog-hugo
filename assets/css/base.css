@@ -1,0 +1,71 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--brand-purple);
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--accent-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-purple);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  line-height: 1.35;
+  margin: 0 0 0.6em;
+}
+
+hr {
+  border: 0;
+  border-top: var(--border-width) dashed var(--border-soft);
+  margin: 2rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}

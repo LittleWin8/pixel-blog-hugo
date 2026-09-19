@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <header class="section-head">
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  <ul class="tag-cloud">
+    {{ range .Pages }}
+    <li>
+      <a class="pixel-card tag-cloud__item" href="{{ .RelPermalink }}">
+        {{ .Title }} <span class="tag-cloud__count">{{ len .Pages }}</span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+{{ end }}

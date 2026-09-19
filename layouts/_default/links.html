@@ -1,0 +1,36 @@
+{{ define "main" }}
+  {{- $links := site.Params.links | default dict -}}
+  <header class="section-head">
+    <div>
+      <h1>{{ $links.title | default .Title }}</h1>
+      {{ with $links.description }}<p class="section-head__more">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  {{ with $links.items }}
+  <ul class="link-list">
+    {{ range . }}
+    <li>
+      <a class="link-card pixel-panel" href="{{ .url }}" target="_blank" rel="noopener">
+        <span class="link-card__avatar">
+          {{- with .avatar -}}
+            <img src="{{ . }}" alt="" loading="lazy">
+          {{- else -}}
+            {{ partial "menu-icon.html" "links" }}
+          {{- end -}}
+        </span>
+        <span class="link-card__body">
+          <span class="link-card__name">{{ .name }}</span>
+          {{ with .description }}<span class="link-card__desc">{{ . }}</span>{{ end }}
+          <span class="link-card__url">{{ .url }}</span>
+        </span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="post-meta">{{ i18n "noLinks" | default "暂无友链。" }}</p>
+  {{ end }}
+
+  {{ with .Content }}<div class="post-content link-intro">{{ . }}</div>{{ end }}
+{{ end }}

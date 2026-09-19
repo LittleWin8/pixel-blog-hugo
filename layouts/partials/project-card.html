@@ -1,0 +1,3 @@
+{{- $class := "project-card pixel-panel" -}}
+{{- if not .Params.online }}{{ $class = printf "%s project-card--offline" $class }}{{ end -}}
+<article class="{{ $class }}">{{ partial "project-card-body.html" . }}</article>

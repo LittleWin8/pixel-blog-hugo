@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ partial "hero.html" . }}
+
+  {{ partial "tech-stack.html" . }}
+
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ with $posts }}
+  <section class="home-section">
+    <div class="section-head">
+      <h2>{{ i18n "latestPosts" | default "最新文章" }}</h2>
+      <a class="section-head__more" href="{{ "posts/" | relURL }}">{{ i18n "allPosts" | default "全部文章" }} →</a>
+    </div>
+    <ul class="post-list">
+      {{ range first (site.Params.homePosts | default 6) . }}
+        {{ partial "post-card.html" . }}
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+{{ end }}

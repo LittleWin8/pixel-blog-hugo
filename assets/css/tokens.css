@@ -1,0 +1,53 @@
+/* ───────────────────────────────────────────────────────────── */
+/* Design tokens */
+/* Palette based on the Sweetie 16 pixel-art palette, with the */
+/* LittleWin brand purple/cyan used for the logo and links. */
+/* ───────────────────────────────────────────────────────────── */
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-pixel: "Fusion Pixel 12px Proportional SC", var(--font-sans);
+
+  --radius: 0px;
+  --border-width: 2px;
+  --shadow-offset: 5px;
+  --container: 1080px;
+  --transition: 160ms ease;
+}
+
+:root,
+html.theme-light {
+  --bg: #f4f4f8;
+  --bg-soft: #e9eaf2;
+  --bg-card: #ffffff;
+  --fg: #1a1c2c;
+  --fg-muted: #566c86;
+  --border: #1a1c2c;
+  --border-soft: #94b0c2;
+  --accent: #ffcd75;
+  --accent-fg: #1a1c2c;
+  --brand-purple: #8b5cf6;
+  --brand-cyan: #0ea5e9;
+  --shadow-color: rgba(26, 28, 44, 0.55);
+  --code-bg: #e9eaf2;
+  --selection: #ffcd75;
+}
+
+html.theme-dark {
+  --bg: #1a1c2c;
+  --bg-soft: #24283b;
+  --bg-card: #24283b;
+  --fg: #f4f4f8;
+  --fg-muted: #94b0c2;
+  --border: #94b0c2;
+  --border-soft: #566c86;
+  --accent: #ffcd75;
+  --accent-fg: #1a1c2c;
+  --brand-purple: #8b5cf6;
+  --brand-cyan: #38bdf8;
+  --shadow-color: rgba(148, 176, 194, 0.35);
+  --code-bg: #2e3149;
+  --selection: #ffcd75;
+}

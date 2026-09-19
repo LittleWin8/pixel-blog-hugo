@@ -1,0 +1,8 @@
+{{- with .TableOfContents -}}
+{{- if ne . "" -}}
+<aside class="toc pixel-panel">
+  <p class="toc__title">{{ i18n "toc" | default "目录" }}</p>
+  {{ . }}
+</aside>
+{{- end -}}
+{{- end -}}

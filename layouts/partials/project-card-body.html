@@ -1,0 +1,37 @@
+<div class="project-card__media">
+  <div class="project-card__thumb">
+    {{ partial "project-icon.html" . }}
+  </div>
+</div>
+<div class="project-card__main">
+  <div class="project-card__badges">
+    {{ if .Params.online }}
+    <span class="badge badge--online">{{ i18n "online" | default "已上线" }}</span>
+    {{ else }}
+    <span class="badge badge--dev">{{ i18n "inDevelopment" | default "开发中" }}</span>
+    {{ end }}
+    {{ if .Params.featured }}<span class="badge badge--featured">{{ i18n "featuredProject" | default "重点项目" }}</span>{{ end }}
+  </div>
+
+  <h2 class="project-card__title">
+    {{ .Title }}{{ with .Params.subtitle }}<span class="project-card__subtitle">{{ . }}</span>{{ end }}
+  </h2>
+
+  {{ with .Summary }}<p class="project-card__desc">{{ . | plainify }}</p>{{ end }}
+
+  {{ with .Params.tags }}
+  <ul class="project-card__tags">
+    {{ range . }}<li class="chip">{{ . }}</li>{{ end }}
+  </ul>
+  {{ end }}
+
+  <div class="project-card__actions">
+    <a class="btn" href="{{ .RelPermalink }}">{{ i18n "projectDetail" | default "项目详情" }}</a>
+    {{ with .Params.link }}
+    <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
+    {{ end }}
+    {{ with .Params.source }}
+    <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "viewSource" | default "查看源码" }}</a>
+    {{ end }}
+  </div>
+</div>

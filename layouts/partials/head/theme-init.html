@@ -1,0 +1,17 @@
+<script>
+  (function () {
+    try {
+      var key = "theme";
+      var theme = localStorage.getItem(key);
+      if (theme !== "light" && theme !== "dark") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      document.documentElement.classList.add("theme-" + theme);
+      document.documentElement.style.colorScheme = theme;
+    } catch (err) {
+      document.documentElement.classList.add("theme-light");
+    }
+  })();
+</script>

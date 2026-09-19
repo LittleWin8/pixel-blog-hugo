@@ -1,0 +1,25 @@
+{{- $ts := site.Params.techstack | default dict -}}
+{{- if and $ts.enable $ts.groups -}}
+<section class="home-section techstack">
+  <header class="section-title-center">
+    <h2>{{ $ts.title | default "技术栈" }}</h2>
+    {{ with $ts.subtitle }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <div class="techstack__grid">
+    {{ range $ts.groups }}
+    <div class="pixel-panel tech-card">
+      <h3 class="tech-card__title">
+        {{ with .icon }}<span class="tech-card__icon">{{ partial "category-icon.html" . }}</span>{{ end }}
+        {{ .title }}
+      </h3>
+      {{ with .description }}<p class="tech-card__desc">{{ . }}</p>{{ end }}
+      {{ with .items }}
+      <ul class="tech-card__tags">
+        {{ range . }}<li class="chip">{{ . }}</li>{{ end }}
+      </ul>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{- end -}}

@@ -1,0 +1,9 @@
+<li class="post-list__item">
+  <a class="pixel-card post-card" href="{{ .RelPermalink }}">
+    <h3 class="post-card__title">{{ .Title }}</h3>
+    {{ with .Summary }}
+    <p class="post-card__summary">{{ . | plainify | truncate 140 }}</p>
+    {{ end }}
+    {{ partial "post-meta.html" (dict "page" . "showTags" true) }}
+  </a>
+</li>

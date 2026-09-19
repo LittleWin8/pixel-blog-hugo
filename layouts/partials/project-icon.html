@@ -1,0 +1,19 @@
+{{- with .Params.image -}}
+  {{- $img := . -}}
+  {{- if or (hasPrefix $img "http") (hasPrefix $img "/") -}}
+    <img src="{{ $img }}" alt="" loading="lazy">
+  {{- else -}}
+    {{- with resources.Get $img -}}
+      {{- $r := .Fill "176x176 Center" -}}
+      <img src="{{ $r.RelPermalink }}" alt="" loading="lazy">
+    {{- else -}}
+      {{ partial "project-default-icon.html" . }}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- with .Params.icon -}}
+    <span class="project-emoji" aria-hidden="true">{{ . }}</span>
+  {{- else -}}
+    {{ partial "project-default-icon.html" . }}
+  {{- end -}}
+{{- end -}}

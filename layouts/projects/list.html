@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <header class="section-head">
+    <div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="section-head__more">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  <div class="project-list">
+    {{ range .Pages.ByWeight }}
+      {{ partial "project-card.html" . }}
+    {{ else }}
+      <p class="post-meta">{{ i18n "noPosts" | default "暂无内容。" }}</p>
+    {{ end }}
+  </div>
+{{ end }}

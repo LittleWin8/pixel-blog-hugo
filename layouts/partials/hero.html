@@ -1,0 +1,41 @@
+{{- $hero := site.Params.hero | default dict -}}
+<section class="hero">
+  <div class="hero__grid">
+    <div class="hero__main">
+      {{ with $hero.eyebrow }}
+      <p class="hero__eyebrow">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v4"></path>
+          <path d="M12 17v4"></path>
+          <path d="m5.6 5.6 2.8 2.8"></path>
+          <path d="m15.6 15.6 2.8 2.8"></path>
+          <path d="M3 12h4"></path>
+          <path d="M17 12h4"></path>
+          <path d="m5.6 18.4 2.8-2.8"></path>
+          <path d="m15.6 8.4 2.8-2.8"></path>
+        </svg>
+        {{ . }}
+      </p>
+      {{ end }}
+
+      <h1 class="hero__title">{{ $hero.title | default site.Title }}</h1>
+
+      {{ with $hero.tagline }}<p class="hero__tagline">{{ . }}</p>{{ end }}
+
+      {{ with $hero.intro }}<div class="hero__intro pixel-panel">{{ . | markdownify }}</div>{{ end }}
+
+      <div class="hero__actions">
+        <a class="btn" href="{{ "posts/" | relURL }}">
+          {{ i18n "readPosts" | default "阅读文章" }}
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost" href="{{ "about/" | relURL }}">{{ i18n "aboutMe" | default "关于我" }}</a>
+        {{ with site.Params.social.github }}
+        <a class="btn btn--ghost" href="{{ . }}" target="_blank" rel="noopener">GitHub</a>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ partial "works.html" . }}
+  </div>
+</section>

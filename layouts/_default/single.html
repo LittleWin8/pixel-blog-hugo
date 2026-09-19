@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{ partial "post-meta.html" (dict "page" . "showTags" false) }}
+      {{ with .Params.tags }}
+      <div class="tags post-tags">
+        {{ range . }}
+        <a class="tag" href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </header>
+
+    {{ if site.Params.toc | default true }}{{ partial "toc.html" . }}{{ end }}
+
+    <div class="post-content">{{ .Content }}</div>
+
+    <footer class="post-footer">
+      {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}">← {{ .Title }}</a>
+      {{ else }}<span></span>{{ end }}
+      {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
+      {{ end }}
+    </footer>
+  </article>
+{{ end }}

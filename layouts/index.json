@@ -1,0 +1,14 @@
+{{- $pages := where site.RegularPages "Section" "in" (slice "posts" "projects") -}}
+[
+{{- range $i, $p := $pages -}}
+{{- if $i }},{{ end }}
+{
+  "title": {{ $p.Title | jsonify }},
+  "permalink": {{ $p.RelPermalink | jsonify }},
+  "summary": {{ ($p.Summary | plainify) | jsonify }},
+  "tags": {{ $p.Params.tags | jsonify }},
+  "section": {{ $p.Section | jsonify }},
+  "content": {{ ($p.Plain | truncate 500) | jsonify }}
+}
+{{- end }}
+]

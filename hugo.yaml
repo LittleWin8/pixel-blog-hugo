@@ -1,0 +1,110 @@
+# ─────────────────────────────────────────────────────────────
+# 小稳博客主题配置
+# 个人信息 / 首页文案 / 作品 / 技术栈 / 导航都在这里改。
+# 站点 hugo.* 的同名 params 优先级更高，可覆盖此处。
+# ─────────────────────────────────────────────────────────────
+
+params:
+  author: 小稳
+  description: 小稳的个人博客 · 记录技术与生活
+  toc: true                # 文章页是否显示目录
+  homePosts: 6             # 首页显示的文章数
+
+  # ── 品牌 / 顶部栏 ─────────────────────────────────
+  identity:
+    name: 小稳                     # 顶部栏名称
+    logo: images/logo.png         # 顶部栏 logo（相对主题 assets/）
+    favicon: images/logo.png
+
+  # ── 首页主视觉文案 ────────────────────────────────
+  hero:
+    eyebrow: 持续学习，也持续创造
+    title: 小稳
+    tagline: 全栈开发者，专注于把想法做成好用的产品。
+    intro: |
+      你好呀，欢迎来到我的小窝。
+
+      我是**小稳**，用 `Java` 与 `Vue.js` 修炼全栈，把想法变成真实好用的产品。
+
+      这里是我的数字花园，种着技术笔记、项目故事，和一路走来的思考。
+
+  # ── 首页「个人作品」入口 ──────────────────────────
+  # 项目内容在 content/projects/*.md（每个项目一个文件，支持详情页）；
+  # 这里只配首页面板的标题与展示数量，点击「查看全部」进入 /projects/。
+  works:
+    eyebrow: FEATURED WORK
+    title: 个人作品
+    count: 3
+
+  # ── 首页「技术栈」（enable: false 即整块隐藏）──────
+  # icon 可选值（大类图标）：frontend / backend / database / ai / devops /
+  #   cloud / tools / mobile / design / language / security / test / box
+  techstack:
+    enable: true
+    title: 技术栈
+    subtitle: 我使用的技术和工具
+    groups:
+      - title: AI 编程工具
+        icon: ai
+        description: "日常以 AI Agent 结对开发：需求拆解、代码生成、Review 与调试全流程提效。"
+        items: [ZCode, Codex, Claude Code, OpenAI, DeepSeek, Kimi, Zhipu]
+      - title: 后端与数据库
+        icon: backend
+        description: 以 Java 生态为主线，构建稳定可靠的服务端应用。
+        items: [Java, Spring Boot, MyBatis, MySQL, Redis]
+      - title: 前端与工程化
+        icon: frontend
+        description: 用现代前端工具链打造可维护的交互界面。
+        items: [Vue.js, TypeScript, Vite, Pinia]
+      - title: 运维与效率
+        icon: language
+        description: 自建服务与自动化流程，让开发和部署更省心。
+        items: [Linux, Nginx, Docker, Hugo, GitHub Actions]
+
+  # ── 资源 ─────────────────────────────────────────
+  assets:
+    pixelFont: "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
+
+  # ── 社交（有值才显示对应按钮）────────────────────
+  social:
+    github: "https://github.com/LittleWin8"
+
+  # ── 顶部导航（可选：某项注释掉即隐藏，顺序即显示顺序）──
+  # icon 可选值：home / posts / tags / projects / links / about
+  nav:
+    - name: 首页
+      url: /
+      icon: home
+    - name: 博客
+      url: /posts/
+      icon: posts
+    - name: 标签
+      url: /tags/
+      icon: tags
+    - name: 项目
+      url: /projects/
+      icon: projects
+    - name: 友链
+      url: /links/
+      icon: links
+    # 想临时隐藏某项，注释掉即可，例如：
+    # - name: 关于
+    #   url: /about/
+    #   icon: about
+    - name: 关于
+      url: /about/
+      icon: about
+
+  # ── 友链页内容（/links/）──────────────────────────
+  links:
+    title: 友情链接
+    description: 一些有趣的朋友和他们的站点，欢迎交换。
+    items:
+      - name: 千夜の詩
+        url: "https://1000ye.top/"
+        description: 全栈开发者的像素风小窝
+        avatar: "https://1000ye.top/1000ye.png"
+      - name: GitHub
+        url: "https://github.com/LittleWin8"
+        description: 我的开源主页
+

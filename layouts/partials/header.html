@@ -1,0 +1,47 @@
+{{- $identity := site.Params.identity | default dict -}}
+{{- $page := . -}}
+{{- $nav := site.Params.nav | default slice -}}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">
+      {{ partial "logo.html" (dict "class" "brand__logo" "size" 64) }}
+      <span class="brand__name">{{ $identity.name | default site.Title }}</span>
+    </a>
+
+    <nav id="site-nav" class="site-nav" aria-label="{{ i18n "mainNav" | default "主导航" }}">
+      {{ range $nav }}
+        {{- $url := .url -}}
+        {{- $active := or (eq $page.RelPermalink $url) (and (ne $url "/") (hasPrefix $page.RelPermalink $url)) -}}
+        <a href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>
+          {{ partial "menu-icon.html" (.icon | default "dot") }}
+          <span>{{ .name }}</span>
+        </a>
+      {{ end }}
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="icon-btn" href="{{ "search/" | relURL }}" aria-label="{{ i18n "search" | default "搜索" }}">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </a>
+      {{ partial "language-switch.html" . }}
+      {{ partial "theme-toggle.html" . }}
+      <button
+        type="button"
+        class="icon-btn menu-toggle"
+        data-menu-toggle
+        aria-label="{{ i18n "toggleMenu" | default "打开菜单" }}"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12h16"></path>
+          <path d="M4 18h16"></path>
+          <path d="M4 6h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

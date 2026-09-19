@@ -1,0 +1,12 @@
+{{- $identity := site.Params.identity | default dict -}}
+{{- $path := $identity.logo | default "images/logo.png" -}}
+{{- $class := .class | default "logo" -}}
+{{- $size := .size | default 96 -}}
+{{- with resources.Get $path -}}
+  {{- if eq .MediaType.SubType "svg" -}}
+    <span class="{{ $class }}" aria-hidden="true">{{ .Content | safeHTML }}</span>
+  {{- else -}}
+    {{- $img := .Resize (printf "%dx%d" $size $size) -}}
+    <img class="{{ $class }}" src="{{ $img.RelPermalink }}" width="{{ $size }}" height="{{ $size }}" alt="{{ $identity.name | default site.Title }}" decoding="async">
+  {{- end -}}
+{{- end -}}

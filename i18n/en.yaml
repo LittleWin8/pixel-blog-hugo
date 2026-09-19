@@ -1,0 +1,62 @@
+- id: toggleTheme
+  translation: "Toggle theme"
+- id: toggleMenu
+  translation: "Open menu"
+- id: mainNav
+  translation: "Main navigation"
+- id: backToTop
+  translation: "Back to top"
+- id: pagination
+  translation: "Pagination"
+- id: latestPosts
+  translation: "Latest posts"
+- id: allPosts
+  translation: "All posts"
+- id: readPosts
+  translation: "Read posts"
+- id: aboutMe
+  translation: "About me"
+- id: minutesRead
+  translation: "min read"
+- id: toc
+  translation: "Contents"
+- id: noPosts
+  translation: "No posts yet."
+- id: inProgress
+  translation: "In progress"
+- id: switchLanguage
+  translation: "Switch language"
+- id: online
+  translation: "Live"
+- id: inDevelopment
+  translation: "In development"
+- id: featuredProject
+  translation: "Featured"
+- id: projectDetail
+  translation: "Details"
+- id: liveDemo
+  translation: "Live demo"
+- id: viewSource
+  translation: "Source"
+- id: viewAll
+  translation: "View all"
+- id: backToProjects
+  translation: "Back to projects"
+- id: search
+  translation: "Search"
+- id: searchPlaceholder
+  translation: "Type keywords…"
+- id: searchEmpty
+  translation: "No results found."
+- id: searchResults
+  translation: "%d results"
+- id: typePost
+  translation: "Post"
+- id: typeProject
+  translation: "Project"
+- id: notFound
+  translation: "Page not found"
+- id: notFoundDesc
+  translation: "The page you are looking for does not exist or has been moved."
+- id: backHome
+  translation: "Back home"

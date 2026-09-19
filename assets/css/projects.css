@@ -1,0 +1,233 @@
+/* Projects list page + detail page */
+
+.project-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.project-card:not(.project-card--offline):hover {
+  transform: translate(-2px, -2px);
+  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0
+    var(--shadow-color);
+}
+
+.project-card--offline {
+  opacity: 0.9;
+}
+
+.project-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-right: var(--border-width) solid var(--border-soft);
+}
+
+.project-card__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9rem;
+  height: 9rem;
+  padding: 1rem;
+  border: var(--border-width) solid var(--border);
+  background: #f4f4f8;
+}
+
+.project-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.project-card__thumb .icon-default {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #1a1c2c;
+}
+
+.project-card__thumb .project-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.project-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.5rem 1.6rem;
+}
+
+.project-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.project-card__subtitle {
+  margin-left: 0.6rem;
+  color: var(--fg-muted);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.project-card__desc {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+/* ── Badges ────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  padding: 0.12rem 0.55rem;
+  border: var(--border-width) solid var(--border-soft);
+  font-size: 0.72rem;
+  color: var(--fg-muted);
+}
+
+.badge--online {
+  border-color: #38b764;
+  background: color-mix(in srgb, #38b764 14%, transparent);
+  color: #2f9c55;
+}
+
+.badge--dev {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--fg);
+}
+
+.badge--featured {
+  background: var(--bg-soft);
+  color: var(--fg-muted);
+}
+
+/* ── Project detail ────────────────────────────────────────── */
+.project-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--fg-muted);
+  font-size: 0.88rem;
+}
+
+.project-back:hover {
+  color: var(--fg);
+}
+
+.project-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.project-header__meta .project-card__tags {
+  margin: 0;
+}
+
+.project-header__title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.project-header__subtitle {
+  margin-left: 0.6rem;
+  color: var(--fg-muted);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.project-header__date {
+  margin: 0 0 1.25rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.project-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.project-figure {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 2.5rem;
+}
+
+.project-figure img {
+  width: 12rem;
+  height: 12rem;
+  padding: 1.25rem;
+  border: var(--border-width) solid var(--border);
+  background: #f4f4f8;
+  object-fit: contain;
+}
+
+.project-figure .icon-default {
+  width: 6rem;
+  height: 6rem;
+  color: var(--fg-muted);
+}
+
+.project-figure .project-emoji {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.project-header__desc {
+  max-width: 46rem;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 720px) {
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card__media {
+    padding: 1.5rem;
+    border-right: 0;
+    border-bottom: var(--border-width) solid var(--border-soft);
+  }
+
+  .project-card__main {
+    padding: 1.2rem 1.3rem;
+  }
+}

@@ -1,0 +1,35 @@
+{{ define "main" }}
+  <header class="section-head">
+    <div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="section-head__more">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  <div class="search" data-search>
+    <input
+      class="search__input"
+      type="search"
+      placeholder="{{ i18n "searchPlaceholder" | default "输入关键词搜索…" }}"
+      aria-label="{{ i18n "search" | default "搜索" }}"
+      autocomplete="off"
+      autofocus
+    >
+    <p class="search__hint" data-search-hint></p>
+    <ul class="search__results" data-search-results></ul>
+  </div>
+
+  {{- $js := resources.Get "js/search.js" | js.Build (dict "minify" true) | fingerprint -}}
+  <script>
+    window.__SEARCH_INDEX__ = {{ "index.json" | relURL }};
+    window.__SEARCH_I18N__ = {
+      empty: {{ i18n "searchEmpty" | default "没有找到相关内容。" | jsonify }},
+      results: {{ i18n "searchResults" | default "找到 %d 条结果" | jsonify }},
+      sections: {
+        posts: {{ i18n "typePost" | default "文章" | jsonify }},
+        projects: {{ i18n "typeProject" | default "项目" | jsonify }}
+      }
+    };
+  </script>
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}

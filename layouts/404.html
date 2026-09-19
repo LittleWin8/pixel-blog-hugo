@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section class="error-page">
+    <p class="error-page__code">404</p>
+    <h1 class="error-page__title">{{ i18n "notFound" | default "页面走丢了" }}</h1>
+    <p class="error-page__desc">{{ i18n "notFoundDesc" | default "你访问的页面不存在，或者已经被移动。" }}</p>
+    <div class="error-page__actions">
+      <a class="btn" href="{{ site.Home.RelPermalink }}">{{ i18n "backHome" | default "返回首页" }}</a>
+      <a class="btn btn--ghost" href="{{ "posts/" | relURL }}">{{ i18n "readPosts" | default "阅读文章" }}</a>
+    </div>
+  </section>
+{{ end }}

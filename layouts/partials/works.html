@@ -1,0 +1,32 @@
+{{- $works := site.Params.works | default dict -}}
+{{- $count := $works.count | default 3 -}}
+{{- $projects := where site.RegularPages "Section" "projects" -}}
+{{- with $projects -}}
+<aside class="featured pixel-panel">
+  <header class="featured__head">
+    <p class="featured__eyebrow">{{ $works.eyebrow | default "FEATURED WORK" }}</p>
+    <div class="featured__title-row">
+      <h2 class="featured__title">{{ $works.title | default "个人作品" }}</h2>
+      <a class="featured__more" href="{{ "projects/" | relURL }}">{{ i18n "viewAll" | default "查看全部" }} →</a>
+    </div>
+  </header>
+  <ul class="featured__list">
+    {{ range first $count . }}
+    {{- $online := .Params.online -}}
+    <li>
+      {{ if $online }}<a class="featured__item" href="{{ .RelPermalink }}">{{ else }}<div class="featured__item featured__item--offline">{{ end }}
+        <span class="featured__icon">{{ partial "project-icon.html" . }}</span>
+        <span class="featured__body">
+          <span class="featured__name">
+            {{ .Title }}
+            {{ if $online }}<span class="featured__status" title="{{ i18n "online" | default "已上线" }}"></span>{{ end }}
+          </span>
+          {{ with .Summary }}<span class="featured__desc">{{ . | plainify | truncate 40 }}</span>{{ end }}
+        </span>
+        {{ if $online }}<span class="featured__arrow" aria-hidden="true">→</span>{{ end }}
+      {{ if $online }}</a>{{ else }}</div>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</aside>
+{{- end -}}

@@ -1,0 +1,187 @@
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+
+.post-tags {
+  margin-top: 0.85rem;
+}
+
+.post-content {
+  font-size: 1.02rem;
+}
+
+.post-content > :first-child {
+  margin-top: 0;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-top: 2rem;
+}
+
+.post-content a {
+  color: var(--brand-purple);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-content blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.1rem;
+  border-left: 4px solid var(--accent);
+  background: var(--bg-soft);
+  color: var(--fg-muted);
+}
+
+.post-content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.post-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.post-content code {
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--border-soft);
+  background: var(--code-bg);
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+
+.post-content pre {
+  margin: 1.5rem 0;
+  padding: 1rem 1.15rem;
+  border: var(--border-width) solid var(--border);
+  background: var(--code-bg);
+  box-shadow: 4px 4px 0 var(--shadow-color);
+  overflow-x: auto;
+}
+
+.post-content pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.85rem;
+}
+
+.post-content pre {
+  position: relative;
+}
+
+.code-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border: var(--border-width) solid var(--border-soft);
+  background: var(--bg-card);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.code-copy:hover {
+  border-color: var(--border);
+  color: var(--fg);
+}
+
+.post-content img {
+  border: var(--border-width) solid var(--border);
+  box-shadow: 5px 5px 0 var(--shadow-color);
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.45rem 0.65rem;
+  border: var(--border-width) solid var(--border);
+  text-align: left;
+}
+
+.post-content th {
+  background: var(--bg-soft);
+  font-family: var(--font-pixel);
+  font-weight: 400;
+}
+
+.post-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.75rem;
+  padding-top: 1.25rem;
+  border-top: var(--border-width) dashed var(--border-soft);
+  font-size: 0.9rem;
+}
+
+.post-footer a {
+  color: var(--fg-muted);
+}
+
+/* ── Chroma syntax highlighting (mapped to the palette) ────── */
+.chroma .c,
+.chroma .c1,
+.chroma .cm,
+.chroma .cs {
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
+.chroma .k,
+.chroma .kd,
+.chroma .kn,
+.chroma .kr,
+.chroma .kt {
+  color: var(--brand-purple);
+}
+
+.chroma .s,
+.chroma .s1,
+.chroma .s2,
+.chroma .sb,
+.chroma .sc,
+.chroma .sd {
+  color: #38b764;
+}
+
+.chroma .m,
+.chroma .mi,
+.chroma .mf,
+.chroma .mh,
+.chroma .il {
+  color: #ef7d57;
+}
+
+.chroma .nf,
+.chroma .fm,
+.chroma .nb,
+.chroma .na {
+  color: #41a6f6;
+}
+
+.chroma .nt {
+  color: var(--brand-purple);
+}
+
+.chroma .o,
+.chroma .p {
+  color: var(--fg);
+}
+
+.chroma .err {
+  color: #b13e53;
+}
