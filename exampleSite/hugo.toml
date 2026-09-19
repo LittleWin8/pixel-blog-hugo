@@ -77,6 +77,9 @@ summaryLength = 80
       description = "部署与日常提效。"
       items = ["Linux", "Nginx", "Docker"]
 
+  [params.assets]
+    ogImage = "/images/og-default.png"   # 站点默认分享图（文章可用 cover 覆盖）
+
   [params.social]
     github = "https://github.com/LittleWin8"
 

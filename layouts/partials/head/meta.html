@@ -17,7 +17,7 @@
 <meta property="og:description" content="{{ $description | plainify | truncate 160 }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
-{{ with site.Params.assets.ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+{{ partial "head/og-image.html" . }}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
 <meta name="twitter:description" content="{{ $description | plainify | truncate 160 }}">
