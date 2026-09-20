@@ -31,13 +31,18 @@ summaryLength = 80
 [params]
   author = "小稳"
   description = "pixel-blog-hugo 主题 · 示例站点"
+  # copyright = "© 2024-2026 小稳"   # 自定义页脚版权（不写则自动「© 年份 作者」）
+  # icp = "京ICP备xxxxxxx号"         # 页脚备案号（国内站点；不写则不显示）
+  # keywords = ["Hugo", "博客"]      # <meta name="keywords">
   scanlines = true          # 示例站开启 CRT 扫描线（与上游设计一致）
 
+  # 品牌 / 顶部栏（logo/favicon 放你站点的 assets/ 下）
   [params.identity]
     name = "小稳"
     logo = "images/logo.png"
     favicon = "images/logo.png"
 
+  # 首页主视觉文案（intro 支持 Markdown，可多段）
   [params.hero]
     eyebrow = "示例站点 · 文案可随意修改"
     title = "小稳"
@@ -50,11 +55,17 @@ summaryLength = 80
 写文章、加项目，剩下的交给 Hugo。
 """
 
+  # 首页「个人作品」入口：按 weight 取前 count 个项目
+  # （内容在 content/projects/ 下；仅列出 online: true 的项目，未上线的显示为静态项）
   [params.works]
     eyebrow = "FEATURED WORK"
     title = "个人作品"
     count = 3
 
+  # 首页「技术栈」：设 enable = false 或删除整块即隐藏。
+  # groups[].icon 内置图标名（未命中的值则原样显示为文字）：
+  #   frontend  backend  database  ai  devops  cloud  tools  mobile
+  #   design    language security  test  box（通用/默认）
   [params.techstack]
     enable = true
     title = "技术栈"
@@ -80,8 +91,14 @@ summaryLength = 80
       description = "部署与日常提效。"
       items = ["Linux", "Nginx", "Docker"]
 
+  # 资源
+  # ogImage：站点默认分享图（1200×630，放站点 static/ 下，填 / 开头路径）
+  # pixelFont：像素字体 CSS（可换成自托管，见 README）
   [params.assets]
-    ogImage = "/images/og-default.png"   # 站点默认分享图（文章可用 cover 覆盖）
+    ogImage = "/images/og-default.png"
+
+  # 文章分享图：front matter 写 cover: "images/xxx.png"（放页面包或站点 assets/），
+  # 主题自动裁成 1200×630；页面 front matter 的 images（数组，取第一张）可作回退。
 
   # 社交图标：填了值的项才显示（首页 Hero 与页脚各一行），全部留空则不显示。
   # 内置图标（键名即下方字段名）：
@@ -105,6 +122,8 @@ summaryLength = 80
     # discord = "https://discord.gg/你的邀请码"       # Discord
     # instagram = "https://instagram.com/你的用户名"  # Instagram
 
+  # 友链页：页面文件 content/links.md（layout: links）
+  # items 字段：name/url 必填，description/avatar 可选（avatar 不填显示通用图标）
   [params.links]
     title = "友情链接"
     description = "一些有趣的朋友和他们的站点，欢迎交换。"

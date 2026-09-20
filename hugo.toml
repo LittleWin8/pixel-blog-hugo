@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────────────────────
+# pixel-blog-hugo 主题默认配置
+# 这里只放「通用默认值」；站点（或 exampleSite）的 params 会覆盖同名项。
+# ─────────────────────────────────────────────────────────────
+
+# 支持的 Hugo 版本（供 Hugo Themes 官网与用户参考）
+[module]
+  [module.hugoVersion]
+    min = "0.158.0"
+
+[params]
+  toc = true
+  homePosts = 6
+
+  # 顶部导航：某项注释掉即隐藏；icon 可选 home / posts / tags / projects / links / archives / about
+  # （默认只放一定存在的页面；项目/友链/关于需要你自己有对应内容页）
+  [[params.nav]]
+    name = "首页"
+    url = "/"
+    icon = "home"
+  [[params.nav]]
+    name = "博客"
+    url = "/posts/"
+    icon = "posts"
+  [[params.nav]]
+    name = "标签"
+    url = "/tags/"
+    icon = "tags"
+
+  # 首页「个人作品」入口的标题（项目内容在 content/projects/ 下）
+  [params.works]
+    eyebrow = "FEATURED WORK"
+    title = "个人作品"
+    count = 3
+
+  # 首页「技术栈」：enable = true 时按 groups 结构填充
+  [params.techstack]
+    enable = false
+
+  # 资源
+  [params.assets]
+    pixelFont = "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
+
+# ── 其余可覆盖项（copyright / icp / identity / hero / social / links 等）
+#    与完整注释示例见 exampleSite/hugo.toml（站点写同名 params 即覆盖）─────

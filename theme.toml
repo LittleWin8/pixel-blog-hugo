@@ -2,6 +2,7 @@
 name = "pixel-blog-hugo"
 description = "像素复古（pixel / 8-bit）风格的 Hugo 博客主题：明暗双主题、双栏首页、项目展示、站内搜索、归档、标签、i18n。"
 homepage = "https://github.com/LittleWin8/pixel-blog-hugo"
+demosite = "https://pixel-blog-hugo.pages.dev/"
 tags = ["blog", "portfolio", "pixel", "retro", "dark", "responsive", "personal", "search"]
 features = [
   "blog",

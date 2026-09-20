@@ -40,7 +40,7 @@ themes/pixel-blog-hugo/
 │   └── robots.txt
 ├── exampleSite/                   # 示例站点（预览 + 配置模板）
 ├── images/                        # README 截图
-├── hugo.yaml                      # 主题默认配置（通用，站点可覆盖）
+├── hugo.toml                      # 主题默认配置（通用，站点可覆盖）
 ├── theme.toml
 ├── README.md / LICENSE / CHANGELOG.md / THIRD-PARTY-NOTICES.md
 └── CONTRIBUTING.md / .editorconfig

@@ -6,15 +6,15 @@
 
 | 首页 · 亮色 | 首页 · 暗色 |
 |---|---|
-| ![首页 · 亮色](images/screenshot-home-light.png) | ![首页 · 暗色](images/screenshot-home-dark.png) |
+| ![首页 · 亮色](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-home-light.png) | ![首页 · 暗色](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-home-dark.png) |
 
 | 项目 | 归档 | 搜索 |
 |---|---|---|
-| ![项目](images/screenshot-projects.png) | ![归档](images/screenshot-archive.png) | ![搜索](images/screenshot-search.png) |
+| ![项目](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-projects.png) | ![归档](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-archive.png) | ![搜索](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-search.png) |
 
 | 文章 | 移动端 |
 |---|---|
-| ![文章](images/screenshot-post.png) | ![移动端](images/screenshot-mobile.png) |
+| ![文章](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-post.png) | ![移动端](https://raw.githubusercontent.com/LittleWin8/pixel-blog-hugo/main/images/screenshot-mobile.png) |
 
 ## 特性
 
@@ -113,12 +113,6 @@ hugo server -D                 # 本地预览 http://localhost:1313
 hugo                           # 构建到 public/，部署到任意静态托管
 ```
 
-> 首页 Hero 固定有一个「关于我 →」按钮（指向 `/about/`）。若不想用它，删除 `content/about.md` 并在站点覆盖 `params.hero` 或直接改主题 `layouts/partials/hero.html`（进阶）。
-
-> 搜索页需要站点有 `content/search.md`（`layout: search`）并开启 `home` 的 JSON 输出。
-
-> 文章/项目等**内容不在主题里**，而是放在**站点**的 `content/` 下。主题的**目录结构、改配色/字体/断点等开发向说明见 [CONTRIBUTING.md](CONTRIBUTING.md)**。
-
 ## 个性化配置
 
 记住一句话：**改你自己的博客，只动你自己站点里的文件，基本不用碰主题**：
@@ -128,119 +122,21 @@ hugo                           # 构建到 public/，部署到任意静态托管
 | 名字、logo、首页文案、技术栈、友链、导航、开关 | **你站点根目录的 `hugo.toml`** 里的 `[params]`（照下方示例填） |
 | 文章 | 你站点的 `content/posts/` |
 | 项目 | 你站点的 `content/projects/` |
-| 主题默认值 / 外观 / 功能（进阶） | 主题的 `hugo.yaml`、`assets/`、`layouts/`，见 [CONTRIBUTING.md](CONTRIBUTING.md) |
+| 主题默认值 / 外观 / 功能（进阶） | 主题的 `hugo.toml`、`assets/`、`layouts/`，见 [CONTRIBUTING.md](CONTRIBUTING.md) |
 
-> 站点配置文件叫 `hugo.toml` 或 `hugo.yaml` 都行，Hugo 都认；但**同一个文件里别混用两种格式**。下面示例统一用 `hugo.toml`。
-> 主题默认值在 `themes/pixel-blog-hugo/hugo.yaml`，你站点里的同名项会自动覆盖它。
+> ⚠️ `baseURL`、`title`、`theme`、`[outputs]`、`[markup]` 这类**站点级配置**只能写在站点根目录的 `hugo.toml`（写在主题配置里无效且不报错）。
 
-> ⚠️ 下面这些只能写在**站点**（写进主题配置无效，Hugo 只合并主题的 `params` 与 `menu`）：
-> `baseURL`、`languageCode`、`defaultContentLanguage`、`title`、`theme`、`hasCJKLanguage`、`summaryLength`、`[outputs]`、`[pagination]`、`[taxonomies]`、`[markup]`。
+**把** [`exampleSite/hugo.toml`](exampleSite/hugo.toml) **的内容粘进你自己站点的 `hugo.toml`**，再按里面的注释换成你的信息即可。
 
-下面是**示例站** `exampleSite/hugo.toml` 的完整配置。**把它整段复制进你自己站点的 `hugo.toml`**，再按注释换成你的信息即可：
+> 粘完先别慌：示例配置引用的页面（归档、项目、友链、关于等）你站点里还没有，部分链接会 404——这很正常。**跟着下面的教程把对应页面建起来**（归档 / 搜索 / 项目 / 友链 / 关于各小节）就都通了。
+>
+> 配置里每个字段的说明都写在该配置文件的注释中（含可选值清单），改前先看注释。
 
-```toml
-[params]
-  author = "小稳"
-  description = "pixel-blog-hugo 主题 · 示例站点"
-  # copyright = "© 2024-2026 小稳"   # 自定义页脚版权文字（不写则自动「© 年份 作者」）
-  # icp = "京ICP备xxxxxxx号"          # 页脚备案号（国内站点）
-  # scanlines = true                 # 开启 CRT 扫描线装饰
-  toc = true                # 文章页是否显示目录
-  homePosts = 6             # 首页显示的文章数
+### 链接分享缩略图与页面描述（SEO，自动）
 
-  # 品牌 / 顶部栏
-  [params.identity]
-    name = "小稳"                     # 顶部栏名称
-    logo = "images/logo.png"         # 顶部栏 logo（放你站点的 assets/ 下）
-    favicon = "images/logo.png"
-
-  # 首页主视觉文案（intro 支持 Markdown，可多段）
-  [params.hero]
-    eyebrow = "示例站点 · 文案可随意修改"
-    title = "小稳"
-    tagline = "把折腾过的东西记录在这里。"
-    intro = """
-支持 **Markdown** 的自我介绍，可多段。
-"""
-
-  # 首页「个人作品」入口（项目内容见下方 content/projects/）
-  [params.works]
-    eyebrow = "FEATURED WORK"
-    title = "个人作品"
-    count = 3                   # 首页展示几个项目
-
-  # 首页「技术栈」（enable = false 即整块隐藏）
-  [params.techstack]
-    enable = true
-    title = "技术栈"
-    subtitle = "我使用的技术和工具"
-    [[params.techstack.groups]]
-      title = "后端与数据库"
-      icon = "backend"              # 大类图标名，见下表
-      description = "以 Java 生态为主线。"
-      items = ["Java", "Spring Boot", "MySQL", "Redis"]
-
-  [params.assets]
-    pixelFont = "https://cdn.jsdelivr.net/npm/@fontsource/fusion-pixel-12px-proportional-sc@5.3.0/index.css"
-    ogImage = "/images/og-default.png"    # 站点默认分享图（1200x630）
-
-  # 社交图标：填了值的项才显示（首页 Hero 与页脚各一行），全部留空则不显示
-  [params.social]
-    github = "https://github.com/LittleWin8"
-    # email = "you@example.com"                     # 邮箱（自动加 mailto:）
-    # x = "https://x.com/你的用户名"
-    # bilibili = "https://space.bilibili.com/你的UID"
-    # steam = "https://steamcommunity.com/id/你的ID"
-
-  # 友链页内容
-  [params.links]
-    title = "友情链接"
-    description = "一些有趣的朋友和他们的站点，欢迎交换。"
-    items = [
-      { name = "Hugo", url = "https://gohugo.io/", description = "静态站点生成器" },
-      { name = "GitHub", url = "https://github.com/", description = "代码托管平台" },
-    ]
-
-# 顶部导航：顺序即显示顺序；某项注释掉即隐藏
-# icon 可选：home / posts / tags / projects / links / archives / about（不填则显示小圆点）
-[[params.nav]]
-  name = "首页"
-  url = "/"
-  icon = "home"
-[[params.nav]]
-  name = "博客"
-  url = "/posts/"
-  icon = "posts"
-[[params.nav]]
-  name = "项目"
-  url = "/projects/"
-  icon = "projects"
-[[params.nav]]
-  name = "友链"
-  url = "/links/"
-  icon = "links"
-# [[params.nav]]
-#   name = "关于"
-#   url = "/about/"
-#   icon = "about"
-```
-
-`params.works.count` 控制首页入口展示数量；`params.techstack` 设 `enable = false` 或删除，技术栈整块隐藏。
-
-`params.social` 内置图标（填了值才显示）：`github` / `email` / `x` / `telegram` / `wechat` / `weibo` / `bilibili` / `zhihu` / `juejin` / `youtube` / `linkedin` / `mastodon` / `discord` / `instagram` / `steam`。
-
-### 链接分享缩略图（OG，自动）
-
-分享链接到微信 / X / Telegram 等地方时显示的缩略图——**自动生效，无需额外功能**（主题已输出标准 `og:image` / `twitter:image` 元信息）：
-
-- **站点默认**：`params.assets.ogImage`（一张 1200×630 的图，放站点 `static/` 下，填路径如 `/images/og-default.png`）。
-- **文章级**：front matter 写 `cover: "images/xxx.png"`（放页面包或你站点的 `assets/` 下），主题会**自动裁剪成 1200×630**；也可用页面 front matter 的 `images`（数组，取第一张）作为回退。
-
-### 页面描述与关键词
-
-- **页面描述**：优先级为 front matter `description` → 页面摘要 → 站点 `params.description`。会用于 `<meta name="description">` 和 OG/Twitter。
-- **关键词**：站点 `params.keywords`（数组），输出为 `<meta name="keywords">`。
-- **更新时间**：文章页在 `lastmod ≠ date` 时显示「更新于」。开启站点 `enableGitInfo = true` 会自动用 Git 提交时间作为 `lastmod`，或在 front matter 手写 `lastmod`。
+- **分享缩略图**：站点默认 `params.assets.ogImage`；文章级 front matter `cover`（自动裁成 1200×630）。
+- **页面描述**：front matter `description` → 摘要 → 站点 `params.description`，自动用于 `<meta>`。
+- **更新时间**：文章页在 `lastmod ≠ date` 时显示「更新于」。开启 `enableGitInfo = true` 自动取 Git 提交时间。
 
 ## 归档页 / 搜索页
 
@@ -276,20 +172,8 @@ layout: "links"
 ---
 ```
 
-2）站点 `hugo.toml` 填 `[params.links]`：
+2）站点 `hugo.toml` 填 `[params.links]`（字段说明见 `exampleSite/hugo.toml` 注释）：配置已在粘贴的示例里（`exampleSite` 已有），改成你自己的好友即可。
 
-```toml
-[params.links]
-  title = "友情链接"                                    # 页面标题（不写则用内容页的 title）
-  description = "一些有趣的朋友和他们的站点，欢迎交换。"   # 标题下的说明，可省略
-  items = [
-    { name = "Hugo", url = "https://gohugo.io/", description = "静态站点生成器" },
-    { name = "朋友的名字", url = "https://example.com/", description = "一句话介绍", avatar = "https://example.com/avatar.png" },
-  ]
-```
-
-- `name`、`url` 必填；`description`、`avatar` 可选。
-- `avatar` 是头像图片链接（外链或 `/images/x.png`）；**不填则显示通用链接图标**。
 - 导航里加入口：`params.nav` 加 `{ name = "友链", url = "/links/", icon = "links" }`。
 - 想写一段文字介绍（如「交换友链请联系…」），直接写在 `links.md` 正文即可，会显示在列表下方。
 - **不想用友链页**：删掉 `content/links.md`，并从 `params.nav` 移除该项即可。
@@ -297,6 +181,12 @@ layout: "links"
 ## 项目（`content/projects/`）
 
 每个项目一个 Markdown 文件，自动生成 `/projects/` 列表和 `/projects/<文件名>/` 详情页：
+
+```bash
+hugo new projects/my-app.md   # 生成带全部字段注释的骨架
+```
+
+front matter 常用字段（完整说明用 `hugo new` 看骨架注释）：
 
 ```yaml
 ---
@@ -309,15 +199,12 @@ featured: true                 # 「重点项目」徽章
 link: "https://example.com"    # 「在线体验」按钮（不填则不显示）
 source: "https://github.com/you/repo"  # 「查看源码」按钮（不填则不显示）
 icon: "📝"                     # 卡片图标（emoji / 文字）
-# image: "images/x.png"        # 也可用图片，本地图放你站点的 assets/ 自动裁成方形
 tags: ["Vue.js", "TypeScript"]
 summary: "一句话介绍，卡片和列表都会显示。"
 ---
 
 详情页正文（Markdown）。
 ```
-
-卡片按钮：**项目详情**（进详情页）、**在线体验**（`online: true` 且有 `link` 才显示）、**查看源码**（有 `source` 才显示）。
 
 **`online` 决定卡片行为**：
 
@@ -328,20 +215,6 @@ summary: "一句话介绍，卡片和列表都会显示。"
 
 - 首页「个人作品」入口只列出 `online: true` 的项目并显示绿点与悬浮效果；未上线的项目显示为静态项（该入口的显示数量由 `params.works.count` 决定，按 `weight` 排序）。
 - 项目列表页（`/projects/`）会显示**全部**项目，「在线体验」按钮同样要求 `online: true`。
-
-### 技术栈大类图标
-
-`params.techstack.groups[].icon` 填图标名，内置以下大类（填入未命中的值则原样显示为文字）：
-
-| 名称 | 含义 | 名称 | 含义 |
-|---|---|---|---|
-| `frontend` | 前端 | `backend` | 后端 |
-| `database` | 数据库 | `ai` | AI / 算法 |
-| `devops` | 运维 / DevOps | `cloud` | 云服务 |
-| `tools` | 工具链 | `mobile` | 移动端 |
-| `design` | 设计 | `language` | 编程语言 |
-| `security` | 安全 | `test` | 测试 |
-| `box` | 通用 / 默认 | | |
 
 ## 多语言（中 / 英）
 

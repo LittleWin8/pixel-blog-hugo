@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更
+
+- 为 Hugo Themes 官网收录做准备：新增 `images/screenshot.png`（1500×1000）与 `images/tn.png`（900×600，3:2）
+- 主题默认配置由 `hugo.yaml` 更名为 `hugo.toml`，并声明 `[module.hugoVersion]`（min 0.158.0）
+- `theme.toml` 增加 `demosite`；README 页面预览图改为绝对 URL（官网要求）
+
 ## [0.2.0] - 2026-09-20
 
 ### 变更
