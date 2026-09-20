@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-20
+
 ### 变更
 
 - 布局目录迁移到 Hugo 0.146+ 新规范（`layouts/_partials/`、`layouts/_markup/`、`baseof/home/single/list/taxonomy/term.html` 等）
