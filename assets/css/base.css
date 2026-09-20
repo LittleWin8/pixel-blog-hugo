@@ -8,6 +8,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
+  /* 视口滚动在 html 上；clip 裁掉横向溢出且不把 overflow-y 算成 auto，sticky 仍有效 */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -42,9 +44,6 @@ body {
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   transition: background var(--transition), color var(--transition);
-  /* 首页 hero 光晕用 -50vw 全出血绘制，会超出视口；
-     用 clip（而非 hidden）裁剪横向溢出，且不建立滚动容器，sticky 仍有效 */
-  overflow-x: clip;
 }
 
 img {

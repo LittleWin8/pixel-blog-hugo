@@ -8,9 +8,12 @@
   content: "";
   position: absolute;
   top: -4rem;
-  left: -50vw;
-  right: -50vw;
+  /* 相对 hero 居中铺满视口：不要 left/right: -50vw（那是「两侧各再伸出 50vw」，
+     伪元素宽约 hero + 100vw，移动端会撑出横向滚动） */
+  left: 50%;
+  width: 100vw;
   height: 26rem;
+  transform: translateX(-50%);
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(

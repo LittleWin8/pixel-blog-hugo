@@ -15,7 +15,7 @@
 
 ### 修复
 
-- 首页 Hero 光晕导致的横向滚动（`overflow-x: clip`，并改用 transform 隐藏 skip-link）
+- 首页 Hero 光晕导致的横向滚动（伪元素改为 `100vw` 居中；`html`/`body` 用 `overflow-x: clip`；skip-link 改 transform 隐藏）
 - 搜索页 i18n 文案在 `<script>` 中被双重转义（改 `jsonify | safeJS`）
 - 无日期内容产生 `0001` 年份：JSON-LD、`article:published_time` 与归档分组均加空日期保护
 - 新增 RSS 模板，仅输出带日期的文章（此前工具页会以 `0001` 日期进入 feed）
