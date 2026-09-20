@@ -37,29 +37,36 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 
 ## Getting started
 
-### 1. Install Hugo → create a site → add the theme
+### 1. Create a site and install the theme
 
-> Requires **Hugo ≥ 0.158** (extended not required). Check with `hugo version`.
+> Requires **Hugo ≥ 0.158** (extended not required).
 
 ```bash
-# 1) Install Hugo (extended recommended, not required; pick one command for your OS)
-brew install hugo                       # macOS (Homebrew)
-winget install Hugo.Hugo.Extended       # Windows (PowerShell)
-sudo apt install hugo                   # Ubuntu / Debian
-sudo snap install hugo                  # Other Linux (or download from github.com/gohugoio/hugo/releases)
-hugo version                            # confirm the install
-
-# 2) Create a site
+# Create a site (skip if you already have one)
 hugo new site my-blog
 cd my-blog
 git init
 
-# 3) Install the theme (submodule)
+# Install the theme (pick one)
+
+# Option A: Git submodule (requires git)
 git submodule add https://github.com/LittleWin8/pixel-blog-hugo themes/pixel-blog-hugo
-# Or with Hugo Modules:
+
+# Option B: Hugo Modules (requires Go; import it in hugo.toml, see below)
 #   hugo mod init github.com/<your-name>/my-blog
 #   hugo mod get github.com/LittleWin8/pixel-blog-hugo
+
+# Option C: download the zip and extract it into themes/pixel-blog-hugo
 ```
+
+> **Option A / C**: set `theme = "pixel-blog-hugo"` in your site's `hugo.toml`.
+> **Option B (Modules)**: remove `theme = ...` and import instead:
+> ```toml
+> [module]
+>   [[module.imports]]
+>     path = "github.com/LittleWin8/pixel-blog-hugo"
+> ```
+> `hugo mod get` downloads it automatically; update with `hugo mod get -u`.
 
 ### 2. Configure `hugo.toml`
 

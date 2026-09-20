@@ -37,29 +37,36 @@
 
 ## 快速开始
 
-### 1. 安装 Hugo → 建站 → 装主题
+### 1. 建站并安装主题
 
-> 需要 **Hugo ≥ 0.158**（extended 非必需）。用 `hugo version` 确认版本。
+> 需要 **Hugo ≥ 0.158**（extended 非必需）。
 
 ```bash
-# 1) 安装 Hugo（extended 更佳，本主题非必需；按系统选一条执行）
-brew install hugo                       # macOS（Homebrew）
-winget install Hugo.Hugo.Extended       # Windows（PowerShell）
-sudo apt install hugo                   # Ubuntu / Debian
-sudo snap install hugo                  # 其它 Linux（或到 github.com/gohugoio/hugo/releases 下载）
-hugo version                            # 确认安装成功
-
-# 2) 建站
+# 建站（已有站点可跳过）
 hugo new site my-blog
 cd my-blog
 git init
 
-# 3) 安装主题（submodule）
+# 安装主题（任选一种）
+
+# 方式 A：Git submodule（需要 git）
 git submodule add https://github.com/LittleWin8/pixel-blog-hugo themes/pixel-blog-hugo
-# 或者用 Hugo Modules：
+
+# 方式 B：Hugo Modules（需要 Go，且在 hugo.toml 里用 module 引入，见下）
 #   hugo mod init github.com/<你的用户名>/my-blog
 #   hugo mod get github.com/LittleWin8/pixel-blog-hugo
+
+# 方式 C：直接下载 zip 解压到 themes/pixel-blog-hugo
 ```
+
+> **方式 A / C**：站点 `hugo.toml` 里写 `theme = "pixel-blog-hugo"`。
+> **方式 B（Modules）**：删掉 `theme = ...`，改为在 `hugo.toml` 中引入：
+> ```toml
+> [module]
+>   [[module.imports]]
+>     path = "github.com/LittleWin8/pixel-blog-hugo"
+> ```
+> 之后 `hugo mod get` 会自动下载；升级用 `hugo mod get -u`。
 
 ### 2. 配置 `hugo.toml`
 

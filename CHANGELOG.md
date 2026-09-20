@@ -11,6 +11,7 @@
 
 ### 新增
 
+- 支持 Hugo Modules 安装：新增仓库根 `go.mod`，可 `hugo mod get github.com/LittleWin8/pixel-blog-hugo`
 - 内置社交图标：`params.social` 支持 `github` / `email` / `x` / `telegram` / `wechat` / `weibo` / `bilibili` / `zhihu` / `juejin` / `youtube` / `linkedin` / `mastodon` / `discord` / `instagram` / `steam`，显示在首页 Hero 与页脚
 
 ### 修复
