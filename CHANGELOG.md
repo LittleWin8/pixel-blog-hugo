@@ -4,8 +4,14 @@
 
 ## [Unreleased]
 
+### 新增
+
+- 项目新增 `status` 字段：`online`（已上线）/ `done`（已完成）/ `wip`（开发中）/ `archived`（已归档），新增「已完成」「已归档」徽章与中英文案；留空时按 `online` 布尔推导，向后兼容
+- 项目卡片支持**整卡点击**进入详情页（详情链接铺满卡片，其余按钮保持可点）
+
 ### 变更
 
+- 项目卡片（列表页与首页「个人作品」）统一悬浮效果，不再区分在线/离线；首页「个人作品」所有条目均可点击进入详情（`online: true` 仍显示绿点与「在线体验」按钮）
 - 为 Hugo Themes 官网收录做准备：新增 `images/screenshot.png`（1500×1000）与 `images/tn.png`（900×600，3:2）
 - 主题默认配置由 `hugo.yaml` 更名为 `hugo.toml`，并声明 `[module.hugoVersion]`（min 0.158.0）
 - `theme.toml` 增加 `demosite`；README 页面预览图改为绝对 URL（官网要求）

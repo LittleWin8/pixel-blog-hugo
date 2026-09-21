@@ -1,0 +1,14 @@
+{{- /* 项目状态徽章：status = online(已上线) | done(已完成) | wip(开发中) | archived(已归档)。
+     缺省时按 online 布尔向后推导：online:true → online，否则 wip。 */ -}}
+{{- $status := .Params.status -}}
+{{- if not $status }}{{ $status = cond .Params.online "online" "wip" }}{{ end -}}
+{{- $key := "inDevelopment" -}}
+{{- $class := "badge--dev" -}}
+{{- if eq $status "online" -}}
+  {{- $key = "online" -}}{{- $class = "badge--online" -}}
+{{- else if eq $status "done" -}}
+  {{- $key = "statusDone" -}}{{- $class = "badge--done" -}}
+{{- else if eq $status "archived" -}}
+  {{- $key = "statusArchived" -}}{{- $class = "badge--archived" -}}
+{{- end -}}
+<span class="badge {{ $class }}">{{ i18n $key | default $status }}</span>

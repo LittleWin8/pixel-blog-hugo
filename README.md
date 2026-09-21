@@ -21,7 +21,7 @@
 - 明暗主题切换，跟随系统，无闪烁（FOUC）
 - 响应式布局 + 移动端折叠菜单，全站移动端适配
 - 首页：双栏 Hero、个人信息面板、个人作品入口、技术栈（可开关）、最新文章
-- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；`online: true` 的项目带绿点与悬浮效果、可显示「在线体验」
+- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；卡片统一悬浮、整卡可点进详情；`status` 支持 已上线 / 已完成 / 开发中 / 已归档，`online: true` 的项目带绿点与「在线体验」按钮
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
 - 可选 **CRT 扫描线**（`params.scanlines`）、页脚 **ICP 备案号**（`params.icp`）、**社交图标**（`params.social`）
 - **首页文案 / 顶部栏名称与 logo / 技术栈 / 友链，写在你站点的配置里（覆盖主题默认）**
@@ -194,7 +194,8 @@ title: "Pixel Notes"
 subtitle: "像素风笔记应用"      # 标题后的补充说明
 date: 2026-09-18
 weight: 1                      # 列表排序（小的在前）
-online: true                   # ★ 是否上线
+online: true                   # ★ 是否上线（决定「在线体验」按钮与首页绿点）
+status: ""                     # 状态徽章：online 已上线 / done 已完成 / wip 开发中 / archived 已归档；留空按 online 推导
 featured: true                 # 「重点项目」徽章
 link: "https://example.com"    # 「在线体验」按钮（不填则不显示）
 source: "https://github.com/you/repo"  # 「查看源码」按钮（不填则不显示）
@@ -206,15 +207,19 @@ summary: "一句话介绍，卡片和列表都会显示。"
 详情页正文（Markdown）。
 ```
 
-**`online` 决定卡片行为**：
+**`status` 决定状态徽章**（缺省按 `online` 推导：`online: true` → `online`，否则 `wip`）：
 
-| | 徽章 | 卡片悬浮效果 | 在线体验按钮 |
+| `status` | 徽章 | 首页绿点 | 在线体验按钮 |
 |---|---|---|---|
-| `online: true` | 「已上线」（绿） | ✅ 上浮 | ✅（有 `link` 时） |
-| `online: false`（或不写） | 「开发中」（黄） | ❌ | ❌ |
+| `online` | 「已上线」（绿） | ✅ | ✅（有 `link` 时） |
+| `done` | 「已完成」（蓝） | ❌ | ❌ |
+| `wip`（或不写） | 「开发中」（黄） | ❌ | ❌ |
+| `archived` | 「已归档」（灰） | ❌ | ❌ |
 
-- 首页「个人作品」入口只列出 `online: true` 的项目并显示绿点与悬浮效果；未上线的项目显示为静态项（该入口的显示数量由 `params.works.count` 决定，按 `weight` 排序）。
-- 项目列表页（`/projects/`）会显示**全部**项目，「在线体验」按钮同样要求 `online: true`。
+- 所有项目卡片（`/projects/` 列表与首页「个人作品」）**都有悬浮效果，点击整卡即进入详情页**。
+- 「在线体验」按钮与首页绿点仍以 `online: true` 为准；`done` / `wip` / `archived` 不显示。
+- 首页「个人作品」入口的显示数量由 `params.works.count` 决定，按 `weight` 排序。
+- 项目列表页（`/projects/`）会显示**全部**项目。
 
 ## 多语言（中 / 英）
 

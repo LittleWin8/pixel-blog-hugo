@@ -11,7 +11,7 @@
       <a class="project-back" href="{{ "projects/" | relURL }}">← {{ i18n "backToProjects" | default "返回项目列表" }}</a>
 
       <div class="project-header__meta">
-        {{ if .Params.online }}<span class="badge badge--online">{{ i18n "online" | default "已上线" }}</span>{{ end }}
+        {{ partial "project-status-badge.html" . }}
         {{ if .Params.featured }}<span class="badge badge--featured">{{ i18n "featuredProject" | default "重点项目" }}</span>{{ end }}
         {{ with .Params.tags }}
         <ul class="project-card__tags">

@@ -6,20 +6,30 @@
 }
 
 .project-card {
+  position: relative;
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.project-card:not(.project-card--offline):hover {
+.project-card:hover {
   transform: translate(-2px, -2px);
   box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0
     var(--shadow-color);
 }
 
-.project-card--offline {
-  opacity: 0.9;
+/* 整卡可点：详情链接铺满卡片；其余按钮提高层级保持可点 */
+.project-card__detail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.project-card__actions .btn--ghost {
+  position: relative;
+  z-index: 2;
 }
 
 .project-card__media {
@@ -127,6 +137,21 @@
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 22%, transparent);
   color: var(--fg);
+}
+
+.badge--done {
+  border-color: #41a6f6;
+  background: color-mix(in srgb, #41a6f6 16%, transparent);
+  color: #3b5dc9;
+}
+
+.badge--archived {
+  background: var(--bg-soft);
+  color: var(--fg-muted);
+}
+
+html.theme-dark .badge--done {
+  color: #41a6f6;
 }
 
 .badge--featured {

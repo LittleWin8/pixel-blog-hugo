@@ -28,6 +28,10 @@
   translation: "Live"
 - id: inDevelopment
   translation: "In development"
+- id: statusDone
+  translation: "Completed"
+- id: statusArchived
+  translation: "Archived"
 - id: featuredProject
   translation: "Featured"
 - id: projectDetail

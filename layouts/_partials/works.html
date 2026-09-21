@@ -14,7 +14,7 @@
     {{ range first $count . }}
     {{- $online := .Params.online -}}
     <li>
-      {{ if $online }}<a class="featured__item" href="{{ .RelPermalink }}">{{ else }}<div class="featured__item featured__item--offline">{{ end }}
+      <a class="featured__item" href="{{ .RelPermalink }}">
         <span class="featured__icon">{{ partial "project-icon.html" . }}</span>
         <span class="featured__body">
           <span class="featured__name">
@@ -23,8 +23,8 @@
           </span>
           {{ with .Summary }}<span class="featured__desc">{{ . | plainify | truncate 40 }}</span>{{ end }}
         </span>
-        {{ if $online }}<span class="featured__arrow" aria-hidden="true">→</span>{{ end }}
-      {{ if $online }}</a>{{ else }}</div>{{ end }}
+        <span class="featured__arrow" aria-hidden="true">→</span>
+      </a>
     </li>
     {{ end }}
   </ul>

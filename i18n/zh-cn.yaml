@@ -28,6 +28,10 @@
   translation: "已上线"
 - id: inDevelopment
   translation: "开发中"
+- id: statusDone
+  translation: "已完成"
+- id: statusArchived
+  translation: "已归档"
 - id: featuredProject
   translation: "重点项目"
 - id: projectDetail

@@ -5,11 +5,7 @@
 </div>
 <div class="project-card__main">
   <div class="project-card__badges">
-    {{ if .Params.online }}
-    <span class="badge badge--online">{{ i18n "online" | default "已上线" }}</span>
-    {{ else }}
-    <span class="badge badge--dev">{{ i18n "inDevelopment" | default "开发中" }}</span>
-    {{ end }}
+    {{ partial "project-status-badge.html" . }}
     {{ if .Params.featured }}<span class="badge badge--featured">{{ i18n "featuredProject" | default "重点项目" }}</span>{{ end }}
   </div>
 
@@ -26,7 +22,7 @@
   {{ end }}
 
   <div class="project-card__actions">
-    <a class="btn" href="{{ .RelPermalink }}">{{ i18n "projectDetail" | default "项目详情" }}</a>
+    <a class="btn project-card__detail" href="{{ .RelPermalink }}">{{ i18n "projectDetail" | default "项目详情" }}</a>
     {{ if and .Params.online .Params.link }}
     <a class="btn btn--ghost" href="{{ .Params.link }}" target="_blank" rel="noopener">{{ i18n "liveDemo" | default "在线体验" }} <span aria-hidden="true">↗</span></a>
     {{ end }}

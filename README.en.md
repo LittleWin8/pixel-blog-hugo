@@ -21,7 +21,7 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 - Light/dark theme, follows the system, no flash (FOUC)
 - Responsive layout with a collapsible mobile menu
 - Home page: two-column hero, profile panel, featured work entry, tech stack (toggleable), latest posts
-- **Projects (`/projects/`)**: content-driven, large card list + detail page; `online: true` projects get a green dot, hover effect and a "Live demo" button
+- **Projects (`/projects/`)**: content-driven, large card list + detail page; every card lifts on hover and links to its detail page; `status` supports Live / Completed / In development / Archived, and `online: true` adds a green dot and a "Live demo" button
 - Top navigation and the links page (`/links/`) are config-driven, **comment out an item to hide it**
 - Optional **CRT scanlines** (`params.scanlines`), footer **ICP number** (`params.icp`), **social icons** (`params.social`)
 - **Hero copy / site name and logo / tech stack / links all live in your site config (overriding theme defaults)**
@@ -192,7 +192,8 @@ title: "Pixel Notes"
 subtitle: "A pixel-art note app"   # extra text after the title
 date: 2026-09-18
 weight: 1                      # list order (lower first)
-online: true                   # ★ is it live
+online: true                   # ★ is it live (drives the "Live demo" button and the home green dot)
+status: ""                     # status badge: online / done / wip / archived; derived from `online` when empty
 featured: true                 # "Featured" badge
 link: "https://example.com"    # "Live demo" button (hidden if omitted)
 source: "https://github.com/you/repo"  # "Source" button (hidden if omitted)
@@ -204,15 +205,19 @@ summary: "One-line intro, shown on the card and list."
 Detail page body (Markdown).
 ```
 
-**`online` controls card behaviour**:
+**`status` controls the status badge** (derived from `online` when empty: `online: true` → `online`, otherwise `wip`):
 
-| | Badge | Card hover | Live demo button |
+| `status` | Badge | Home green dot | Live demo button |
 |---|---|---|---|
-| `online: true` | "Live" (green) | ✅ lifts up | ✅ (when `link` is set) |
-| `online: false` (or omitted) | "In development" (yellow) | ❌ | ❌ |
+| `online` | "Live" (green) | ✅ | ✅ (when `link` is set) |
+| `done` | "Completed" (blue) | ❌ | ❌ |
+| `wip` (or omitted) | "In development" (yellow) | ❌ | ❌ |
+| `archived` | "Archived" (grey) | ❌ | ❌ |
 
-- The home "Selected Work" entry lists only `online: true` projects with a green dot and hover effect; others appear as static items (how many are shown is `params.works.count`, ordered by `weight`).
-- The projects list (`/projects/`) shows **all** projects; the "Live demo" button still requires `online: true`.
+- Every project card (both the `/projects/` list and the home "Selected Work" entry) **lifts on hover, and the whole card links to its detail page**.
+- The "Live demo" button and the home green dot still require `online: true`; `done` / `wip` / `archived` don't show them.
+- How many home entry items are shown is `params.works.count`, ordered by `weight`.
+- The projects list (`/projects/`) shows **all** projects.
 
 ## Multilingual (Chinese / English)
 
