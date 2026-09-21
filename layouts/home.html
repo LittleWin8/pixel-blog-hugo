@@ -3,16 +3,16 @@
 
   {{ partial "tech-stack.html" . }}
 
-  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ $posts := where site.RegularPages "Section" "in" site.MainSections }}
   {{ with $posts }}
   <section class="home-section">
     <div class="section-head">
       <h2>{{ i18n "latestPosts" | default "最新文章" }}</h2>
-      <a class="section-head__more" href="{{ "posts/" | relURL }}">{{ i18n "allPosts" | default "全部文章" }} →</a>
+      <a class="section-head__more" href="{{ partial "main-section-url.html" . }}">{{ i18n "allPosts" | default "全部文章" }} →</a>
     </div>
     <ul class="post-list">
       {{ range first (site.Params.homePosts | default 6) . }}
-        {{ partial "post-card.html" . }}
+        {{ partial "post-card.html" (dict "page" . "level" 3) }}
       {{ end }}
     </ul>
   </section>

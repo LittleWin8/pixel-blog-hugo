@@ -33,7 +33,7 @@
 {{- with $items }}
 <nav class="social-links" aria-label="{{ i18n "socialLinks" | default "社交链接" }}">
   {{- range . }}
-  <a class="social-link" href="{{ .href }}" title="{{ index $labels .key | default .key }}"{{ if ne .key "email" }} target="_blank" rel="noopener"{{ end }}>
+  <a class="social-link" href="{{ .href }}" title="{{ index $labels .key | default .key }}" aria-label="{{ index $labels .key | default .key }}"{{ if ne .key "email" }} target="_blank" rel="noopener"{{ end }}>
     {{- partial "social-icon.html" .key -}}
   </a>
   {{- end }}

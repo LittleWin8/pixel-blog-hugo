@@ -39,7 +39,7 @@ themes/pixel-blog-hugo/
 │   ├── 404.html
 │   └── robots.txt
 ├── exampleSite/                   # 示例站点（预览 + 配置模板）
-├── images/                        # README 截图
+├── images/                        # README 截图 + 官网收录用 screenshot.png / tn.png
 ├── hugo.toml                      # 主题默认配置（通用，站点可覆盖）
 ├── theme.toml
 ├── README.md / LICENSE / CHANGELOG.md / THIRD-PARTY-NOTICES.md

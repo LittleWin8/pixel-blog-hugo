@@ -4,7 +4,7 @@
   {{ with $p.Prev }}<a href="{{ .URL }}" aria-label="{{ i18n "prevPage" | default "上一页" }}">←</a>{{ end }}
   {{ range $p.Pagers }}
     {{ if eq . $p }}
-    <span class="is-active">{{ .PageNumber }}</span>
+    <span class="is-active" aria-current="page">{{ .PageNumber }}</span>
     {{ else }}
     <a href="{{ .URL }}">{{ .PageNumber }}</a>
     {{ end }}

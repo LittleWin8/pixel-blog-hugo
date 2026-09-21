@@ -6,10 +6,15 @@
 {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 {{ with site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
 
-<link rel="canonical" href="{{ .Permalink }}">
+{{ if ne .Kind "404" }}<link rel="canonical" href="{{ .Permalink }}">{{ else }}<meta name="robots" content="noindex">{{ end }}
 {{ with .OutputFormats.Get "RSS" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{ end }}
+{{- if hugo.IsMultilingual }}
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+{{- end }}
+{{- end }}
 {{ partial "head/favicon.html" . }}
 
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">

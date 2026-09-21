@@ -9,9 +9,10 @@
     {{ with site.Copyright }}<copyright>{{ . | plainify }}</copyright>{{ end }}
     {{ with .Date }}<lastBuildDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />{{ end }}
+    {{- $minDate := time.AsTime "0002-01-01" }}
     {{- $pages := .RegularPages }}
-    {{- if .IsHome }}{{ $pages = where site.RegularPages "Section" "!=" "" }}{{ end }}
-    {{- range first 30 (where $pages "Date" "!=" nil).ByDate.Reverse }}
+    {{- if .IsHome }}{{ $pages = where site.RegularPages "Section" "in" site.MainSections }}{{ end }}
+    {{- range first 30 (where $pages "Date" "gt" $minDate).ByDate.Reverse }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>

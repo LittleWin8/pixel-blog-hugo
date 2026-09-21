@@ -1,9 +1,12 @@
-baseURL = "https://example.org/"
+baseURL = "https://example.com/"
 title = "pixel-blog-hugo demo"
 theme = "pixel-blog-hugo"
 locale = "zh-cn"
 defaultContentLanguage = "zh"
 enableRobotsTXT = true
+# 主内容区块：首页「最新文章」、归档、相关文章、搜索索引都基于它。
+# 不写时 Hugo 会自动选页面最多的顶层区块；有 projects 等区块时建议显式指定。
+mainSections = ["posts"]
 hasCJKLanguage = true    # 中文按「字」统计，阅读时长/摘要才准确
 summaryLength = 80
 
@@ -56,7 +59,7 @@ summaryLength = 80
 """
 
   # 首页「个人作品」入口：按 weight 取前 count 个项目
-  # （内容在 content/projects/ 下；仅列出 online: true 的项目，未上线的显示为静态项）
+  # （内容在 content/projects/ 下；所有项目都可点击进入详情，online: true 才显示绿点与「在线体验」）
   [params.works]
     eyebrow = "FEATURED WORK"
     title = "个人作品"

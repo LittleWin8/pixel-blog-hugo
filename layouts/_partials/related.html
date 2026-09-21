@@ -2,7 +2,7 @@
 {{- $related := slice -}}
 {{- with $tags -}}
   {{- $current := $.RelPermalink -}}
-  {{- range where site.RegularPages "Section" "posts" -}}
+  {{- range where site.RegularPages "Section" "in" site.MainSections -}}
     {{- $item := . -}}
     {{- if ne $item.RelPermalink $current -}}
       {{- with $item.Params.tags -}}
@@ -15,7 +15,7 @@
 <section class="related">
   <h2 class="related__title">{{ i18n "relatedPosts" | default "相关文章" }}</h2>
   <ul class="post-list">
-    {{ range . }}{{ partial "post-card.html" . }}{{ end }}
+    {{ range . }}{{ partial "post-card.html" (dict "page" . "level" 3) }}{{ end }}
   </ul>
 </section>
 {{ end }}

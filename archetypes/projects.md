@@ -10,6 +10,7 @@ featured: false
 link: ""
 source: ""
 icon: "◆"
+image: ""
 tags: []
 summary: ""
 ---

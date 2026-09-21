@@ -9,8 +9,8 @@
     min = "0.158.0"
 
 [params]
-  toc = true
-  homePosts = 6
+  toc = true        # 文章 / 项目详情页右侧粘性目录开关
+  homePosts = 6     # 首页「最新文章」显示条数
 
   # 顶部导航：某项注释掉即隐藏；icon 可选 home / posts / tags / projects / links / archives / about
   # （默认只放一定存在的页面；项目/友链/关于需要你自己有对应内容页）

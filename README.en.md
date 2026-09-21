@@ -21,15 +21,15 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 - Light/dark theme, follows the system, no flash (FOUC)
 - Responsive layout with a collapsible mobile menu
 - Home page: two-column hero, profile panel, featured work entry, tech stack (toggleable), latest posts
-- **Projects (`/projects/`)**: content-driven, large card list + detail page; every card lifts on hover and links to its detail page; `status` supports Live / Completed / In development / Archived, and `online: true` adds a green dot and a "Live demo" button
+- **Projects (`/projects/`)**: content-driven, large card list + detail page; every card lifts on hover and links to its detail page; `status` supports Live / Completed / In development / Archived, and `online: true` adds a green dot and a "Live demo" button; the detail page has a **sticky table of contents**, tags and one-click code copy
 - Top navigation and the links page (`/links/`) are config-driven, **comment out an item to hide it**
 - Optional **CRT scanlines** (`params.scanlines`), footer **ICP number** (`params.icp`), **social icons** (`params.social`)
 - **Hero copy / site name and logo / tech stack / links all live in your site config (overriding theme defaults)**
-- Post / project pages: **sticky right-hand table of contents**, tags, prev/next, **one-click code copy**, **related posts** (TOC moves above the content on narrow screens)
+- Post pages: **sticky right-hand table of contents**, tags, prev/next, **one-click code copy**, **related posts** (TOC moves above the content on narrow screens)
 - **Markdown render hooks**: lazy-loaded images with responsive `srcset` and captions, external links open in a new tab, heading anchor links
 - **Built-in search** (covers posts and projects, pure front-end, no dependencies)
-- Tag cloud and tag pages, **archive page** (grouped by year), **404 page**, robots.txt, footer **RSS** icon
-- SEO: JSON-LD (BlogPosting / breadcrumbs), OG / Twitter share images (site default + post cover), description / canonical, RSS, sitemap
+- Tag cloud and tag pages (**tag pages** label cards as **Post / Project**), **archive page** (grouped by year), **404 page**, robots.txt, footer **RSS** icon
+- SEO: JSON-LD (WebSite / BlogPosting / CreativeWork / breadcrumbs), OG / Twitter share images (site default + post cover), description / canonical, RSS, sitemap
 - Accessibility: skip link, consistent focus styles, labelled pagination controls
 - Driven by CSS custom properties — change one color and the whole site follows
 - Styles and scripts bundled, minified and fingerprinted via Hugo Pipes — no npm / build tooling
@@ -81,6 +81,7 @@ theme = "pixel-blog-hugo"
 enableRobotsTXT = true
 hasCJKLanguage = false     # enable for Chinese/Japanese/Korean sites
 summaryLength = 30         # the three lines above are examples — adjust as needed
+mainSections = ["posts"]   # main content section: home "Latest posts" / archive / related / search index
 # enableGitInfo = true     # use Git commit time as the "Updated" date (see below)
 
 [outputs]
@@ -129,10 +130,12 @@ One rule: **to change your own blog, only touch files in your own site** — you
 **Paste the content of** [`exampleSite/hugo.toml`](exampleSite/hugo.toml) **into your site's own `hugo.toml`**, then replace the values with yours following the comments inside.
 
 > Don't panic if some links 404 right after pasting — the example config references pages (archives, projects, links, about) that don't exist in your site yet. That's expected. **Follow the sections below to create those pages** (archive / search / projects / links / about) and everything will resolve.
+>
+> Fields are documented in the comments of that config file; theme default options `toc` and `homePosts` are commented in the theme's `hugo.toml`.
 
 ### Share thumbnails and page description (SEO, automatic)
 
-- **Share image**: site default `params.assets.ogImage`; per-post front matter `cover` (auto-cropped to 1200×630).
+- **Share image**: site default `params.assets.ogImage`; per-post front matter `cover` (**local assets** are auto-cropped to 1200×630; remote / root-relative paths are used as-is).
 - **Description**: front matter `description` → summary → site `params.description`, auto-emitted to `<meta>`.
 - **Updated date**: shown when `lastmod ≠ date`. Set `enableGitInfo = true` to use Git commit time.
 
@@ -198,6 +201,7 @@ featured: true                 # "Featured" badge
 link: "https://example.com"    # "Live demo" button (hidden if omitted)
 source: "https://github.com/you/repo"  # "Source" button (hidden if omitted)
 icon: "📝"                     # card icon (emoji / text)
+image: ""                      # optional image, takes priority over icon (page bundle / site assets; cropped to 176×176)
 tags: ["Vue.js", "TypeScript"]
 summary: "One-line intro, shown on the card and list."
 ---
@@ -205,7 +209,7 @@ summary: "One-line intro, shown on the card and list."
 Detail page body (Markdown).
 ```
 
-**`status` controls the status badge** (derived from `online` when empty: `online: true` → `online`, otherwise `wip`):
+**`status` controls the status badge** (derived from `online` when empty: `online: true` → `online`, otherwise `wip`); the "Home green dot / Live demo button" columns below are actually driven by `online: true` — `status` only decides the badge:
 
 | `status` | Badge | Home green dot | Live demo button |
 |---|---|---|---|
@@ -218,6 +222,16 @@ Detail page body (Markdown).
 - The "Live demo" button and the home green dot still require `online: true`; `done` / `wip` / `archived` don't show them.
 - How many home entry items are shown is `params.works.count`, ordered by `weight`.
 - The projects list (`/projects/`) shows **all** projects.
+
+## About page
+
+The home hero's "About me" button points to `/about/`; just create a content page in your site (`exampleSite` already has one):
+
+```bash
+hugo new about.md
+```
+
+Write the body in Markdown; it reuses the post layout (TOC, code copy, etc.). It is a standalone page and won't appear in the post list or archive.
 
 ## Multilingual (Chinese / English)
 
@@ -245,11 +259,11 @@ defaultContentLanguageInSubdir = false   # English at /, Chinese at /zh/
         title = "小稳"
         tagline = "全栈开发者..."
         intro = "..."
-      [languages.zh.params.nav]   # nav: arrays are replaced wholesale, so write them in full
-        [[languages.zh.params.nav]]
-          name = "首页"
-          url = "/"
-          icon = "home"
+      # nav: arrays are replaced wholesale, so write them in full (list each with [[languages.zh.params.nav]])
+      [[languages.zh.params.nav]]
+        name = "首页"
+        url = "/"
+        icon = "home"
         [[languages.zh.params.nav]]
           name = "博客"
           url = "/posts/"

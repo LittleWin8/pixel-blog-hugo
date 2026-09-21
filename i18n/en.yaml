@@ -2,6 +2,10 @@
   translation: "Toggle theme"
 - id: toggleMenu
   translation: "Open menu"
+- id: closeMenu
+  translation: "Close menu"
+- id: home
+  translation: "Home"
 - id: mainNav
   translation: "Main navigation"
 - id: backToTop
@@ -34,6 +38,12 @@
   translation: "Archived"
 - id: featuredProject
   translation: "Featured"
+- id: worksTitle
+  translation: "Selected Work"
+- id: techstackTitle
+  translation: "Tech Stack"
+- id: dateFormat
+  translation: "Jan 2, 2006"
 - id: projectDetail
   translation: "Details"
 - id: liveDemo

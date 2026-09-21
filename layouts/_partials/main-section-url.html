@@ -1,0 +1,7 @@
+{{- /* 返回首个主区块（mainSections）列表页 URL，供「全部文章 / 阅读文章」等链接使用。
+     用户可在站点配置用顶层 `mainSections = ["posts"]`（或实际区块名）覆盖。 */ -}}
+{{- $mains := site.MainSections -}}
+{{- if not $mains }}{{ $mains = slice "posts" }}{{ end -}}
+{{- $main := index $mains 0 -}}
+{{- with site.GetPage $main -}}{{ return .RelPermalink }}{{- end -}}
+{{- return ("posts" | relURL) -}}

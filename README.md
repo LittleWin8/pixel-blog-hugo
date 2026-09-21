@@ -21,15 +21,15 @@
 - 明暗主题切换，跟随系统，无闪烁（FOUC）
 - 响应式布局 + 移动端折叠菜单，全站移动端适配
 - 首页：双栏 Hero、个人信息面板、个人作品入口、技术栈（可开关）、最新文章
-- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；卡片统一悬浮、整卡可点进详情；`status` 支持 已上线 / 已完成 / 开发中 / 已归档，`online: true` 的项目带绿点与「在线体验」按钮
+- **项目（`/projects/`）**：内容驱动，大卡片列表 + 站内详情页；卡片统一悬浮、整卡可点进详情；`status` 支持 已上线 / 已完成 / 开发中 / 已归档，`online: true` 的项目带绿点与「在线体验」按钮；详情页含**右侧粘性目录**、标签与代码块一键复制
 - 顶部导航、友链页（`/links/`）均由配置驱动，**注释掉某项即隐藏**
 - 可选 **CRT 扫描线**（`params.scanlines`）、页脚 **ICP 备案号**（`params.icp`）、**社交图标**（`params.social`）
 - **首页文案 / 顶部栏名称与 logo / 技术栈 / 友链，写在你站点的配置里（覆盖主题默认）**
-- 文章 / 项目页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
+- 文章页：**右侧粘性目录（大纲）**、标签、上一篇/下一篇、**代码块一键复制**、**相关文章**（窄屏目录回到内容上方）
 - **Markdown 渲染钩子**：图片懒加载 + 响应式 `srcset` + 图注、外链自动新窗口、标题锚点链接
 - **站内搜索**（覆盖文章与项目，纯前端、无外部依赖）
-- 标签云与标签页、**归档页**（按年份分组）、**404 页面**、robots.txt、页脚 **RSS 订阅**图标
-- SEO：JSON-LD（BlogPosting / 面包屑）、OG / Twitter 分享图（站点默认 + 文章封面）、description / canonical、RSS、sitemap
+- 标签云与标签页（**标签页**卡片区分**文章 / 项目**）、**归档页**（按年份分组）、**404 页面**、robots.txt、页脚 **RSS 订阅**图标
+- SEO：JSON-LD（WebSite / BlogPosting / CreativeWork / 面包屑）、OG / Twitter 分享图（站点默认 + 文章封面）、description / canonical、RSS、sitemap
 - 无障碍：跳过导航（skip link）、统一焦点样式、分页按钮可访问名称
 - CSS 自定义属性驱动，改一个色值全站生效
 - 样式与脚本经 Hugo Pipes 拼接、压缩、加指纹，无需 npm / 构建工具
@@ -81,6 +81,7 @@ theme = "pixel-blog-hugo"
 enableRobotsTXT = true
 hasCJKLanguage = true      # 中文站点建议开启（阅读时长/摘要更准）
 summaryLength = 80         # 以上三行均为示例值，按需调整
+mainSections = ["posts"]   # 主内容区块：首页「最新文章」/归档/相关文章/搜索索引都基于它
 # enableGitInfo = true     # 自动用 Git 提交时间作为「更新于」，见下文
 
 [outputs]
@@ -128,13 +129,13 @@ hugo                           # 构建到 public/，部署到任意静态托管
 
 **把** [`exampleSite/hugo.toml`](exampleSite/hugo.toml) **的内容粘进你自己站点的 `hugo.toml`**，再按里面的注释换成你的信息即可。
 
-> 粘完先别慌：示例配置引用的页面（归档、项目、友链、关于等）你站点里还没有，部分链接会 404——这很正常。**跟着下面的教程把对应页面建起来**（归档 / 搜索 / 项目 / 友链 / 关于各小节）就都通了。
+> 粘完先别慌：示例配置引用的页面（归档、项目、友链、关于等）你站点里还没有，部分链接会 404——这很正常。**跟着下面的教程把对应页面建起来**（归档 / 搜索 / 项目 / 友链 / 关于 各小节）就都通了。
 >
-> 配置里每个字段的说明都写在该配置文件的注释中（含可选值清单），改前先看注释。
+> 配置里字段的说明都写在该配置文件的注释中（含可选值清单），改前先看注释；主题默认项 `toc`、`homePosts` 见主题 `hugo.toml` 注释。
 
 ### 链接分享缩略图与页面描述（SEO，自动）
 
-- **分享缩略图**：站点默认 `params.assets.ogImage`；文章级 front matter `cover`（自动裁成 1200×630）。
+- **分享缩略图**：站点默认 `params.assets.ogImage`；文章级 front matter `cover`（**本地资源**自动裁成 1200×630，外链 / 根路径原样使用）。
 - **页面描述**：front matter `description` → 摘要 → 站点 `params.description`，自动用于 `<meta>`。
 - **更新时间**：文章页在 `lastmod ≠ date` 时显示「更新于」。开启 `enableGitInfo = true` 自动取 Git 提交时间。
 
@@ -200,6 +201,7 @@ featured: true                 # 「重点项目」徽章
 link: "https://example.com"    # 「在线体验」按钮（不填则不显示）
 source: "https://github.com/you/repo"  # 「查看源码」按钮（不填则不显示）
 icon: "📝"                     # 卡片图标（emoji / 文字）
+image: ""                      # 可选配图，优先于 icon（放页面包 / 站点 assets，自动裁 176×176）
 tags: ["Vue.js", "TypeScript"]
 summary: "一句话介绍，卡片和列表都会显示。"
 ---
@@ -207,7 +209,7 @@ summary: "一句话介绍，卡片和列表都会显示。"
 详情页正文（Markdown）。
 ```
 
-**`status` 决定状态徽章**（缺省按 `online` 推导：`online: true` → `online`，否则 `wip`）：
+**`status` 决定状态徽章**（缺省按 `online` 推导：`online: true` → `online`，否则 `wip`）；下表「首页绿点 / 在线体验按钮」实际由 `online: true` 决定，`status` 只决定徽章：
 
 | `status` | 徽章 | 首页绿点 | 在线体验按钮 |
 |---|---|---|---|
@@ -220,6 +222,16 @@ summary: "一句话介绍，卡片和列表都会显示。"
 - 「在线体验」按钮与首页绿点仍以 `online: true` 为准；`done` / `wip` / `archived` 不显示。
 - 首页「个人作品」入口的显示数量由 `params.works.count` 决定，按 `weight` 排序。
 - 项目列表页（`/projects/`）会显示**全部**项目。
+
+## 关于页
+
+首页 Hero 的「关于我」按钮指向 `/about/`，在站点里建一个内容页即可（`exampleSite` 已有）：
+
+```bash
+hugo new about.md
+```
+
+正文用 Markdown 写，复用文章页排版（目录、代码复制等）；它是独立页面，不会进入文章列表与归档。
 
 ## 多语言（中 / 英）
 
@@ -251,11 +263,11 @@ defaultContentLanguageInSubdir = false   # 中文在 /，英文在 /en/
         title = "Selected Work"
       [languages.en.params.techstack]
         title = "Tech Stack"
-      [languages.en.params.nav]   # 导航：数组整体替换，需写全
-        [[languages.en.params.nav]]
-          name = "Home"
-          url = "/"
-          icon = "home"
+      # 导航：数组整体替换，需写全（用 [[languages.en.params.nav]] 逐项列出）
+      [[languages.en.params.nav]]
+        name = "Home"
+        url = "/"
+        icon = "home"
         [[languages.en.params.nav]]
           name = "Blog"
           url = "/posts/"

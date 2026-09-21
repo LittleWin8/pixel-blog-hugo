@@ -1,6 +1,6 @@
 # pixel-blog-hugo 主题元信息（Hugo 主题库 / 用户识别用）
 name = "pixel-blog-hugo"
-description = "像素复古（pixel / 8-bit）风格的 Hugo 博客主题：明暗双主题、双栏首页、项目展示、站内搜索、归档、标签、i18n。"
+description = "A pixel / 8-bit retro blog theme for Hugo: dark & light themes, two-column home, project showcase, built-in search, archive, tags and i18n."
 homepage = "https://github.com/LittleWin8/pixel-blog-hugo"
 demosite = "https://pixel-blog-hugo.pages.dev/"
 tags = ["blog", "portfolio", "pixel", "retro", "dark", "responsive", "personal", "search"]

@@ -1,9 +1,18 @@
+{{- $page := .page -}}
+{{- $level := .level | default 2 -}}
+{{- $showType := .showType | default false -}}
 <li class="post-list__item">
-  <a class="pixel-card post-card" href="{{ .RelPermalink }}">
-    <h3 class="post-card__title">{{ .Title }}</h3>
-    {{ with .Summary }}
+  <a class="pixel-card post-card" href="{{ $page.RelPermalink }}">
+    {{ if $showType }}
+    {{- $isProject := eq $page.Section "projects" -}}
+    {{- $typeKey := "typePost" -}}{{- $typeLabel := "文章" -}}
+    {{- if $isProject }}{{ $typeKey = "typeProject" }}{{ $typeLabel = "项目" }}{{ end -}}
+    <span class="post-card__type post-card__type--{{ if $isProject }}project{{ else }}post{{ end }}">{{ i18n $typeKey | default $typeLabel }}</span>
+    {{ end }}
+    <h{{ $level }} class="post-card__title">{{ $page.Title }}</h{{ $level }}>
+    {{ with $page.Summary }}
     <p class="post-card__summary">{{ . | plainify | truncate 140 }}</p>
     {{ end }}
-    {{ partial "post-meta.html" (dict "page" . "showTags" true) }}
+    {{ partial "post-meta.html" (dict "page" $page "showTags" true) }}
   </a>
 </li>

@@ -4,14 +4,40 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-21
+
 ### 新增
 
 - 项目新增 `status` 字段：`online`（已上线）/ `done`（已完成）/ `wip`（开发中）/ `archived`（已归档），新增「已完成」「已归档」徽章与中英文案；留空时按 `online` 布尔推导，向后兼容
 - 项目卡片支持**整卡点击**进入详情页（详情链接铺满卡片，其余按钮保持可点）
+- 标签页（taxonomy term）卡片新增「文章 / 项目」类型标识，便于区分混合列表
+- `exampleSite` 增加「已完成」「已归档」示例项目
 
 ### 变更
 
 - 项目卡片（列表页与首页「个人作品」）统一悬浮效果，不再区分在线/离线；首页「个人作品」所有条目均可点击进入详情（`online: true` 仍显示绿点与「在线体验」按钮）
+- 改用 Hugo 内置 `mainSections` 取代模板里硬编码的 `posts`（首页最新文章、归档、相关文章、搜索索引）；`exampleSite` 显式设置 `mainSections = ["posts"]`
+- `theme.toml` 描述改为英文（贴合 themes.gohugo.io 面向英文读者）
+
+### 修复
+
+- `exampleSite` 的 `baseURL` 由 `example.org` 改为官网要求的 `example.com`
+- 分享图（OG/Twitter）：`cover` 使用根相对路径（`/...`）时补全为绝对 URL
+- 归档页与 RSS 的空日期过滤改为可靠判断，避免无日期内容落到公元 `0001` 年
+- 主题切换按钮首次加载时同步 `aria-pressed`，暗色用户不再被读屏误报
+- 搜索结果提示加入 `aria-live`，动态结果可被读屏播报
+- 404 页面加 `noindex` 且不再输出 canonical
+- 文章卡片标题层级可配置，消除列表页 `h1 → h3` 跳级
+- 分页当前页加 `aria-current`；社交链接补 `aria-label`；移动端菜单支持 `Escape`/点击外部关闭并同步标签
+- 补齐 i18n：面包屑「首页」、个人作品/技术栈默认标题、日期格式（中/英）
+- 多语言站点输出 `hreflang` alternate 链接
+- 项目卡片内按钮悬浮时不再各自位移，消除抖动
+- 首页搜索索引（`index.json`）中无标签内容的 `tags` 输出空数组而非 `null`
+
+## [0.2.1] - 2026-09-20
+
+### 变更
+
 - 为 Hugo Themes 官网收录做准备：新增 `images/screenshot.png`（1500×1000）与 `images/tn.png`（900×600，3:2）
 - 主题默认配置由 `hugo.yaml` 更名为 `hugo.toml`，并声明 `[module.hugoVersion]`（min 0.158.0）
 - `theme.toml` 增加 `demosite`；README 页面预览图改为绝对 URL（官网要求）

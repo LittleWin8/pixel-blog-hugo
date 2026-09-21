@@ -25,7 +25,7 @@
       {{ with $hero.intro }}<div class="hero__intro pixel-panel">{{ . | markdownify }}</div>{{ end }}
 
       <div class="hero__actions">
-        <a class="btn" href="{{ "posts/" | relURL }}">
+        <a class="btn" href="{{ partial "main-section-url.html" . }}">
           {{ i18n "readPosts" | default "阅读文章" }}
           <span aria-hidden="true">→</span>
         </a>

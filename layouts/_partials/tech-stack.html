@@ -2,7 +2,7 @@
 {{- if and $ts.enable $ts.groups -}}
 <section class="home-section techstack">
   <header class="section-title-center">
-    <h2>{{ $ts.title | default "技术栈" }}</h2>
+    <h2>{{ $ts.title | default (i18n "techstackTitle" | default "技术栈") }}</h2>
     {{ with $ts.subtitle }}<p>{{ . }}</p>{{ end }}
   </header>
   <div class="techstack__grid">

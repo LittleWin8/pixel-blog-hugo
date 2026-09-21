@@ -24,7 +24,7 @@
         {{ .Title }}{{ with .Params.subtitle }}<span class="project-header__subtitle">{{ . }}</span>{{ end }}
       </h1>
 
-      {{ if not .Date.IsZero }}<p class="project-header__date">{{ .Date.Format "2006年01月02日" }}</p>{{ end }}
+      {{ if not .Date.IsZero }}<p class="project-header__date">{{ .Date.Format (i18n "dateFormat" | default "2006-01-02") }}</p>{{ end }}
 
       <div class="project-header__actions">
         {{ if and .Params.online .Params.link }}

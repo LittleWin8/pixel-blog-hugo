@@ -9,7 +9,7 @@
   {{ $paginator := .Paginate .Pages }}
   <ul class="post-list">
     {{ range $paginator.Pages }}
-      {{ partial "post-card.html" . }}
+      {{ partial "post-card.html" (dict "page" . "level" 2 "showType" true) }}
     {{ else }}
       <li class="post-meta">{{ i18n "noPosts" | default "暂无文章。" }}</li>
     {{ end }}

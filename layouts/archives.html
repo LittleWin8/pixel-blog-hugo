@@ -6,8 +6,9 @@
     </div>
   </header>
 
+  {{- $minDate := time.AsTime "0002-01-01" -}}
   <div class="archive">
-    {{ range (where (where site.RegularPages "Section" "posts") "Date" "!=" nil).GroupByDate "2006" }}
+    {{ range (where (where site.RegularPages "Section" "in" site.MainSections) "Date" "gt" $minDate).GroupByDate "2006" }}
     <section class="archive__year">
       <h2 class="archive__year-label">
         {{ .Key }}<span class="archive__count">{{ len .Pages }}</span>

@@ -5,8 +5,10 @@
 {{- with $cover -}}
   {{- $c := . -}}
   {{- if reflect.IsSlice $c }}{{ $c = index $c 0 }}{{ end -}}
-  {{- if or (hasPrefix $c "http") (hasPrefix $c "/") -}}
+  {{- if hasPrefix $c "http" -}}
     {{- $img = $c -}}
+  {{- else if hasPrefix $c "/" -}}
+    {{- $img = $c | absURL -}}
   {{- else -}}
     {{- $res := "" -}}
     {{- with $.Resources.GetMatch $c }}{{ $res = . }}{{ end -}}

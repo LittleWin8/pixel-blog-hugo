@@ -6,7 +6,7 @@
   <header class="featured__head">
     <p class="featured__eyebrow">{{ $works.eyebrow | default "FEATURED WORK" }}</p>
     <div class="featured__title-row">
-      <h2 class="featured__title">{{ $works.title | default "个人作品" }}</h2>
+      <h2 class="featured__title">{{ $works.title | default (i18n "worksTitle" | default "个人作品") }}</h2>
       <a class="featured__more" href="{{ "projects/" | relURL }}">{{ i18n "viewAll" | default "查看全部" }} →</a>
     </div>
   </header>

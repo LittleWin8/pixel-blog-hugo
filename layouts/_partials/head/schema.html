@@ -28,7 +28,7 @@
   {{- with .Params.tags }}{{ $schema = merge $schema (dict "keywords" (delimit . ", ")) }}{{ end -}}
   <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
 
-  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "首页" "item" site.Home.Permalink) -}}
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" (i18n "home" | default "首页") "item" site.Home.Permalink) -}}
   {{- $pos := 2 -}}
   {{- with .CurrentSection -}}
     {{- if not .IsHome -}}

@@ -9,6 +9,23 @@
   list-style: none;
 }
 
+.post-card__type {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.06rem 0.45rem;
+  border: var(--border-width) solid var(--border-soft);
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.post-card__type--project {
+  border-color: var(--border-soft);
+  background: var(--bg-soft);
+  color: var(--fg);
+}
+
 .post-card__title {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;

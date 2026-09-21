@@ -32,6 +32,11 @@
   z-index: 2;
 }
 
+/* 卡片本身已位移，内部按钮不再各自位移，避免悬浮时抖动 */
+.project-card .btn:hover {
+  transform: none;
+}
+
 .project-card__media {
   display: flex;
   align-items: center;

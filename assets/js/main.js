@@ -22,9 +22,28 @@
     });
   }
 
+  function setMenu(open) {
+    var nav = document.getElementById("site-nav");
+    var menu = document.querySelector("[data-menu-toggle]");
+    if (!nav || !menu) return;
+    nav.classList.toggle("is-open", open);
+    menu.setAttribute("aria-expanded", open ? "true" : "false");
+    var label = open
+      ? menu.getAttribute("data-label-close")
+      : menu.getAttribute("data-label-open");
+    if (label) menu.setAttribute("aria-label", label);
+  }
+
+  function isMenuOpen() {
+    var nav = document.getElementById("site-nav");
+    return !!(nav && nav.classList.contains("is-open"));
+  }
+
   document.addEventListener("click", function (event) {
-    var toggle = event.target.closest("[data-theme-toggle]");
-    if (toggle) {
+    if (!(event.target instanceof Element)) return;
+    var target = event.target;
+
+    if (target.closest("[data-theme-toggle]")) {
       var next = currentTheme() === "dark" ? "light" : "dark";
       try {
         localStorage.setItem(STORAGE_KEY, next);
@@ -35,15 +54,32 @@
       return;
     }
 
-    var menu = event.target.closest("[data-menu-toggle]");
-    if (menu) {
-      var nav = document.getElementById("site-nav");
-      if (nav) {
-        var open = nav.classList.toggle("is-open");
-        menu.setAttribute("aria-expanded", open ? "true" : "false");
-      }
+    if (target.closest("[data-menu-toggle]")) {
+      setMenu(!isMenuOpen());
+      return;
+    }
+
+    if (isMenuOpen() && !target.closest("#site-nav")) {
+      setMenu(false);
     }
   });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") setMenu(false);
+  });
+
+  function syncThemeToggle() {
+    var dark = currentTheme() === "dark";
+    document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", syncThemeToggle);
+  } else {
+    syncThemeToggle();
+  }
 
   // Code copy buttons
   document.querySelectorAll(".post-content pre").forEach(function (pre) {

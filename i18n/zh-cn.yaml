@@ -2,6 +2,10 @@
   translation: "切换主题"
 - id: toggleMenu
   translation: "打开菜单"
+- id: closeMenu
+  translation: "关闭菜单"
+- id: home
+  translation: "首页"
 - id: mainNav
   translation: "主导航"
 - id: backToTop
@@ -34,6 +38,12 @@
   translation: "已归档"
 - id: featuredProject
   translation: "重点项目"
+- id: worksTitle
+  translation: "个人作品"
+- id: techstackTitle
+  translation: "技术栈"
+- id: dateFormat
+  translation: "2006年01月02日"
 - id: projectDetail
   translation: "项目详情"
 - id: liveDemo
