@@ -12,9 +12,20 @@
       </a>
       {{ end }}
       <div class="footer-social-links">{{ partial "social-links.html" . }}</div>
-      {{ with site.Params.icp }}
-      <a class="footer-icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">{{ . }}</a>
-      {{ end }}
+      <div class="footer-beian">
+        {{ with site.Params.icp }}
+        <a class="footer-icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">{{ . }}</a>
+        {{ end }}
+        {{ with site.Params.policeBeian }}
+        {{ $policeCode := replaceRE `\D` "" . }}
+        <a class="footer-icp footer-icp--police" href="{{ site.Params.policeBeianLink | default (printf "https://beian.mps.gov.cn/#/query/webSearch?code=%s" $policeCode) }}" target="_blank" rel="noopener noreferrer">
+          {{ with site.Params.policeBeianIcon }}
+          <img class="footer-icp__badge" src="{{ . }}" width="20" height="20" alt="公安备案图标">
+          {{ end }}
+          {{ . }}
+        </a>
+        {{ end }}
+      </div>
     </div>
     <p>Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> · Theme <a href="https://github.com/LittleWin8/pixel-blog-hugo" target="_blank" rel="noopener">pixel-blog-hugo</a></p>
   </div>

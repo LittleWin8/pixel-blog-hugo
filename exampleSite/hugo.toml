@@ -35,7 +35,10 @@ summaryLength = 80
   author = "小稳"
   description = "pixel-blog-hugo 主题 · 示例站点"
   # copyright = "© 2024-2026 小稳"   # 自定义页脚版权（不写则自动「© 年份 作者」）
-  # icp = "京ICP备xxxxxxx号"         # 页脚备案号（国内站点；不写则不显示）
+  # icp = "京ICP备xxxxxxx号"                 # 页脚 ICP 备案号（国内站点；不写则不显示）
+  # policeBeian = "京公网安备 11000002000001号"  # 页脚公安备案号（不写则不显示；自动链接到公安备案查询页）
+  # policeBeianLink = "https://beian.mps.gov.cn/#/query/webSearch?code=11000002000001"  # 可选，公安备案查询链接（默认用备案号中的数字自动拼接）
+  # policeBeianIcon = "/images/beian.png"   # 可选，公安备案徽章图标路径（放你站点的 static/ 或 assets/ 下）
   # keywords = ["Hugo", "博客"]      # <meta name="keywords">
   scanlines = true          # 示例站开启 CRT 扫描线（与上游设计一致）
 

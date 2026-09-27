@@ -23,7 +23,7 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 - Home page: two-column hero, profile panel, featured work entry, tech stack (toggleable), latest posts
 - **Projects (`/projects/`)**: content-driven, large card list + detail page; every card lifts on hover and links to its detail page; `status` supports Live / Completed / In development / Archived, and `online: true` adds a green dot and a "Live demo" button; the detail page has a **sticky table of contents**, tags and one-click code copy
 - Top navigation and the links page (`/links/`) are config-driven, **comment out an item to hide it**
-- Optional **CRT scanlines** (`params.scanlines`), footer **ICP number** (`params.icp`), **social icons** (`params.social`)
+- Optional **CRT scanlines** (`params.scanlines`), footer **ICP number** (`params.icp`) and **public security filing number** (`params.policeBeian`, configurable icon/link), **social icons** (`params.social`)
 - **Hero copy / site name and logo / tech stack / links all live in your site config (overriding theme defaults)**
 - Post pages: **sticky right-hand table of contents**, tags, prev/next, **one-click code copy**, **related posts** (TOC moves above the content on narrow screens)
 - **Markdown render hooks**: lazy-loaded images with responsive `srcset` and captions, external links open in a new tab, heading anchor links
@@ -132,6 +132,8 @@ One rule: **to change your own blog, only touch files in your own site** — you
 > Don't panic if some links 404 right after pasting — the example config references pages (archives, projects, links, about) that don't exist in your site yet. That's expected. **Follow the sections below to create those pages** (archive / search / projects / links / about) and everything will resolve.
 >
 > Fields are documented in the comments of that config file; theme default options `toc` and `homePosts` are commented in the theme's `hugo.toml`.
+>
+> 📌 The theme does not ship any logo/favicon image: the `exampleSite` `[params.identity]` references a logo **inside the example site itself** (`exampleSite/assets/images/logo.png`). When copying the sample config to your own site, also copy that file (or use your own image) into **your site's** `assets/images/`.
 
 ### Share thumbnails and page description (SEO, automatic)
 

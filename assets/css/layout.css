@@ -245,10 +245,28 @@
 .footer-icp {
   color: var(--fg-muted);
   font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 .footer-icp:hover {
   color: var(--link);
+}
+
+.footer-beian {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-icp--police {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-icp__badge {
+  width: 20px;
+  height: 20px;
 }
 
 .site-footer a {
@@ -284,6 +302,23 @@
 @media (max-width: 720px) {
   .site-header__inner {
     height: 56px;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .site-footer__left {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.25rem;
+  }
+
+  .footer-beian {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .site-nav {
