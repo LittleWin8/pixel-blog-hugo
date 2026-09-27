@@ -46,7 +46,9 @@ summary: "演示文章大纲的多级标题层级效果。"
 
 ## 图片演示
 
-下面用主题 logo 占位，验证响应式图片（srcset）：
+下面用示例站的 logo 占位，验证响应式图片（srcset）。
+
+这张图放在示例站的 `assets/images/logo.png`，由页面资源查找 + 全局 assets 回退兜底命中：
 
 ![示例图片](images/logo.png "响应式图片演示")
 

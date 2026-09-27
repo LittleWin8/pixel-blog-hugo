@@ -22,9 +22,8 @@ hugo server --themesDir ../..
 themes/pixel-blog-hugo/
 ├── archetypes/                    # default.md / projects.md（hugo new 骨架）
 ├── assets/
-│   ├── css/                       # 按关注点拆分（见下）
-│   ├── js/                        # main.js（明暗/菜单/回顶/代码复制）、search.js
-│   └── images/logo.png            # 主题 logo（可替换）
+│   ├── css/                        # 按关注点拆分（见下）
+│   └── js/                         # main.js（明暗/菜单/回顶/代码复制）、search.js
 ├── i18n/                          # zh-cn.yaml / en.yaml
 ├── layouts/                       # 采用 Hugo 0.146+ 新布局规范
 │   ├── baseof.html                # 基础模板
@@ -69,7 +68,7 @@ assets/css/
 
 - **改配色**：编辑 `assets/css/tokens.css`（亮色在 `:root`，暗色在 `html.theme-dark`）。
 - **改断点**：响应式集中在 `home.css` 底部与 `layout.css` 的 `@media`。
-- **换 logo**：替换 `assets/images/logo.png`（`logo.html` 会自动按需缩放，SVG 也可）。
+- **换 logo**：在站点配置 `params.identity.logo` / `favicon` 指向你站点 `assets/` 下的图片（`logo.html` 会自动按需缩放，SVG 也可）；主题不内置 logo，不配置则显示纯文字站名。
 - **换像素字体**：改 `params.assets.pixelFont`。
   - 默认走 jsDelivr（fontsource），开箱即用；
   - 想国内更快/更稳可**自托管**：从 [fusion-pixel-font](https://github.com/TakWolf/fusion-pixel-font) 下载 `12px-proportional` 的 woff2（简体中文约 660KB），放到站点 `static/fonts/`，写 `@font-face` CSS（字体名用 `Fusion Pixel 12px Proportional SC`），再把 `pixelFont` 指向它。字体为 OFL-1.1，记得附带 `OFL.txt`。

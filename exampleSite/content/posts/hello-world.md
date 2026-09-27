@@ -34,8 +34,7 @@ cover: "images/og-demo.png"
 themes/pixel-blog-hugo/
 ├── assets/
 │   ├── css/        # tokens / base / layout / components / markdown / home
-│   ├── js/         # 明暗切换、移动菜单、回到顶部
-│   └── images/     # 像素 logo
+│   └── js/         # 明暗切换、移动菜单、回到顶部
 ├── i18n/           # 中英文案
 ├── layouts/        # 模板与 partials
 └── theme.toml

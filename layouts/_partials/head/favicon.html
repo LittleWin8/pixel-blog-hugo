@@ -1,9 +1,11 @@
 {{- $identity := site.Params.identity | default dict -}}
-{{- with resources.Get ($identity.favicon | default "images/logo.png") -}}
-  {{- if eq .MediaType.SubType "svg" -}}
+{{- with $identity.favicon -}}
+  {{- with resources.Get . -}}
+    {{- if eq .MediaType.SubType "svg" -}}
 <link rel="icon" type="image/svg+xml" href="{{ .RelPermalink }}">
-  {{- else -}}
-    {{- $icon := .Fit "64x64" -}}
+    {{- else -}}
+      {{- $icon := .Fit "64x64" -}}
 <link rel="icon" href="{{ $icon.RelPermalink }}">
+    {{- end -}}
   {{- end -}}
 {{- end -}}

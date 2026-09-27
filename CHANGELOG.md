@@ -4,6 +4,20 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-09-28
+
+### 新增
+
+- 页脚支持**公安备案号**（`params.policeBeian`）：自动链接到公安备案查询页（按备案号中的数字拼 `?code=`），可用 `params.policeBeianLink` 覆盖链接
+- 公安备案可配置**官方徽章图标**（`params.policeBeianIcon`，放在站点 assets/ 或 static/ 下）；主题不内置图标，由用户从公安备案后台自行下载添加
+- `exampleSite` 配置示例补充 `policeBeian` / `policeBeianLink` / `policeBeianIcon` 注释项
+
+### 变更
+
+- **主题不再内置 logo**：删除 `assets/images/logo.png`（个人素材不入公开主题仓库），logo 与 favicon 均由站点 `params.identity.logo` / `favicon` 配置驱动，未配置时显示纯文字站名
+- 示例站 logo 移至 `exampleSite/assets/images/`；文档（README 中英文、CONTRIBUTING）同步说明
+- 页脚备案号容器化（`.footer-beian`）并加 `white-space: nowrap`：ICP 与公安备案号成组排列、任何宽度下不换行；移动端页脚改为居中堆叠布局
+
 ## [0.3.0] - 2026-09-21
 
 ### 新增
