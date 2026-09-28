@@ -7,7 +7,7 @@ enableRobotsTXT = true
 # 主内容区块：首页「最新文章」、归档、相关文章、搜索索引都基于它。
 # 不写时 Hugo 会自动选页面最多的顶层区块；有 projects 等区块时建议显式指定。
 mainSections = ["posts"]
-hasCJKLanguage = true    # 中文按「字」统计，阅读时长/摘要才准确
+hasCJKLanguage = true    # 中文按「字」统计：字数、阅读时长/摘要才准确
 summaryLength = 80
 
 [outputs]

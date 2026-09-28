@@ -22,6 +22,8 @@
   translation: "About me"
 - id: minutesRead
   translation: "min read"
+- id: wordCount
+  translation: "words"
 - id: toc
   translation: "Contents"
 - id: noPosts

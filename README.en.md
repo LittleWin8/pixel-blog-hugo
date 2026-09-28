@@ -25,7 +25,7 @@ A pixel-retro (pixel / 8-bit) Hugo blog theme: zero border-radius, 2px hard bord
 - Top navigation and the links page (`/links/`) are config-driven, **comment out an item to hide it**
 - Optional **CRT scanlines** (`params.scanlines`), footer **ICP number** (`params.icp`) and **public security filing number** (`params.policeBeian`, configurable icon/link), **social icons** (`params.social`)
 - **Hero copy / site name and logo / tech stack / links all live in your site config (overriding theme defaults)**
-- Post pages: **sticky right-hand table of contents**, tags, prev/next, **one-click code copy**, **related posts** (TOC moves above the content on narrow screens)
+- Post pages: **sticky right-hand table of contents**, date / word count / reading time meta, tags, prev/next, **one-click code copy**, **related posts** (TOC moves above the content on narrow screens)
 - **Markdown render hooks**: lazy-loaded images with responsive `srcset` and captions, external links open in a new tab, heading anchor links
 - **Built-in search** (covers posts and projects, pure front-end, no dependencies)
 - Tag cloud and tag pages (**tag pages** label cards as **Post / Project**), **archive page** (grouped by year), **404 page**, robots.txt, footer **RSS** icon
@@ -79,7 +79,7 @@ defaultContentLanguage = "en"
 title = "My Blog"
 theme = "pixel-blog-hugo"
 enableRobotsTXT = true
-hasCJKLanguage = false     # enable for Chinese/Japanese/Korean sites
+hasCJKLanguage = false     # enable for Chinese/Japanese/Korean sites (accurate word count / reading time / summaries)
 summaryLength = 30         # the three lines above are examples — adjust as needed
 mainSections = ["posts"]   # main content section: home "Latest posts" / archive / related / search index
 # enableGitInfo = true     # use Git commit time as the "Updated" date (see below)

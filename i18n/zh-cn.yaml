@@ -22,6 +22,8 @@
   translation: "关于我"
 - id: minutesRead
   translation: "分钟阅读"
+- id: wordCount
+  translation: "字"
 - id: toc
   translation: "目录"
 - id: noPosts

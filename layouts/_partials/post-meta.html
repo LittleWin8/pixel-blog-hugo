@@ -4,7 +4,7 @@
   {{ if not $page.Date.IsZero }}
   <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "2006-01-02" }}</time>
   {{ end }}
-  <span>{{ $page.ReadingTime }} {{ i18n "minutesRead" | default "分钟阅读" }}</span>
+  <span>{{ $page.WordCount }} {{ i18n "wordCount" | default "字" }} · {{ $page.ReadingTime }} {{ i18n "minutesRead" | default "分钟阅读" }}</span>
   {{ if $showTags }}
   {{ with $page.Params.tags }}
   <span class="tags">
